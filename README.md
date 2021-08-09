@@ -1,1 +1,3 @@
 # destinFondateur
+
+Livre dont on est le héros de type "Destin" où on joue tour à tour un fondateur de peuple qui crée des commandements puis on regarde ce peuple évoluer jusqu'à ce qu'il disparaisse ou ait besoin d'un nouveau fondateur etc...
