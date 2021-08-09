@@ -1527,3 +1527,40 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 600
+
+transform fade_move_with_pars(delay, x, y, move_x, move_y):
+    pos (x, y)
+    alpha 1.0
+    parallel:
+        alpha 1.0
+        linear delay alpha 0.3
+    parallel:
+        pos (x, y)
+        linear delay pos (move_x, move_y)
+    pause delay
+
+screen fading_text(text, delay, x, y, move_x, move_y, *args, **kwargs):
+    add Text(text, *args, **kwargs) at fade_move_with_pars(delay, x, y, move_x, move_y)
+
+screen valeurs_traits():
+    tag interface_personnage
+    $ descriptionTrait = situation_.DescriptionTraits(traits_)
+    $ descriptionBlessures = situation_.DescriptionBlessuresEtMaladies(blessures_, maladies_)
+    $ affAge = situation_.AffichageAge()
+    $ affDate = situation_.AffichageDate()
+    # $ strQuartier = situation_.AffichageQuartier()
+    $ patronyme = situation_.AffichagePatronyme()
+    $ adressePortrait = situation_.DeterminerPortrait()
+    frame:
+        xpos 5 ypos 5
+        vbox:
+            textbutton _("Description suivante"):
+                action Function(InterfaceSuivante)
+            if interfaceMode_ == 0: # résumé, portrait, nom, age, blessures...
+                add "[adressePortrait]"
+                text _(u"[patronyme]")
+                text _(u"[affAge]")
+                text _(u"[descriptionBlessures]")
+                text _(u"[affDate]")
+            elif interfaceMode_ == 1: # traits
+                text _(u"[descriptionTrait]")

@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+The label naissance is defined twice, at
+  File "game/spe/naissance_fondateur.rpy", line 69 and
+  File "game/spe/naissance_philippe.rpyc", line 69.
+
+Ren'Py Version: Ren'Py 7.4.4.1439
+Mon Aug  9 20:09:10 2021
