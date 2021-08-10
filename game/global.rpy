@@ -7,6 +7,7 @@ init -2 python:
     from abs.univers import temps
     from abs.humanite.sante import pbsante
     from spe.peuple import peuple
+    from spe.peuple import region
     import random
 
     situation_ = situation_fondateur.SituationFondateur() # dictionnaire contenant toutes les caracs courantes de la partie
@@ -23,6 +24,8 @@ init -2 python:
     situation_.collectionMetiers = metiers_
     peuples_ = peuple.CollectionPeuples()
     situation_.collectionPeuples = peuples_
+    regions_ = region.CollectionRegions()
+    situation_.collectionRegions = regions_
     interfaceMode_ = 0
     nbInterfaceMode_ = 3
 

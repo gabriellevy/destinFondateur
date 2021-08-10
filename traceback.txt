@@ -1,22 +1,22 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/evts_generaux/rien.rpy", line 54, in script
+  File "game/evts_generaux/rien.rpy", line 49, in script
     with Dissolve(.5)
   File "game/screens.rpy", line 1545, in execute
     screen valeurs_traits():
   File "game/screens.rpy", line 1545, in execute
     screen valeurs_traits():
-  File "game/screens.rpy", line 1553, in execute
-    $ peupleStr = situation_.AffichagePeuple()
-  File "game/screens.rpy", line 1553, in <module>
-    $ peupleStr = situation_.AffichagePeuple()
-KeyError: u'Peuple'
+  File "game/screens.rpy", line 1554, in execute
+    $ regionStr = situation_.AffichageRegion()
+  File "game/screens.rpy", line 1554, in <module>
+    $ regionStr = situation_.AffichageRegion()
+TypeError: 'NoneType' object is not callable
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/evts_generaux/rien.rpy", line 54, in script
+  File "game/evts_generaux/rien.rpy", line 49, in script
     with Dissolve(.5)
   File "renpy/ast.py", line 1397, in execute
     renpy.exports.with_statement(trans, paired)
@@ -48,14 +48,13 @@ Full traceback:
     screen valeurs_traits():
   File "game/screens.rpy", line 1545, in execute
     screen valeurs_traits():
-  File "game/screens.rpy", line 1553, in execute
-    $ peupleStr = situation_.AffichagePeuple()
-  File "game/screens.rpy", line 1553, in <module>
-    $ peupleStr = situation_.AffichagePeuple()
-  File "spe/situation_fondateur.py", line 27, in AffichagePeuple
-KeyError: u'Peuple'
+  File "game/screens.rpy", line 1554, in execute
+    $ regionStr = situation_.AffichageRegion()
+  File "game/screens.rpy", line 1554, in <module>
+    $ regionStr = situation_.AffichageRegion()
+TypeError: 'NoneType' object is not callable
 
 Windows-10-10.0.19041
 Ren'Py 7.4.4.1439
 destinFondateur 1.0
-Tue Aug 10 21:08:10 2021
+Tue Aug 10 21:44:12 2021

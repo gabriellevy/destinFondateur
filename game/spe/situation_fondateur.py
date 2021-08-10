@@ -6,12 +6,14 @@ from abs.univers import temps
 from spe import portrait_fondateur
 from abs.humanite import portrait
 from spe.peuple import peuple
+from spe.peuple import region
 
 class SituationFondateur(situation.Situation):
 
     def __init__(self):
         situation.Situation.__init__(self, 435500)
         self.collectionPeuples = None
+        self.collectionRegions = None
 
     def DeterminerPortrait(self):
         """
@@ -25,3 +27,6 @@ class SituationFondateur(situation.Situation):
 
     def AffichagePeuple(self):
         return u"{}".format(self.caracs_[peuple.Peuple.C_PEUPLE])
+
+    def AffichageRegion(self):
+        return u"{}".format(self.caracs_[region.Region.C_REGION])

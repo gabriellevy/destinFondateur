@@ -1,4 +1,5 @@
 import random
+from spe.peuple import region
 
 class Peuple:
     C_PEUPLE = u"Peuple"
@@ -28,6 +29,13 @@ class CeltesSudFrance(Peuple):
 
     def __init__(self):
         self.nom_ = CeltesSudFrance.NOM
+
+    def SelectionDePeuple(self, situation):
+        """
+        changements de caracs quand on sélectionne ce peuple
+        """
+        Peuple.SelectionDePeuple(self, situation)
+        situation[region.Region.C_REGION] = region.SudFrance.NOM
 
 class CollectionPeuples:
 
