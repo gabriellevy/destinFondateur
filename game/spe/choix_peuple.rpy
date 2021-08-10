@@ -47,6 +47,16 @@ init -5 python:
         return
 
 label choix_peuple:
+    $ index_peuple = 0
+
+    python:
+        menu_items = [(cle, valeur) for cle, valeur in situation_.collectionPeuples.lPeuples_.items()]
+        # menu_items.append(("Never mind", Pass))
+        peupleChoisi = menu(menu_items)
+        peupleChoisi.SelectionDePeuple(situation_)
+
+    "fin choix"
+
     $ genererDateNaissance(situation_, 13)
     $ genererFondateur(situation_, traits_)
     jump fin_cycle

@@ -5,11 +5,13 @@ from abs.humanite import metier
 from abs.univers import temps
 from spe import portrait_fondateur
 from abs.humanite import portrait
+from spe.peuple import peuple
 
 class SituationFondateur(situation.Situation):
 
     def __init__(self):
         situation.Situation.__init__(self, 435500)
+        self.collectionPeuples = None
 
     def DeterminerPortrait(self):
         """
@@ -20,3 +22,6 @@ class SituationFondateur(situation.Situation):
         portraitStr = portr.DeterminerPortraitPersoPrincipal(self)
         self.SetCarac(portrait.Portrait.C_PORTRAIT, portraitStr)
         return self.GetValCarac(portrait.Portrait.C_PORTRAIT)
+
+    def AffichagePeuple(self):
+        return u"{}".format(self.caracs_[peuple.Peuple.C_PEUPLE])

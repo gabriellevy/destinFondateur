@@ -1550,6 +1550,7 @@ screen valeurs_traits():
     $ affDate = situation_.AffichageDate()
     # $ strQuartier = situation_.AffichageQuartier()
     $ patronyme = situation_.AffichagePatronyme()
+    $ peupleStr = situation_.AffichagePeuple()
     $ adressePortrait = situation_.DeterminerPortrait()
     frame:
         xpos 5 ypos 5
@@ -1561,6 +1562,7 @@ screen valeurs_traits():
                 text _(u"[patronyme]")
                 text _(u"[affAge]")
                 text _(u"[descriptionBlessures]")
+                text _(u"[peupleStr]")
                 text _(u"[affDate]")
             elif interfaceMode_ == 1: # traits
                 text _(u"[descriptionTrait]")

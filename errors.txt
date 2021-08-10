@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-The label naissance is defined twice, at
-  File "game/spe/naissance_fondateur.rpy", line 69 and
-  File "game/spe/naissance_philippe.rpyc", line 69.
+File "game/spe/choix_peuple.rpy", line 53: is not terminated with a newline. (Check strings and parenthesis.)
+            menu_items = [(peuple.nom_, peuple) for peuple in situation_.collectionPeuples
 
 Ren'Py Version: Ren'Py 7.4.4.1439
-Mon Aug  9 20:09:10 2021
+Tue Aug 10 21:00:10 2021

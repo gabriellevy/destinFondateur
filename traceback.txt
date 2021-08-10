@@ -1,30 +1,61 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/spe/choix_peuple.rpy", line 51, in script
-    $ genererFondateur(situation_, traits_)
-  File "game/spe/choix_peuple.rpy", line 51, in <module>
-    $ genererFondateur(situation_, traits_)
-  File "game/spe/choix_peuple.rpy", line 42, in genererFondateur
-    situation[fondateur.Fondateur.C_VIOLENCE] = 0
-NameError: global name 'fondateur' is not defined
+  File "game/evts_generaux/rien.rpy", line 54, in script
+    with Dissolve(.5)
+  File "game/screens.rpy", line 1545, in execute
+    screen valeurs_traits():
+  File "game/screens.rpy", line 1545, in execute
+    screen valeurs_traits():
+  File "game/screens.rpy", line 1553, in execute
+    $ peupleStr = situation_.AffichagePeuple()
+  File "game/screens.rpy", line 1553, in <module>
+    $ peupleStr = situation_.AffichagePeuple()
+KeyError: u'Peuple'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/spe/choix_peuple.rpy", line 51, in script
-    $ genererFondateur(situation_, traits_)
-  File "renpy/ast.py", line 922, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "renpy/python.py", line 2218, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/spe/choix_peuple.rpy", line 51, in <module>
-    $ genererFondateur(situation_, traits_)
-  File "game/spe/choix_peuple.rpy", line 42, in genererFondateur
-    situation[fondateur.Fondateur.C_VIOLENCE] = 0
-NameError: global name 'fondateur' is not defined
+  File "game/evts_generaux/rien.rpy", line 54, in script
+    with Dissolve(.5)
+  File "renpy/ast.py", line 1397, in execute
+    renpy.exports.with_statement(trans, paired)
+  File "renpy/exports.py", line 1646, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "renpy/display/core.py", line 2610, in do_with
+    clear=clear)
+  File "renpy/display/core.py", line 3101, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
+  File "renpy/display/core.py", line 3512, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 567, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/screen.py", line 432, in visit_all
+    callback(self)
+  File "renpy/display/core.py", line 3512, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/screen.py", line 443, in per_interact
+    self.update()
+  File "renpy/display/screen.py", line 631, in update
+    self.screen.function(**self.scope)
+  File "game/screens.rpy", line 1545, in execute
+    screen valeurs_traits():
+  File "game/screens.rpy", line 1545, in execute
+    screen valeurs_traits():
+  File "game/screens.rpy", line 1553, in execute
+    $ peupleStr = situation_.AffichagePeuple()
+  File "game/screens.rpy", line 1553, in <module>
+    $ peupleStr = situation_.AffichagePeuple()
+  File "spe/situation_fondateur.py", line 27, in AffichagePeuple
+KeyError: u'Peuple'
 
 Windows-10-10.0.19041
 Ren'Py 7.4.4.1439
 destinFondateur 1.0
-Tue Aug 10 19:48:56 2021
+Tue Aug 10 21:08:10 2021
