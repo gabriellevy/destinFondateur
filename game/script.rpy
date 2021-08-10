@@ -27,7 +27,7 @@ label start:
     scene bg priere
     # play music musique_menu
     queue music [ epique_principale, conquetes ] # pseudo liste de lecture temporaire
-    jump naissance
+    jump choix_peuple
 
 label debut_cycle:
     show screen valeurs_traits

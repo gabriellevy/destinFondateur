@@ -1,5 +1,5 @@
 from abs.religions import religion
-from chapitres.classes import fondateur
+from spe.peuple import peuple
 from abs import situation
 from abs.humanite import metier
 from abs.univers import temps

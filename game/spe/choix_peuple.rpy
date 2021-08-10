@@ -12,7 +12,7 @@ init -5 python:
     from abs.univers import temps
     # from geographie import quartier
     from abs.humanite import identite
-    from chapitres.classes import fondateur
+    from spe.peuple import peuple
     from abs.religions import religion
 
     def genererDateNaissance(situation, ageActuel=15):
@@ -39,30 +39,14 @@ init -5 python:
         # situation[metier.Chasseur.NOM] = trait.Trait.SEUIL_A
 
         # caracs spécifiques peuple
-        situation[fondateur.Fondateur.C_VIOLENCE] = 0
+        situation[peuple.Peuple.C_VIOLENCE] = 0
 
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)
         situation[identite.Identite.C_NOM] = "Fondateur" # A FAIRE : générer nom selon culture
         return
 
-    def genererParents(situation):
-        pere = pnj.GenererPNJPapa(situation)
-        pere.ageJours = 43 * 12 *30 + 24
-        pere.nom_ = "Louis VII"
-        pere.sexeMasculin_ = True
-        pere.portraitStr_ = "images/portraits/louisVII.png"
-        situation.SetValCarac(pnj.Pnj.C_PERE, pere)
-
-        mere = pnj.GenererPNJMaman(situation)
-        mere.ageJours = 36 * 12 *30 + 297
-        mere.nom_ = "Adèle de Champagne"
-        mere.sexeMasculin_ = False
-        mere.portraitStr_ = "images/portraits/adele.png"
-        situation.SetValCarac(pnj.Pnj.C_MERE, mere)
-
-label naissance:
+label choix_peuple:
     $ genererDateNaissance(situation_, 13)
     $ genererFondateur(situation_, traits_)
-    $ genererParents(situation_)
-    jump intro
+    jump fin_cycle
