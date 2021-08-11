@@ -2,8 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/spe/choix_peuple.rpy", line 53: is not terminated with a newline. (Check strings and parenthesis.)
-            menu_items = [(peuple.nom_, peuple) for peuple in situation_.collectionPeuples
+File "game/spe/choix_peuple.rpy", line 37: invalid syntax
+        if civRef not None:
+                          ^
+    
 
 Ren'Py Version: Ren'Py 7.4.4.1439
-Tue Aug 10 21:00:10 2021
+Wed Aug 11 22:50:35 2021

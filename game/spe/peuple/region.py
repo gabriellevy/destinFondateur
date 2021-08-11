@@ -25,7 +25,7 @@ class Region:
 
 class SudFrance(Region):
 
-    NOM = u"Gaule narbonnaise" # en thoérie on pourrait faire varier le nom selon l'époque mais pas trop envie de me rpednre la tête avec ça pour l'instant
+    NOM = u"Gaule narbonnaise" # en théorie on pourrait faire varier le nom selon l'époque mais pas trop envie de me rpednre la tête avec ça pour l'instant
 
     def __init__(self):
         self.nom_ = SudFrance.NOM

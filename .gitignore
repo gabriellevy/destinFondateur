@@ -135,3 +135,5 @@ log.txt
 errors.txt
 *.save
 traceback.txt
+errors.txt
+game/saves/navigation.json

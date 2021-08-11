@@ -7,6 +7,7 @@ from spe import portrait_fondateur
 from abs.humanite import portrait
 from spe.peuple import peuple
 from spe.peuple import region
+from spe.civilisation import civ
 
 class SituationFondateur(situation.Situation):
 
@@ -14,6 +15,7 @@ class SituationFondateur(situation.Situation):
         situation.Situation.__init__(self, 435500)
         self.collectionPeuples = None
         self.collectionRegions = None
+        self.collectionCivs = None
 
     def DeterminerPortrait(self):
         """
@@ -24,6 +26,18 @@ class SituationFondateur(situation.Situation):
         portraitStr = portr.DeterminerPortraitPersoPrincipal(self)
         self.SetCarac(portrait.Portrait.C_PORTRAIT, portraitStr)
         return self.GetValCarac(portrait.Portrait.C_PORTRAIT)
+
+    def GetCivilisationDeReference(self):
+        civPlusHaute = None
+        valPlusHaute = 0
+        for civK in self.collectionCivs.lCivs_.keys():
+            valCiv = self.GetValCarac(civK)
+            if valCiv != "" and valCiv > valPlusHaute:
+                valPlusHaute = valCiv
+                civPlusHaute = civK
+
+        self.caracs_[civ.Civ.C_CIV] = civPlusHaute
+        return self.collectionCivs.lCivs_[civPlusHaute]
 
     def AffichagePeuple(self):
         return u"{}".format(self.caracs_[peuple.Peuple.C_PEUPLE])

@@ -1,5 +1,6 @@
 import random
 from spe.peuple import region
+from spe.civilisation import civ
 
 class Peuple:
     C_PEUPLE = u"Peuple"
@@ -37,6 +38,7 @@ class CeltesSudFrance(Peuple):
         """
         Peuple.SelectionDePeuple(self, situation)
         situation[region.Region.C_REGION] = region.SudFrance.NOM
+        situation[civ.Celte.NOM] = 1
 
 class CollectionPeuples:
 

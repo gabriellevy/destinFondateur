@@ -19,10 +19,11 @@ init -5 python:
         nbJoursDateNaissance = situation[temps.Date.DATE] - 365*ageActuel
         situation[temps.Date.DATE_NAISSANCE] = nbJoursDateNaissance
 
-    def genererFondateur(situation, tousLesTraits):
+    def genererFondateur(situation):
         """
         A FAIRE : profil spécifique au Fondateur
         """
+        civRef = situation.GetCivilisationDeReference()
         # situation[trait.Violence.NOM] = trait.Trait.SEUIL_A_EXTREME
 
         # compétences professionnelles
@@ -33,12 +34,12 @@ init -5 python:
 
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)
-        situation[identite.Identite.C_NOM] = "Fondateur" # A FAIRE : générer nom selon culture
-        return
+        if civRef is not None:
+            situation[identite.Identite.C_NOM] = civRef.GenererPatronyme(True)
 
-    def SelectionPeuple(peuple, situation):
-        peuple.SelectionDePeuple(situation)
-        renpy.jump(peuple.labelDepart_)
+    def SelectionPeuple(peup, situation):
+        peup.SelectionDePeuple(situation)
+        renpy.jump(peup.labelDepart_)
 
 label choix_peuple:
     $ index_peuple = 0
@@ -59,5 +60,5 @@ label choix_peuple_avatiques:
     "L'environnement est idéal. Vous êtes proche du Rhône et de l'étang d'eau salée de Berre. De plus la riche ville grecque de Massilia est toute proche et est un très bon partenaire de commerce."
     "Vous allez maintenant pouvoir créer votre propre peuple qui suivra vos lois."
     $ genererDateNaissance(situation_, 13)
-    $ genererFondateur(situation_, traits_)
+    $ genererFondateur(situation_)
     jump fin_cycle
