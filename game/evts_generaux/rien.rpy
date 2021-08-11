@@ -33,7 +33,7 @@ init -5 python:
         #         sceneParDefaut = quartierCourant.imageDeFond_
 
         if sceneParDefaut == "":
-            sceneParDefaut = "bg priere"
+            sceneParDefaut = "bg vercingetorix"
 
         # fond
         if sceneParDefaut != "":

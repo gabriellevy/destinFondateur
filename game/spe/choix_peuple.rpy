@@ -24,19 +24,9 @@ init -5 python:
         A FAIRE : profil spécifique au Fondateur
         """
         # situation[trait.Violence.NOM] = trait.Trait.SEUIL_A_EXTREME
-        # situation[trait.Opportunisme.NOM] = trait.Trait.SEUIL_A_EXTREME
-        # situation[trait.Assurance.NOM] = trait.Trait.SEUIL_A_EXTREME
-        # situation[trait.Observation.NOM] = trait.Trait.SEUIL_A
-        # situation[trait.Cupidite.NOM] = trait.Trait.SEUIL_A_EXTREME
-        # situation[trait.Courage.NOM] = trait.Trait.SEUIL_A
-        # situation[trait.Ambition.NOM] = trait.Trait.SEUIL_A
-        # situation[trait.Rancune.NOM] = trait.Trait.SEUIL_A_EXTREME
-        # situation[trait.Franchise.NOM] = trait.Trait.SEUIL_A_PAS
 
         # compétences professionnelles
         # situation[metier.Politique.NOM] = trait.Trait.SEUIL_A
-        # situation[metier.Guerrier.NOM] = trait.Trait.SEUIL_A
-        # situation[metier.Chasseur.NOM] = trait.Trait.SEUIL_A
 
         # caracs spécifiques peuple
         situation[peuple.Peuple.C_VIOLENCE] = 0
@@ -46,6 +36,10 @@ init -5 python:
         situation[identite.Identite.C_NOM] = "Fondateur" # A FAIRE : générer nom selon culture
         return
 
+    def SelectionPeuple(peuple, situation):
+        peuple.SelectionDePeuple(situation)
+        renpy.jump(peuple.labelDepart_)
+
 label choix_peuple:
     $ index_peuple = 0
 
@@ -53,10 +47,17 @@ label choix_peuple:
         menu_items = [(cle, valeur) for cle, valeur in situation_.collectionPeuples.lPeuples_.items()]
         # menu_items.append(("Never mind", Pass))
         peupleChoisi = menu(menu_items)
-        peupleChoisi.SelectionDePeuple(situation_)
-
+        SelectionPeuple(peupleChoisi, situation_)
     "fin choix"
+    jump fin_cycle
 
+label choix_peuple_avatiques:
+    scene bg village_celte
+    "Vous êtes un noble fortuné et influent du peuple des avatiques."
+    "Vous avez été éloigné du pouvoir à cause de vos divergences avec les autres nobles et de vos idées impopulaires."
+    "Beaucoup de vos suivants ont décidé de rester avec vous et vous avez construit un village pour vous regrouper et prendre le contrôle des terres environnantes."
+    "L'environnement est idéal. Vous êtes proche du Rhône et de l'étang d'eau salée de Berre. De plus la riche ville grecque de Massilia est toute proche et est un très bon partenaire de commerce."
+    "Vous allez maintenant pouvoir créer votre propre peuple qui suivra vos lois."
     $ genererDateNaissance(situation_, 13)
     $ genererFondateur(situation_, traits_)
     jump fin_cycle

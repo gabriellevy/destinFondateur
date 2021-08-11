@@ -25,10 +25,11 @@ class Peuple:
 
 class CeltesSudFrance(Peuple):
 
-    NOM = u"Celtes du sud de la France"
+    NOM = u"Avatiques"
 
     def __init__(self):
         self.nom_ = CeltesSudFrance.NOM
+        self.labelDepart_ = "choix_peuple_avatiques"
 
     def SelectionDePeuple(self, situation):
         """

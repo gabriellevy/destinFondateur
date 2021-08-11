@@ -24,7 +24,7 @@ init -1 python:
 
 # Le jeu commence ici
 label start:
-    scene bg priere
+    scene bg village_celte
     # play music musique_menu
     queue music [ epique_principale, conquetes ] # pseudo liste de lecture temporaire
     jump choix_peuple

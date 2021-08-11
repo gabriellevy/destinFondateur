@@ -133,3 +133,5 @@ game/saves/persistent
 game/tl/None/common.rpymc
 log.txt
 errors.txt
+*.save
+traceback.txt
