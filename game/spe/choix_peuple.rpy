@@ -54,12 +54,13 @@ label choix_peuple:
 
 label choix_peuple_avatiques:
     scene bg village_celte
-    $ nomPeuple = situation_.GetValCarac(peuple.Peuple.C_PEUPLE)
-    "Vous êtes un noble fortuné et influent du peuple des avatiques."
-    "Vous avez été éloigné du pouvoir à cause de vos divergences avec les autres nobles et de vos idées impopulaires."
-    "Beaucoup de vos suivants ont décidé de rester avec vous et vous avez construit un village pour vous regrouper et prendre le contrôle des terres environnantes. Vous avez décide de vous nommer [nomPeuple]"
-    "L'environnement est idéal. Vous êtes proche du Rhône et de l'étang d'eau salée de Berre. De plus le riche port grec de Massilia est toute proche et est un très bon partenaire de commerce."
     $ genererDateNaissance(situation_, 30)
     $ genererFondateur(situation_)
     $ situation_.SetValCarac(peuple.Peuple.C_POP, 2214)
+    $ nomPeuple = situation_.GetValCarac(peuple.Peuple.C_PEUPLE)
+    $ nomFondateur = situation_.GetValCarac(identite.Identite.C_NOM)
+    "Vous vous nommez [nomFondateur]. Vous êtes un noble fortuné et influent du peuple des avatiques."
+    "Vous avez été éloigné du pouvoir à cause de vos divergences avec les autres nobles et de vos idées impopulaires."
+    "Beaucoup de vos suivants ont décidé de rester avec vous et vous avez construit un village pour vous regrouper et prendre le contrôle des terres environnantes. Vous avez décide de vous nommer [nomPeuple]"
+    "L'environnement est idéal. Vous êtes proche du Rhône et de l'étang d'eau salée de Berre. De plus le riche port grec de Massilia est toute proche et est un très bon partenaire de commerce."
     jump fin_cycle

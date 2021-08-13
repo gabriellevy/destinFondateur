@@ -13,7 +13,8 @@ from spe.region import geo
 class SituationFondateur(situation.Situation):
 
     def __init__(self):
-        situation.Situation.__init__(self, 435500)
+        # date de départ = -1000 => l'affichage est trafiqué en fonction de ça (cf formatGregorienAvantJC)
+        situation.Situation.__init__(self, 0)
         self.collectionPeuples = None
         self.collectionRegions = None
         self.collectionCivs = None
@@ -59,3 +60,10 @@ class SituationFondateur(situation.Situation):
         if self.GetValCarac(geo.Geo.C_COTIERE) == "1":
             str = u"{}\nCôtière".format(str)
         return str
+
+    # DATES ET TEMPS QUI PASSE-----------------------------------------------------------------------------------------------------------
+    def AffichageDate(self):
+        nbJours = self.caracs_[temps.Date.DATE]
+        dateDuJour = temps.Date(nbJours)
+        dateStr = u"{}".format(dateDuJour.formatGregorienAvantJC(1000))
+        return dateStr

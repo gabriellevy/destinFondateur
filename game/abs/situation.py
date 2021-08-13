@@ -284,7 +284,7 @@ class Situation:
         return "??? nbJoursVecus pas int : {}".format(nbJoursVecus)
 
     def AgeEnAnnees(self):
-        if isinstance(self.caracs_[temps.Date.DATE_NAISSANCE], int):
+        if isinstance(self.GetValCarac(temps.Date.DATE_NAISSANCE), int):
             nbJoursVecus = temps.Date(self.caracs_[temps.Date.DATE]).nbJours_ - temps.Date(self.caracs_[temps.Date.DATE_NAISSANCE]).nbJours_
             nbAnnees = nbJoursVecus/365
             return nbAnnees
@@ -379,7 +379,8 @@ class Situation:
         nouvelleDateEnJours = self.caracs_[temps.Date.DATE] + nbJoursPasses
         self.caracs_[temps.Date.DATE] = nouvelleDateEnJours
         self.caracs_[temps.Date.DATE_ANNEES] = temps.Date(nouvelleDateEnJours).GetNbAnnees()
-        self.caracs_[temps.Date.AGE_ANNEES] = self.AgeEnAnnees()
+        if self.GetValCarac(temps.Date.AGE_ANNEES) != "":
+            self.caracs_[temps.Date.AGE_ANNEES] = self.AgeEnAnnees()
 
         # application des jours passés aux pnjs :
         for pnjObj in self.collectionPnjs.values():

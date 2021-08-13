@@ -44,6 +44,8 @@ class CeltesSudFrance(Peuple):
         """
         changements de caracs quand on sélectionne ce peuple
         """
+        # début en -600:
+        situation.AvanceDeXJours(400 * 365)
         Peuple.SelectionDePeuple(self, situation)
         civilisationDepart = civ.Celte()
         situation[civilisationDepart.nom_] = 1
