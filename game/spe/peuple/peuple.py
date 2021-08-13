@@ -4,6 +4,8 @@ from spe.civilisation import civ
 
 class Peuple:
     C_PEUPLE = u"Peuple"
+    # caracs variables de peuple
+    C_POP = u"Population"
     # caracs principale d'identité de peuple
     C_VIOLENCE = u"Violence"
 
@@ -22,7 +24,7 @@ class Peuple:
         """
         changements de caracs quand on sélectionne ce peuple
         """
-        situation[Peuple.C_PEUPLE] = self.nom_
+        pass
 
 class CeltesSudFrance(Peuple):
 
@@ -37,8 +39,10 @@ class CeltesSudFrance(Peuple):
         changements de caracs quand on sélectionne ce peuple
         """
         Peuple.SelectionDePeuple(self, situation)
+        civilisationDepart = civ.Celte()
         situation[region.Region.C_REGION] = region.SudFrance.NOM
-        situation[civ.Celte.NOM] = 1
+        situation[civilisationDepart.nom_] = 1
+        situation[Peuple.C_PEUPLE] = civilisationDepart.GenererNomPeuple()
 
 class CollectionPeuples:
 
