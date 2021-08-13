@@ -30,7 +30,7 @@ init -2 python:
     civs_ = civ.CollectionCivs()
     situation_.collectionCivs = civs_
     interfaceMode_ = 0
-    nbInterfaceMode_ = 2
+    nbInterfaceMode_ = 3
 
     # text fade system
     time_ = 2.0 # seconds of fade

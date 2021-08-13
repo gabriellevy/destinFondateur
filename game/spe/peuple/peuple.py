@@ -46,8 +46,9 @@ class CeltesSudFrance(Peuple):
         """
         Peuple.SelectionDePeuple(self, situation)
         civilisationDepart = civ.Celte()
-        situation[region.Region.C_REGION] = region.SudFrance.NOM
         situation[civilisationDepart.nom_] = 1
+        regionObj = situation.collectionRegions[region.SudFrance.NOM]
+        regionObj.SelectionDeRegion(situation)
         situation[Peuple.C_PEUPLE] = civilisationDepart.GenererNomPeuple()
 
 class CollectionPeuples:

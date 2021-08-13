@@ -1555,6 +1555,7 @@ screen valeurs_traits():
     $ populationStr = situation_.AffichagePopulation()
     $ adressePortrait = situation_.DeterminerPortrait()
     $ donneesDebug = situation_.AfficherDebug()
+    $ strGeo = situation_.AfficherGeographie()
     frame:
         xpos 5 ypos 5
         vbox:
@@ -1571,5 +1572,7 @@ screen valeurs_traits():
                 text _(u"[affDate]")
             elif interfaceMode_ == 1: # valeur de debug
                 text _(u"[donneesDebug]")
-            elif interfaceMode_ == 2:
+            elif interfaceMode_ == 2: # géographie
+                text _(u"[strGeo]")
+            elif interfaceMode_ == 3:
                 text _(u"[descriptionTrait]")

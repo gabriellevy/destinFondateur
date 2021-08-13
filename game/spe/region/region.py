@@ -1,4 +1,5 @@
 import random
+from spe.region import geo
 
 class Region:
     """
@@ -17,7 +18,7 @@ class Region:
         """Affichage quand on affiche l'objet (print)"""
         return u"{}".format(self.nom_)
 
-    def SelectionDePeuple(self, situation):
+    def SelectionDeRegion(self, situation):
         """
         changements de caracs quand on sélectionne ce peuple
         """
@@ -29,6 +30,10 @@ class SudFrance(Region):
 
     def __init__(self):
         self.nom_ = SudFrance.NOM
+
+    def SelectionDeRegion(self, situation):
+        Region.SelectionDeRegion(self, situation)
+        situation.SetValCarac(geo.Geo.C_COTIERE, "1")
 
 class CollectionRegions:
 

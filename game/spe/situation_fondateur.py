@@ -8,6 +8,7 @@ from abs.humanite import portrait
 from spe.peuple import peuple
 from spe.region import region
 from spe.civilisation import civ
+from spe.region import geo
 
 class SituationFondateur(situation.Situation):
 
@@ -51,4 +52,10 @@ class SituationFondateur(situation.Situation):
     def AfficherDebug(self):
         str = u"Cohésion : {}".format(self.caracs_[peuple.Peuple.C_COHESION])
         str = u"{}\n{}".format(str, self.caracs_[peuple.Peuple.C_SOUV])
+        return str
+
+    def AfficherGeographie(self):
+        str = u"{}".format(self.AffichageRegion())
+        if self.GetValCarac(geo.Geo.C_COTIERE) == "1":
+            str = u"{}\nCôtière".format(str)
         return str

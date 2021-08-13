@@ -37,9 +37,9 @@ init -5 python:
         if civRef is not None:
             situation[identite.Identite.C_NOM] = civRef.GenererPatronyme(True)
 
-    def SelectionPeuple(peup, situation):
-        peup.SelectionDePeuple(situation)
-        renpy.jump(peup.labelDepart_)
+    def SelectionPeuple(peupleObj, situation):
+        peupleObj.SelectionDePeuple(situation)
+        renpy.jump(peupleObj.labelDepart_)
 
 label choix_peuple:
     $ index_peuple = 0
