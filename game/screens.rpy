@@ -1554,6 +1554,7 @@ screen valeurs_traits():
     $ regionStr = situation_.AffichageRegion()
     $ populationStr = situation_.AffichagePopulation()
     $ adressePortrait = situation_.DeterminerPortrait()
+    $ donneesDebug = situation_.AfficherDebug()
     frame:
         xpos 5 ypos 5
         vbox:
@@ -1568,5 +1569,7 @@ screen valeurs_traits():
                 text _(u"[populationStr]")
                 text _(u"[regionStr]")
                 text _(u"[affDate]")
-            elif interfaceMode_ == 1: # traits
+            elif interfaceMode_ == 1: # valeur de debug
+                text _(u"[donneesDebug]")
+            elif interfaceMode_ == 2:
                 text _(u"[descriptionTrait]")

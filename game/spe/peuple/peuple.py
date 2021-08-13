@@ -1,11 +1,16 @@
 import random
-from spe.peuple import region
+from spe.region import region
 from spe.civilisation import civ
 
 class Peuple:
     C_PEUPLE = u"Peuple"
     # caracs variables de peuple
     C_POP = u"Population"
+    C_COHESION = u"Cohésion"
+    # souveraineté
+    C_SOUV = u"Souveraineté"
+    # ------------- val de souveraineté
+    TRIBUE = u"Tribu"
     # caracs principale d'identité de peuple
     C_VIOLENCE = u"Violence"
 
@@ -24,7 +29,8 @@ class Peuple:
         """
         changements de caracs quand on sélectionne ce peuple
         """
-        pass
+        situation.SetValCarac(Peuple.C_COHESION, 1)
+        situation.SetValCarac(Peuple.C_SOUV, Peuple.TRIBUE)
 
 class CeltesSudFrance(Peuple):
 

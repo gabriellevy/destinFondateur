@@ -7,7 +7,7 @@ init -2 python:
     from abs.univers import temps
     from abs.humanite.sante import pbsante
     from spe.peuple import peuple
-    from spe.peuple import region
+    from spe.region import region
     from spe.civilisation import civ
     import random
 
@@ -30,7 +30,7 @@ init -2 python:
     civs_ = civ.CollectionCivs()
     situation_.collectionCivs = civs_
     interfaceMode_ = 0
-    nbInterfaceMode_ = 3
+    nbInterfaceMode_ = 2
 
     # text fade system
     time_ = 2.0 # seconds of fade

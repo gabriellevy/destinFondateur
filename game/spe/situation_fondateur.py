@@ -6,7 +6,7 @@ from abs.univers import temps
 from spe import portrait_fondateur
 from abs.humanite import portrait
 from spe.peuple import peuple
-from spe.peuple import region
+from spe.region import region
 from spe.civilisation import civ
 
 class SituationFondateur(situation.Situation):
@@ -47,3 +47,8 @@ class SituationFondateur(situation.Situation):
 
     def AffichagePopulation(self):
         return u"Population : {}".format(self.caracs_[peuple.Peuple.C_POP])
+
+    def AfficherDebug(self):
+        str = u"Cohésion : {}".format(self.caracs_[peuple.Peuple.C_COHESION])
+        str = u"{}\n{}".format(str, self.caracs_[peuple.Peuple.C_SOUV])
+        return str
