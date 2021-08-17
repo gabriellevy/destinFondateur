@@ -1,6 +1,6 @@
 ﻿# Persos
 define narrator = Character(color="#fafad8", what_italic=True)
-define lVIII = Character('Louis VII', color="#0040ff") # tmp
+define std = Character('Perso standard...', color="#009900") # personnage standard remplacé selon les situations. (son nom est mis à jour)
 
 # Musiques
 define audio.epique_principale = "musique/epique_principale.ogg"
@@ -8,6 +8,7 @@ define audio.conquetes = "musique/conquetes.ogg"
 
 init -10 python:
     from abs import selecteur
+    from spe import situation_fondateur
     import random
 
     selecteur_ = selecteur.Selecteur()
@@ -19,7 +20,7 @@ init -1 python:
     from abs import selecteur
     import random
 
-    AjouterEvtsProfessionnels()
+    AjouterEvtsReligieux()
     AjouterEvtsRien()
 
 # Le jeu commence ici
@@ -40,12 +41,12 @@ label fin_cycle:
 
     $ situation_.TourSuivant()
 
-    if situation_["Santé"] != "Mort":
+    if situation_[situation_fondateur.SituationFondateur.C_MODE] == situation_fondateur.SituationFondateur.C_MODE_FONDATEUR:
         jump debut_cycle
 
 label mort:
     menu:
-        "Fin de vie."
+        "Le fondateur est mort. L'histoire de votre peuple commence."
         "ok":
             pass
     return

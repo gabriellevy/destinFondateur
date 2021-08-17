@@ -12,12 +12,19 @@ from spe.region import geo
 
 class SituationFondateur(situation.Situation):
 
+    # Mode de jeu actuel (fondateur ou historique)
+    C_MODE = u"Mode"
+    C_MODE_HISTORIQUE = u"Mode historique"
+    C_MODE_FONDATEUR = u"Mode fondateur"
+
+
     def __init__(self):
         # date de départ = -1000 => l'affichage est trafiqué en fonction de ça (cf formatGregorienAvantJC)
         situation.Situation.__init__(self, 0)
         self.collectionPeuples = None
         self.collectionRegions = None
         self.collectionCivs = None
+        self.SetValCarac(SituationFondateur.C_MODE, SituationFondateur.C_MODE_FONDATEUR)
 
     def DeterminerPortrait(self):
         """
