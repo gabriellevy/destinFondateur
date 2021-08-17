@@ -10,6 +10,7 @@ init -5 python:
     from abs.humanite import trait
     from abs.humanite import metier
     from spe import situation_fondateur
+    from spe.peuple import peuple
 
     estEnModeFondateur = condition.Condition(situation_fondateur.SituationFondateur.C_MODE, situation_fondateur.SituationFondateur.C_MODE_FONDATEUR, condition.Condition.EGAL)
     creationReligionPasFait = condition.Condition("creationReligion", "1", condition.Condition.DIFFERENT)
@@ -27,12 +28,20 @@ label creationReligion:
     $ situation_.SetValCarac("creationReligion", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
-    " ------------------------------> création de religion"
+    $ titreFondateur = civRef.GetTitreFondateur(situation_)
     "Un jour [nomPerso] vient vous voir tandis que vous méditez dans une clairière."
     $ std = Character(nomPerso)
-    std "Mes excuses pour l'interruption"
+    std "Mes excuses pour l'interruption titreFondateur. Mais de graves troubles secouent le peuple"
+    "Certains adorent des dieux sculptés, d'autres la nature, d'autres le destin, d'autres encore méprisent toutes les croyances et s'attirent la haine des fidèles."
+    "Dans votre sagesse la véritable nature de la divinité doit vous avoir été révélée. Quelle est-elle ?"
+    menu:
+        "Les dieux sont multiples et omniprésents.":
+            $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Polytheiste.NOM)
+        "Il n'y a qu'un seul Dieu et nous sommes son peuple élu. Les autres ne sont que poussière.":
+            $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Monotheiste.NOM)
+            $ AjouterACarac(peuple.Peuple.C_COHESION, 0.1)
+        "La divinité n'existe pas. Seuls règnent le hasard et la volonté.":
+            $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Atheisme.NOM)
+            $ RetirerACarac(peuple.Peuple.C_COHESION, 0.02)
 
-
-
-    $ AjouterACarac(metier.Guerrier.NOM, 1)
     jump fin_cycle

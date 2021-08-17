@@ -1,4 +1,5 @@
 import random
+from abs.humanite import identite
 
 class Civ:
     C_CIV = u"Civilisation"
@@ -28,6 +29,10 @@ class Civ:
     def GenererPatronyme(self, masculin):
         prenom = self.GenererPrenom(masculin)
         return "{} {}".format(prenom, self.GenererNom())
+
+    def GetTitreFondateur(self, situation):
+        nom = situation.GetValCarac(identite.Identite.C_NOM)
+        return nom
 
 class Celte(Civ):
 
@@ -113,6 +118,10 @@ class Celte(Civ):
 
     def GenererNom(self):
         return u""
+
+    def GetTitreFondateur(self, situation):
+        nom = Civ.GetTitreFondateur(self, situation)
+        return "Grand Druide {}".format(nom)
 
 class CollectionCivs:
 

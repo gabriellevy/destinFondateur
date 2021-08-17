@@ -54,6 +54,9 @@ class SituationFondateur(situation.Situation):
     def AffichageRegion(self):
         return u"{}".format(self.caracs_[region.Region.C_REGION])
 
+    def AffichageReligion(self):
+        return u"{}".format(self.caracs_[religion.Religion.C_RELIGION])
+
     def AffichagePopulation(self):
         return u"Population : {}".format(self.caracs_[peuple.Peuple.C_POP])
 

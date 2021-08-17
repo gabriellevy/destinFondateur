@@ -22,7 +22,21 @@ class Paien(Religion):
     def __init__(self):
        self.nom_ = Paien.NOM
 
-class Christianisme(Religion):
+class Polytheiste(Paien):
+
+    NOM = u"Polythéiste"
+
+    def __init__(self):
+       self.nom_ = Polytheiste.NOM
+
+class Monotheiste(Religion):
+
+    NOM = u"Monothéiste"
+
+    def __init__(self):
+       self.nom_ = Monotheiste.NOM
+
+class Christianisme(Monotheiste):
 
     NOM = u"Christianisme"
 
