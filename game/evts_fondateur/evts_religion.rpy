@@ -31,9 +31,9 @@ label creationReligion:
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     "Un jour [nomPerso] vient vous voir tandis que vous méditez dans une clairière."
     $ std = Character(nomPerso)
-    std "Mes excuses pour l'interruption titreFondateur. Mais de graves troubles secouent le peuple"
-    "Certains adorent des dieux sculptés, d'autres la nature, d'autres le destin, d'autres encore méprisent toutes les croyances et s'attirent la haine des fidèles."
-    "Dans votre sagesse la véritable nature de la divinité doit vous avoir été révélée. Quelle est-elle ?"
+    std "Mes excuses pour l'interruption [titreFondateur]. Mais de graves troubles secouent le peuple"
+    std "Certains adorent des dieux sculptés, d'autres la nature, d'autres le destin, d'autres encore méprisent toutes les croyances et s'attirent la haine des fidèles."
+    std "Dans votre sagesse la véritable nature de la divinité doit vous avoir été révélée. Quelle est-elle ?"
     menu:
         "Les dieux sont multiples et omniprésents.":
             $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Polytheiste.NOM)
