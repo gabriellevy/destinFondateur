@@ -26,8 +26,11 @@ label creationReligion:
     $ situation_.SetValCarac("creationReligion", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
+    $ persoImg = civRef.GenererImagePerso(True, 30)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     "Un jour [nomPerso] vient vous voir tandis que vous méditez dans une clairière."
+    $ renpy.show(persoImg, [right])
+    with moveinright
     $ std = Character(nomPerso)
     std "Mes excuses pour l'interruption [titreFondateur]. Mais de graves troubles secouent le peuple"
     std "Certains adorent des dieux sculptés, d'autres la nature, d'autres le destin, d'autres encore méprisent toutes les croyances et s'attirent la haine des fidèles."

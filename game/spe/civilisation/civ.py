@@ -30,6 +30,10 @@ class Civ:
         prenom = self.GenererPrenom(masculin)
         return "{} {}".format(prenom, self.GenererNom())
 
+    def GenererImagePerso(self, masculin, age):
+        # if masculin:
+        return "à overrider"
+
     def GetTitreFondateur(self, situation):
         nom = situation.GetValCarac(identite.Identite.C_NOM)
         return nom
@@ -115,6 +119,10 @@ class Celte(Civ):
 
     def GenererNomPeuple(self):
         return random.choice(Celte.NOMS_PEUPLES)
+
+    def GenererImagePerso(self, masculin, age):
+        # if masculin:
+        return "celte_m_20_50"
 
     def GenererNom(self):
         return u""

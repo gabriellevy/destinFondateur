@@ -57,7 +57,7 @@ class SituationFondateur(situation.Situation):
             if valCiv != "":
                 str = u"{}\n{}({})".format(str, civK, valCiv)
 
-        str = u"{}\n\n Affinités de civilisation :".format(str)
+        str = u"{}\n\nAffinités de civilisation :".format(str)
         # niveau d'affinité de civilisation :
         for civK in self.collectionCivs.lCivs_.keys():
             valCiv = self.GetValCarac(u"affinite{}".format(civK))
