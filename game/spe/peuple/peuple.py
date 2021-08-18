@@ -13,6 +13,8 @@ class Peuple:
     TRIBUE = u"Tribu"
     # caracs principale d'identité de peuple
     C_VIOLENCE = u"Violence"
+    C_CREATIVITE = u"Creativité"
+    C_AVENTURE = u"Aventure"
 
     def __init__(self):
         self.nom_ = u"pas de nom de peuple, doit être overridé"

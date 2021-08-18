@@ -32,11 +32,11 @@ label droitSculpture:
 
     menu:
         "C'est hors de question. Aucune figure humaine ou divine ne doit être représentée et encore moins vénérée.":
-            $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Polytheiste.NOM)
             $ AjouterAAffinite(civ.Juive.NOM, 0.3)
             $ AjouterAAffinite(civ.Arabe.NOM, 0.3)
+            $ RetirerACarac(peuple.Peuple.C_CREATIVITE, -0.1)
         "La divinité a des avatars humains parfaits que vous pouvez représenter.":
-            $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Monotheiste.NOM)
             $ AjouterAAffinite(civ.Grecque.NOM, 0.3)
+            $ RetirerACarac(peuple.Peuple.C_CREATIVITE, 0.3)
 
     jump fin_cycle
