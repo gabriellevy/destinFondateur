@@ -29,53 +29,17 @@ init -2 python:
     situation_.collectionRegions = regions_
     civs_ = civ.CollectionCivs()
     situation_.collectionCivs = civs_
-    interfaceMode_ = 0
-    nbInterfaceMode_ = 3
+    interfaceMode_ = 3
+    nbInterfaceMode_ = 4
 
-    # text fade system
-    time_ = 2.0 # seconds of fade
-    x_debut = 100
-    y_debut = 10
-    x_fin = 650
-    y_fin = 10
-
-    def SetValCarac(caracId, num):
-        global situation_
-        valCourant = situation_.GetValCaracInt(caracId)
-        if num > valCourant:
-            AjouterACarac(caracId, num - valCourant)
-        elif num < valCourant:
-            RetirerACarac(caracId,num - valCourant)
-
-    def AjouterACarac(caracId, num):
-        global situation_
-        textChangtCarac = u"{} + {}".format(caracId, num)
-        renpy.show_screen("fading_text", textChangtCarac, time_, x_debut, y_debut, x_fin, y_fin, color="#4f4", size=24, alpha=1.0)
-        renpy.pause(time_)
-        renpy.hide_screen("fading_text")
-        situation_.AjouterACarac(caracId, num)
-
-    def GetValCarac(caracId):
+    def AjouterAAffinite(idCiv, num):
         """
-        simple racourci
+        affecte l'affinité entre les civilisation c'est à dire est-ce que quand elles se rencontreront ces deux civilisation se ressembleront
+        (et auront plus de chance de s'allier, fusionner, ou s'affronter)
         """
         global situation_
-        return situation_.GetValCarac(caracId)
-
-    def GetValCaracInt(caracId):
-        """
-        simple racourci
-        """
-        global situation_
-        return situation_.GetValCaracInt(caracId)
-
-    def RetirerACarac(caracId, num):
-        global situation_
-        textChangtCarac = u"{} - {}".format(caracId, num)
-        renpy.show_screen("fading_text", textChangtCarac, time_, x_debut, y_debut, x_fin, y_fin, color="#e11", size=24, alpha=1.0)
-        renpy.pause(time_)
-        renpy.hide_screen("fading_text")
-        situation_.RetirerACarac(caracId, num)
+        id = u"affinite{}".format(idCiv)
+        situation_.AjouterACarac(id, num)
 
     def InterfaceSuivante():
         global interfaceMode_, nbInterfaceMode_

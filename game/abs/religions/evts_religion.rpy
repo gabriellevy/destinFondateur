@@ -6,6 +6,8 @@ init -5 python:
     import random
     from abs.religions import religion
 
+    estAthee = condition.Condition(religion.Religion.C_RELIGION, religion.Atheisme.NOM, condition.Condition.EGAL)
+    estPasAthee = condition.Condition(religion.Religion.C_RELIGION, religion.Atheisme.NOM, condition.Condition.DIFFERENT)
     estChretien = condition.Condition(religion.Religion.C_RELIGION, religion.Christianisme.NOM, condition.Condition.EGAL)
     estPasChretien = condition.Condition(religion.Religion.C_RELIGION, religion.Christianisme.NOM, condition.Condition.DIFFERENT)
     aPasDeReligion = condition.Condition(religion.Religion.C_RELIGION, "", condition.Condition.EGAL)

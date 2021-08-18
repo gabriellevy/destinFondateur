@@ -48,6 +48,24 @@ class SituationFondateur(situation.Situation):
         self.caracs_[civ.Civ.C_CIV] = civPlusHaute
         return self.collectionCivs.lCivs_[civPlusHaute]
 
+    def DescriptionCivilisation(self):
+        str=u""
+        str = u"{}Influence de civilisation :".format(str)
+        # niveau de civilisation :
+        for civK in self.collectionCivs.lCivs_.keys():
+            valCiv = self.GetValCarac(civK)
+            if valCiv != "":
+                str = u"{}\n{}({})".format(str, civK, valCiv)
+
+        str = u"{}\n\n Affinités de civilisation :".format(str)
+        # niveau d'affinité de civilisation :
+        for civK in self.collectionCivs.lCivs_.keys():
+            valCiv = self.GetValCarac(u"affinite{}".format(civK))
+            if valCiv != "":
+                str = u"{}\n{}({})".format(str, civK, valCiv)
+        return str
+
+
     def AffichagePeuple(self):
         return u"{}".format(self.caracs_[peuple.Peuple.C_PEUPLE])
 

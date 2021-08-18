@@ -10,6 +10,7 @@ from affichage import affichagePortrait
 from humanite.amour import relationAmoureuse
 from humanite import metier
 import random
+import logging
 
 class Situation:
     """
@@ -75,7 +76,7 @@ class Situation:
 
     def SetCarac(self, idCarac, valCarac, valeurMin = "", valeurMax = ""):
         # si la carac n'existe pas encore, la créer
-        if not idCarac in self.caracs_:
+        if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.CreerCarac(idCarac, valCarac, valeurMin, valeurMax)
 
         self.caracs_[idCarac] = valCarac
@@ -88,7 +89,7 @@ class Situation:
         """
         ne modifie la valeur de carac que si elle était précédemment inférieur à la valeur qu'on veut lui donner
         """
-        if not idCarac in self.caracs_:
+        if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.SetValCarac(idCarac, valCarac, valeurMin, valeurMax)
         else:
             valCourante = self.GetValCaracInt(idCarac)
@@ -101,7 +102,7 @@ class Situation:
         """
         ne modifie la valeur de carac que si elle était précédemment inférieur à la valeur qu'on veut lui donner
         """
-        if not idCarac in self.caracs_:
+        if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.SetValCarac(idCarac, valCarac, valeurMin, valeurMax)
         else:
             valCourante = self.GetValCaracInt(idCarac)
@@ -121,7 +122,7 @@ class Situation:
 
     def AjouterACarac(self, idCarac, valCarac):
         # si la carac n'existe pas encore, la créer
-        if not idCarac in self.caracs_:
+        if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.CreerCarac(idCarac, 0)
 
         finalVal = self.caracs_[idCarac] + valCarac
@@ -131,7 +132,7 @@ class Situation:
 
     def RetirerACarac(self, idCarac, valCarac):
         # si la carac n'existe pas encore, la créer
-        if not idCarac in self.caracs_:
+        if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.CreerCarac(idCarac, 0)
 
         finalVal = self.caracs_[idCarac] - valCarac

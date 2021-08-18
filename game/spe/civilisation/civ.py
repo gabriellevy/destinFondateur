@@ -123,11 +123,83 @@ class Celte(Civ):
         nom = Civ.GetTitreFondateur(self, situation)
         return "Grand Druide {}".format(nom)
 
+class Grecque(Civ):
+    """
+    NOTE a faire : pourrait être divisé entre plusieurs cultures assez différentes (sparte, athêne, byzance, grecs actuel...)
+    """
+    NOM = u"Grecque"
+
+    def __init__(self):
+        self.nom_ = Grecque.NOM
+
+    def GenererPrenom(self, masculin):
+        if masculin:
+            return u"prénom masculin grec PAS FAIT"
+        return u"prénom féminin grec PAS FAIT"
+
+    def GenererNomPeuple(self):
+        return u"nom peuple grec PAS FAIT"
+
+    def GenererNom(self):
+        return u"nom grec PAS FAIT"
+
+    def GetTitreFondateur(self, situation):
+        nom = Civ.GetTitreFondateur(self, situation)
+        return "Sage {}".format(nom)
+
+class Juive(Civ):
+    NOM = u"Juive"
+
+    def __init__(self):
+        self.nom_ = Juive.NOM
+
+    def GenererPrenom(self, masculin):
+        if masculin:
+            return u"prénom masculin Juive PAS FAIT"
+        return u"prénom féminin Juive PAS FAIT"
+
+    def GenererNomPeuple(self):
+        return u"nom peuple Juive PAS FAIT"
+
+    def GenererNom(self):
+        return u"nom Juive PAS FAIT"
+
+    def GetTitreFondateur(self, situation):
+        nom = Civ.GetTitreFondateur(self, situation)
+        return "Rabbin {}".format(nom)
+
+class Arabe(Civ):
+    NOM = u"Arabe"
+
+    def __init__(self):
+        self.nom_ = Arabe.NOM
+
+    def GenererPrenom(self, masculin):
+        if masculin:
+            return u"prénom masculin Arabe PAS FAIT"
+        return u"prénom féminin Arabe PAS FAIT"
+
+    def GenererNomPeuple(self):
+        return u"nom peuple Arabe PAS FAIT"
+
+    def GenererNom(self):
+        return u"nom Arabe PAS FAIT"
+
+    def GetTitreFondateur(self, situation):
+        nom = Civ.GetTitreFondateur(self, situation)
+        return "Imam {}".format(nom)
+
 class CollectionCivs:
 
     def __init__(self):
         self.lCivs_ = dict()
 
+        arabe = Arabe()
+        self.SetCiv(Arabe.NOM, arabe)
+        juive = Juive()
+        self.SetCiv(Juive.NOM, juive)
+        grecque = Grecque()
+        self.SetCiv(Grecque.NOM, grecque)
         celte = Celte()
         self.SetCiv(Celte.NOM, celte)
 

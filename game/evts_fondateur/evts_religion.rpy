@@ -1,5 +1,3 @@
-
-
 init -5 python:
     import random
     from abs.religions import religion
@@ -11,6 +9,7 @@ init -5 python:
     from abs.humanite import metier
     from spe import situation_fondateur
     from spe.peuple import peuple
+    from spe.civilisation import civ
 
     estEnModeFondateur = condition.Condition(situation_fondateur.SituationFondateur.C_MODE, situation_fondateur.SituationFondateur.C_MODE_FONDATEUR, condition.Condition.EGAL)
     creationReligionPasFait = condition.Condition("creationReligion", "1", condition.Condition.DIFFERENT)
@@ -24,7 +23,6 @@ init -5 python:
         selecteur_.ajouterDeclencheur(creationReligion)
 
 label creationReligion:
-    # s'entraîne au combat
     $ situation_.SetValCarac("creationReligion", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
@@ -40,6 +38,7 @@ label creationReligion:
         "Il n'y a qu'un seul Dieu et nous sommes son peuple élu. Les autres ne sont que poussière.":
             $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Monotheiste.NOM)
             $ AjouterACarac(peuple.Peuple.C_COHESION, 0.1)
+            $ AjouterAAffinite(civ.Juive.NOM, 0.5)
         "La divinité n'existe pas. Seuls règnent le hasard et la volonté.":
             $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Atheisme.NOM)
             $ RetirerACarac(peuple.Peuple.C_COHESION, 0.02)

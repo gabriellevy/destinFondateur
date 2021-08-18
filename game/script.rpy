@@ -21,6 +21,7 @@ init -1 python:
     import random
 
     AjouterEvtsReligieux()
+    AjouterEvtsArt()
     AjouterEvtsRien()
 
 # Le jeu commence ici

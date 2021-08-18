@@ -1545,6 +1545,7 @@ screen fading_text(text, delay, x, y, move_x, move_y, *args, **kwargs):
 screen valeurs_traits():
     tag interface_personnage
     $ descriptionTrait = situation_.DescriptionTraits(traits_)
+    $ descriptionCivilisation = situation_.DescriptionCivilisation()
     $ descriptionBlessures = situation_.DescriptionBlessuresEtMaladies(blessures_, maladies_)
     $ affAge = situation_.AffichageAge()
     $ affDate = situation_.AffichageDate()
@@ -1577,4 +1578,6 @@ screen valeurs_traits():
             elif interfaceMode_ == 2: # géographie
                 text _(u"[strGeo]")
             elif interfaceMode_ == 3:
+                text _(u"[descriptionCivilisation]")
+            elif interfaceMode_ == 4:
                 text _(u"[descriptionTrait]")
