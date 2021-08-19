@@ -197,11 +197,57 @@ class Arabe(Civ):
         nom = Civ.GetTitreFondateur(self, situation)
         return "Imam {}".format(nom)
 
+class Phenicien(Civ):
+    NOM = u"Phénicien"
+
+    def __init__(self):
+        self.nom_ = Phenicien.NOM
+
+    def GenererPrenom(self, masculin):
+        if masculin:
+            return u"prénom masculin Phenicien PAS FAIT"
+        return u"prénom féminin Phenicien PAS FAIT"
+
+    def GenererNomPeuple(self):
+        return u"nom peuple Phenicien PAS FAIT"
+
+    def GenererNom(self):
+        return u"nom Phenicien PAS FAIT"
+
+    def GetTitreFondateur(self, situation):
+        nom = Civ.GetTitreFondateur(self, situation)
+        return "Chef {}".format(nom)
+
+class Nordique(Civ):
+    NOM = u"Nordique"
+
+    def __init__(self):
+        self.nom_ = Nordique.NOM
+
+    def GenererPrenom(self, masculin):
+        if masculin:
+            return u"prénom masculin Nordique PAS FAIT"
+        return u"prénom féminin Nordique PAS FAIT"
+
+    def GenererNomPeuple(self):
+        return u"nom peuple Nordique PAS FAIT"
+
+    def GenererNom(self):
+        return u"nom Nordique PAS FAIT"
+
+    def GetTitreFondateur(self, situation):
+        nom = Civ.GetTitreFondateur(self, situation)
+        return "Jarl {}".format(nom)
+
 class CollectionCivs:
 
     def __init__(self):
         self.lCivs_ = dict()
 
+        nordique = Nordique()
+        self.SetCiv(Nordique.NOM, nordique)
+        phenicien = Phenicien()
+        self.SetCiv(Phenicien.NOM, phenicien)
         arabe = Arabe()
         self.SetCiv(Arabe.NOM, arabe)
         juive = Juive()
