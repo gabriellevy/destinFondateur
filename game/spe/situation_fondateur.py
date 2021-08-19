@@ -79,7 +79,19 @@ class SituationFondateur(situation.Situation):
         return u"Population : {}".format(self.caracs_[peuple.Peuple.C_POP])
 
     def AfficherDebug(self):
-        str = u"Cohésion : {}".format(self.caracs_[peuple.Peuple.C_COHESION])
+        str = u"{} : {}".format(peuple.Peuple.C_COHESION, self.caracs_[peuple.Peuple.C_COHESION])
+        str = u"{}\n\nIdentité de peuple : \n{} : {}".format(str, peuple.Peuple.C_VIOLENCE, self.caracs_[peuple.Peuple.C_VIOLENCE])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_CREATIVITE, self.caracs_[peuple.Peuple.C_CREATIVITE])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_INTEL, self.caracs_[peuple.Peuple.C_INTEL])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_LEGALISME, self.caracs_[peuple.Peuple.C_LEGALISME])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_SENSUALITE, self.caracs_[peuple.Peuple.C_SENSUALITE])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_SPIRITUALITE, self.caracs_[peuple.Peuple.C_SPIRITUALITE])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_COOPERATION, self.caracs_[peuple.Peuple.C_COOPERATION])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_LIBERTE, self.caracs_[peuple.Peuple.C_LIBERTE])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_ARGENT, self.caracs_[peuple.Peuple.C_ARGENT])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_SEXISME, self.caracs_[peuple.Peuple.C_SEXISME])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_AVENTURE, self.caracs_[peuple.Peuple.C_AVENTURE])
+
         str = u"{}\n{}".format(str, self.caracs_[peuple.Peuple.C_SOUV])
         return str
 
