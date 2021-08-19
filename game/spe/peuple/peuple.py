@@ -14,7 +14,8 @@ class Peuple:
     # caracs principale d'identité de peuple
     C_VIOLENCE = u"Violence"
     C_CREATIVITE = u"Creativité"
-    C_AVENTURE = u"Aventure"
+    C_AVENTURE = u"Aventure" # peuple qui ne se satisfait aps de ce qu'il a mais cherche toujours à aller plus loin (inclut donc l'ambition)
+    C_COOPERATION = u"Coopération" # Facilité à s'entendre avec les autres peuples et à coopérer avec eux
 
     def __init__(self):
         self.nom_ = u"pas de nom de peuple, doit être overridé"
