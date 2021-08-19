@@ -27,7 +27,7 @@ label aventurierDesMers:
     $ situation_.SetValCarac("aventurierDesMers", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
-    $ persoImg = civRef.GenererImagePerso(True, 30)
+    $ persoImg = civRef.GenererImagePerso(True, 20)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     "[nomPerso], un jeune homme turbulent de bonne famille, a demandé humblement à profiter de vos sages conseils."
     $ renpy.show(persoImg, [right])

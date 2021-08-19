@@ -16,6 +16,8 @@ class Peuple:
     C_CREATIVITE = u"Creativité"
     C_AVENTURE = u"Aventure" # peuple qui ne se satisfait aps de ce qu'il a mais cherche toujours à aller plus loin (inclut donc l'ambition)
     C_COOPERATION = u"Coopération" # Facilité à s'entendre avec les autres peuples et à coopérer avec eux
+    C_INTEL = u"Intellectualisme" # Les écrivains, intellectuels et philosophes sont respectés. La ruse est plus acceptée
+    C_LEGALISME = u"Légalisme" 
 
     def __init__(self):
         self.nom_ = u"pas de nom de peuple, doit être overridé"

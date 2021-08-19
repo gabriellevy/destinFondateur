@@ -1,6 +1,7 @@
 ﻿# Persos
 define narrator = Character(color="#fafad8", what_italic=True)
 define std = Character('Perso standard...', color="#009900") # personnage standard remplacé selon les situations. (son nom est mis à jour)
+define std2 = Character('Perso standard2...', color="#009900") # personnage standard remplacé selon les situations. (son nom est mis à jour)
 
 # Musiques
 define audio.epique_principale = "musique/epique_principale.ogg"
@@ -22,6 +23,7 @@ init -1 python:
 
     AjouterEvtsReligieux()
     AjouterEvtsAventure()
+    AjouterEvtsJustice()
     AjouterEvtsArt()
     AjouterEvtsRien()
 

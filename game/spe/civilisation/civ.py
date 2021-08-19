@@ -239,6 +239,27 @@ class Nordique(Civ):
         nom = Civ.GetTitreFondateur(self, situation)
         return "Jarl {}".format(nom)
 
+class Germanique(Civ):
+    NOM = u"Germanique"
+
+    def __init__(self):
+        self.nom_ = Germanique.NOM
+
+    def GenererPrenom(self, masculin):
+        if masculin:
+            return u"prénom masculin Germanique PAS FAIT"
+        return u"prénom féminin Germanique PAS FAIT"
+
+    def GenererNomPeuple(self):
+        return u"nom peuple Germanique PAS FAIT"
+
+    def GenererNom(self):
+        return u"nom Germanique PAS FAIT"
+
+    def GetTitreFondateur(self, situation):
+        nom = Civ.GetTitreFondateur(self, situation)
+        return "Jarl {}".format(nom)
+
 class CollectionCivs:
 
     def __init__(self):
@@ -246,6 +267,8 @@ class CollectionCivs:
 
         nordique = Nordique()
         self.SetCiv(Nordique.NOM, nordique)
+        germanique = Germanique()
+        self.SetCiv(Germanique.NOM, germanique)
         phenicien = Phenicien()
         self.SetCiv(Phenicien.NOM, phenicien)
         arabe = Arabe()
