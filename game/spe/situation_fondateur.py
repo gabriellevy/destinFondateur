@@ -9,6 +9,9 @@ from spe.peuple import peuple
 from spe.region import region
 from spe.civilisation import civ
 from spe.region import geo
+from spe.univers import date_fondateur
+import random
+import logging
 
 class SituationFondateur(situation.Situation):
 
@@ -18,13 +21,15 @@ class SituationFondateur(situation.Situation):
     C_MODE_FONDATEUR = u"Mode fondateur"
 
     def __init__(self):
-        # date de départ = -1000 => l'affichage est trafiqué en fonction de ça (cf formatGregorienAvantJC)
         situation.Situation.__init__(self, 0)
+        date = date_fondateur.DateFondateur(0)
+        self.caracs_[temps.Date.DATE] = date.nbJours_
         self.collectionPeuples = None
         self.collectionRegions = None
         self.collectionCivs = None
         self.SetValCarac(SituationFondateur.C_MODE, SituationFondateur.C_MODE_FONDATEUR)
 
+    ############################ affichage ###########################
     def DeterminerPortrait(self):
         """
         récupérer une liste de portraits selon les caracs du perso et en choisir un aléatoirement
@@ -64,7 +69,6 @@ class SituationFondateur(situation.Situation):
                 str = u"{}\n{}({})".format(str, civK, valCiv)
         return str
 
-
     def AffichagePeuple(self):
         return u"{}".format(self.caracs_[peuple.Peuple.C_PEUPLE])
 
@@ -90,6 +94,7 @@ class SituationFondateur(situation.Situation):
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_ARGENT, self.caracs_[peuple.Peuple.C_ARGENT])
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_SEXISME, self.caracs_[peuple.Peuple.C_SEXISME])
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_AVENTURE, self.caracs_[peuple.Peuple.C_AVENTURE])
+        str = u"{}\n temps.Date.DATE_ANNEES : {}".format(str, self.caracs_[temps.Date.DATE_ANNEES])
 
         str = u"{}\n{}".format(str, self.caracs_[peuple.Peuple.C_SOUV])
         return str
@@ -101,8 +106,28 @@ class SituationFondateur(situation.Situation):
         return str
 
     # DATES ET TEMPS QUI PASSE-----------------------------------------------------------------------------------------------------------
-    def AffichageDate(self):
+    def GetDateDuJour(self):
         nbJours = self.caracs_[temps.Date.DATE]
-        dateDuJour = temps.Date(nbJours)
-        dateStr = u"{}".format(dateDuJour.formatGregorienAvantJC(1000))
-        return dateStr
+        return date_fondateur.DateFondateur(nbJours)
+
+
+    def GetDate(self, dateEnJours):
+        """
+        à overrider si la date du jeu destin a été overridée
+        """
+        return date_fondateur.DateFondateur(dateEnJours)
+
+    def TourSuivant(self):
+        """
+        Passage au "tour" suivant dans un destin c'est à dire grosso modo
+         - en mode fondateur : un mois un peu randomisé
+         - en mode historique : un an un peu randomisé
+        """
+        nbJoursPasses = 200 + random.randint(0, 380)
+        if self.EstEnModeFondateur():
+            nbJoursPasses = 20 + random.randint(0, 20)
+        self.AvanceDeXJours(nbJoursPasses)
+
+    #--------------
+    def EstEnModeFondateur(self):
+        return self.GetValCarac(SituationFondateur.C_MODE) == SituationFondateur.C_MODE_FONDATEUR

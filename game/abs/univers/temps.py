@@ -103,9 +103,9 @@ class Date:
         self.CalculerJourEtMoisGregorien()
         return u"{} {} {}".format(self.numJourGregorien, self.GetStrMoisGregorien(), self.GetNbAnnees())
 
-    def formatGregorienAvantJC(self, dateDepartAvantJC):
+    def formatGregorienAvantJC(self):
         self.CalculerJourEtMoisGregorien()
-        return u"{} {} {}".format(self.numJourGregorien, self.GetStrMoisGregorien(), self.GetNbAnnees()-dateDepartAvantJC)
+        return u"{} {} {}".format(self.numJourGregorien, self.GetStrMoisGregorien(), self.GetNbAnnees())
 
     def __str__(self):
         """Affichage quand on affiche l'objet (print)"""

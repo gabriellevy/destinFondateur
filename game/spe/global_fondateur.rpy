@@ -30,7 +30,7 @@ init -2 python:
     situation_.collectionRegions = regions_
     civs_ = civs.CollectionCivs()
     situation_.collectionCivs = civs_
-    interfaceMode_ = 0
+    interfaceMode_ = 1
     nbInterfaceMode_ = 4
 
     def AjouterAAffinite(idCiv, num):
@@ -48,3 +48,8 @@ init -2 python:
         if interfaceMode_ >= nbInterfaceMode_:
             interfaceMode_ = 0
         print(interfaceMode_)
+
+    def RetirerAPopulationPourcent(pourcent):
+        global situation_
+        population = situation_GetValCaracInt(peuple.Peuple.C_POP)
+        RetirerACarac(peuple.Peuple.C_POP, population/100)

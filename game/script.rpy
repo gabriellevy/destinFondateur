@@ -28,15 +28,18 @@ init -1 python:
     from abs import selecteur
     import random
 
+    # fondateurs
     AjouterEvtsFamilleF()
     AjouterEvtsReligieux()
     AjouterEvtsAventure()
     AjouterEvtsJusticeF()
     AjouterEvtsArt()
     AjouterEvtsRienFondateur()
+    AjouterEvtsVieillesseF()
+    # AjouterEvtsMaladies()
+    # historique
     AjouterEvtsRienHisto()
-    AjouterEvtsVieillesse()
-    AjouterEvtsMaladies()
+    AjouterEvtsReligieuxH()
 
 # Le jeu commence ici
 label start:
@@ -56,15 +59,11 @@ label fin_cycle:
 
     $ situation_.TourSuivant()
 
-    if situation_[situation_fondateur.SituationFondateur.C_MODE] == situation_fondateur.SituationFondateur.C_MODE_FONDATEUR:
-        jump debut_cycle
+    jump debut_cycle
 
 label mort:
     $ situation_[situation_fondateur.SituationFondateur.C_MODE] = situation_fondateur.SituationFondateur.C_MODE_HISTORIQUE
-    menu:
-        "Le fondateur est mort. L'histoire de votre peuple commence."
-        "ok":
-            pass
+    "Le fondateur est mort. L'histoire de votre peuple commence."
     jump debut_cycle
 
 label labelGoTo_pasFait:

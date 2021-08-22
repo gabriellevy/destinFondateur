@@ -153,7 +153,7 @@ class Situation:
             self.caracs_[idCarac] = 0
         elif self.caracs_[idCarac] == "":
             self.caracs_[idCarac] = 0
-        return self.caracs_[idCarac]
+        return float(self.caracs_[idCarac])
 
     def GetValCaracBool(self, idCarac):
         if ( idCarac not in self.caracs_):
@@ -367,19 +367,27 @@ class Situation:
 
     # DATES ET TEMPS QUI PASSE-----------------------------------------------------------------------------------------------------------
     def AffichageDate(self):
-        nbJours = self.caracs_[temps.Date.DATE]
-        dateDuJour = temps.Date(nbJours)
+        dateDuJour = self.GetDateDuJour()
         dateStr = u"{}".format(dateDuJour.formatGregorien())
         return dateStr
 
     def GetDateDuJour(self):
+        """
+        à overrider si la date du jeu destin a été overridée
+        """
         nbJours = self.caracs_[temps.Date.DATE]
         return temps.Date(nbJours)
+
+    def GetDate(self, dateEnJours):
+        """
+        à overrider si la date du jeu destin a été overridée
+        """
+        return temps.Date(dateEnJours)
 
     def AvanceDeXJours(self, nbJoursPasses):
         nouvelleDateEnJours = self.caracs_[temps.Date.DATE] + nbJoursPasses
         self.caracs_[temps.Date.DATE] = nouvelleDateEnJours
-        self.caracs_[temps.Date.DATE_ANNEES] = temps.Date(nouvelleDateEnJours).GetNbAnnees()
+        self.caracs_[temps.Date.DATE_ANNEES] = self.GetDate(nouvelleDateEnJours).GetNbAnnees()
         if self.GetValCarac(temps.Date.AGE_ANNEES) != "":
             self.caracs_[temps.Date.AGE_ANNEES] = self.AgeEnAnnees()
 

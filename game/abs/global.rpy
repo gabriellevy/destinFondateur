@@ -36,7 +36,7 @@ init -2 python:
 
     def GetValCarac(caracId):
         """
-        simple racourci
+        simple raccourci
         """
         global situation_
         return situation_.GetValCarac(caracId)
