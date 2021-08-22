@@ -11,7 +11,6 @@ init -5 python:
     from spe.peuple import peuple
     from spe.civilisation import civ
 
-    estEnModeFondateur = condition.Condition(situation_fondateur.SituationFondateur.C_MODE, situation_fondateur.SituationFondateur.C_MODE_FONDATEUR, condition.Condition.EGAL)
     creationReligionPasFait = condition.Condition("creationReligion", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsReligieux():
         global selecteur_

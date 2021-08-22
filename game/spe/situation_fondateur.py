@@ -17,7 +17,6 @@ class SituationFondateur(situation.Situation):
     C_MODE_HISTORIQUE = u"Mode historique"
     C_MODE_FONDATEUR = u"Mode fondateur"
 
-
     def __init__(self):
         # date de départ = -1000 => l'affichage est trafiqué en fonction de ça (cf formatGregorienAvantJC)
         situation.Situation.__init__(self, 0)

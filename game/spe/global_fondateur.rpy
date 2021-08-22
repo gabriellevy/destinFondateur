@@ -9,6 +9,7 @@ init -2 python:
     from spe.peuple import peuple
     from spe.region import region
     from spe.civilisation import civ
+    from spe.civilisation import civs
     import random
 
     situation_ = situation_fondateur.SituationFondateur() # dictionnaire contenant toutes les caracs courantes de la partie
@@ -27,9 +28,9 @@ init -2 python:
     situation_.collectionPeuples = peuples_
     regions_ = region.CollectionRegions()
     situation_.collectionRegions = regions_
-    civs_ = civ.CollectionCivs()
+    civs_ = civs.CollectionCivs()
     situation_.collectionCivs = civs_
-    interfaceMode_ = 3
+    interfaceMode_ = 0
     nbInterfaceMode_ = 4
 
     def AjouterAAffinite(idCiv, num):

@@ -1,6 +1,7 @@
 import random
 from spe.region import region
 from spe.civilisation import civ
+from spe.civilisation import celtes
 
 class Peuple:
     C_PEUPLE = u"Peuple"
@@ -57,7 +58,7 @@ class CeltesSudFrance(Peuple):
         # début en -600:
         situation.AvanceDeXJours(400 * 365)
         Peuple.SelectionDePeuple(self, situation)
-        civilisationDepart = civ.Celte()
+        civilisationDepart = celtes.Celte()
         situation[civilisationDepart.nom_] = 1
         regionObj = situation.collectionRegions[region.SudFrance.NOM]
         regionObj.SelectionDeRegion(situation)

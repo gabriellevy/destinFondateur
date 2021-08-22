@@ -10,10 +10,11 @@ init -5 python:
     from spe import situation_fondateur
     from spe.peuple import peuple
     from spe.civilisation import civ
+    from spe.civilisation import celtes
     from spe.region import geo
 
     ruseEtForcePasFait = condition.Condition("ruseEtForce", "1", condition.Condition.DIFFERENT)
-    def AjouterEvtsJustice():
+    def AjouterEvtsJusticeF():
         global selecteur_
         # tenté par l'aventure marine ?
         ruseEtForce = declencheur.Declencheur(proba.Proba(0.1, True), "ruseEtForce")
@@ -43,7 +44,7 @@ label ruseEtForce:
     menu:
         "L'honneur réside dans la force et le courage. [nomPersoTueur] a eu tort et sera puni.":
             $ RetirerACarac(peuple.Peuple.C_VIOLENCE, 0.3)
-            $ AjouterAAffinite(civ.Celte.NOM, 0.2)
+            $ AjouterAAffinite(celtes.Celte.NOM, 0.2)
             $ AjouterAAffinite(civ.Germanique.NOM, 0.2)
         "Seule la réussite compte. [nomPersoTueur] était dans son droit et a bien agi.":
             $ AjouterACarac(peuple.Peuple.C_INTEL, 0.3)

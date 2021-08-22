@@ -1544,7 +1544,6 @@ screen fading_text(text, delay, x, y, move_x, move_y, *args, **kwargs):
 
 screen valeurs_traits():
     tag interface_personnage
-    $ descriptionTrait = situation_.DescriptionTraits(traits_)
     $ descriptionCivilisation = situation_.DescriptionCivilisation()
     $ descriptionBlessures = situation_.DescriptionBlessuresEtMaladies(blessures_, maladies_)
     $ affAge = situation_.AffichageAge()
@@ -1564,10 +1563,12 @@ screen valeurs_traits():
             textbutton _("Description suivante"):
                 action Function(InterfaceSuivante)
             if interfaceMode_ == 0: # résumé, portrait, nom, age, blessures...
-                add "[adressePortrait]"
-                text _(u"[patronyme]")
-                text _(u"[affAge]")
-                text _(u"[descriptionBlessures]")
+                if situation_[situation_fondateur.SituationFondateur.C_MODE] == situation_fondateur.SituationFondateur.C_MODE_FONDATEUR:
+                    # mode fondateur
+                    add "[adressePortrait]"
+                    text _(u"[patronyme]")
+                    text _(u"[affAge]")
+                    text _(u"[descriptionBlessures]")
                 text _(u"[peupleStr]")
                 text _(u"[religionStr]")
                 text _(u"[populationStr]")
@@ -1579,5 +1580,3 @@ screen valeurs_traits():
                 text _(u"[strGeo]")
             elif interfaceMode_ == 3:
                 text _(u"[descriptionCivilisation]")
-            elif interfaceMode_ == 4:
-                text _(u"[descriptionTrait]")

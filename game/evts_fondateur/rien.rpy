@@ -10,9 +10,10 @@ init -5 python:
     # from religions import religion
     # from geographie import quartier
 
-    def AjouterEvtsRien():
+    def AjouterEvtsRienFondateur():
         global selecteur_, situation_
         selecteurDEvenementVide = declencheur.Declencheur(1.0, "selecteurDEvenementVide")
+        selecteurDEvenementVide.AjouterCondition(estEnModeFondateur)
         selecteur_.ajouterDeclencheur(selecteurDEvenementVide)
 
     def LancerEvtVide(situation):
@@ -21,10 +22,10 @@ init -5 python:
         evtsVides_ = ["evtRien1", "evtRien2", "evtRien3" ] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
 
         # selon religion
-        # religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
-        # if religionActuelle == religion.Christianisme.NOM:
-        #     evtsVides_.append("evtRien_saints")
-        #     evtsVides_.append("evtRien_Christianisme_1")
+        religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
+        if religionActuelle == religion.Christianisme.NOM:
+            evtsVides_.append("evtRien_saints")
+            evtsVides_.append("evtRien_Christianisme_1")
 
         # fond selon quartier
         # if sceneParDefaut == "":
