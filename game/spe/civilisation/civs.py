@@ -23,6 +23,12 @@ class CollectionCivs:
         self.SetCiv(civ.Juive.NOM, juive)
         grecque = civ.Grecque()
         self.SetCiv(civ.Grecque.NOM, grecque)
+        russe = civ.Russe()
+        self.SetCiv(civ.Russe.NOM, russe)
+        romain = civ.Romain()
+        self.SetCiv(civ.Romain.NOM, romain)
+        mongol = civ.Mongol()
+        self.SetCiv(civ.Mongol.NOM, mongol)
         celteObj = celtes.Celte()
         self.SetCiv(celtes.Celte.NOM, celteObj)
 

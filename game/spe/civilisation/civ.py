@@ -207,3 +207,66 @@ class Christianisme(Civ):
     def GetTitreFondateur(self, situation):
         nom = Civ.GetTitreFondateur(self, situation)
         return "Saint {}".format(nom)
+
+class Russe(Civ):
+    NOM = u"Russe"
+
+    def __init__(self):
+        self.nom_ = Russe.NOM
+
+    def GenererPrenom(self, masculin):
+        if masculin:
+            return u"prénom masculin Russe PAS FAIT"
+        return u"prénom féminin Russe PAS FAIT"
+
+    def GenererNomPeuple(self):
+        return u"nom peuple Russe PAS FAIT"
+
+    def GenererNom(self):
+        return u"nom Russe PAS FAIT"
+
+    def GetTitreFondateur(self, situation):
+        nom = Civ.GetTitreFondateur(self, situation)
+        return "??? {}".format(nom)
+
+class Romain(Civ):
+    NOM = u"Romain"
+
+    def __init__(self):
+        self.nom_ = Romain.NOM
+
+    def GenererPrenom(self, masculin):
+        if masculin:
+            return u"prénom masculin romain PAS FAIT"
+        return u"prénom féminin romain PAS FAIT"
+
+    def GenererNomPeuple(self):
+        return u"nom peuple romain PAS FAIT"
+
+    def GenererNom(self):
+        return u"nom romain PAS FAIT"
+
+    def GetTitreFondateur(self, situation):
+        nom = Civ.GetTitreFondateur(self, situation)
+        return "Pater {}".format(nom)
+
+class Mongol(Civ):
+    NOM = u"Mongol"
+
+    def __init__(self):
+        self.nom_ = Mongol.NOM
+
+    def GenererPrenom(self, masculin):
+        if masculin:
+            return u"prénom masculin Mongol PAS FAIT"
+        return u"prénom féminin Mongol PAS FAIT"
+
+    def GenererNomPeuple(self):
+        return u"nom peuple Mongol PAS FAIT"
+
+    def GenererNom(self):
+        return u"nom Mongol PAS FAIT"
+
+    def GetTitreFondateur(self, situation):
+        nom = Civ.GetTitreFondateur(self, situation)
+        return "Khan {}".format(nom)
