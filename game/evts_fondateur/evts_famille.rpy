@@ -41,7 +41,7 @@ label mariageFondateur:
             $ AjouterACarac(peuple.Peuple.C_SENSUALITE, 0.1)
             $ AjouterAAffinite(civ.Francais.NOM, 0.3)
             $ RetirerACarac(peuple.Peuple.C_COHESION, 0.1)
-        "Le cortps et le coeur doivent se soumettre à la raison et au bien de la tribu. Vous acceptez le marriage avec [nomFianceeArgent]":
+        "Le corps et le coeur doivent se soumettre à la raison et au bien de la tribu. Vous acceptez le marriage avec [nomFianceeArgent]":
             $ AjouterACarac(peuple.Peuple.C_COHESION, 0.3)
         "Le plaisir des sens est indigne du sage ascète que vous êtes. Vous choisissez le célibat.":
             $ AjouterAAffinite(civ.Christianisme.NOM, 0.4)

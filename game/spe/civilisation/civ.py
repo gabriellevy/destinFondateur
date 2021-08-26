@@ -31,7 +31,11 @@ class Civ:
 
     def GenererImagePerso(self, masculin, age):
         # if masculin:
-        return "à overrider"
+        return "à overrider GenererImagePerso pour votre civ"
+
+    def GenererImageGuerrier(self, masculin, age):
+        # if masculin:
+        return "à overrider GenererImageGuerrier pour votre civ"
 
     def GetTitreFondateur(self, situation):
         nom = situation.GetValCarac(identite.Identite.C_NOM)

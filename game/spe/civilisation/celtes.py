@@ -59,7 +59,7 @@ class Celte(civ.Civ):
     NOMS_PEUPLES = [u"Boïens", u"Lingons", u"Sénons", u"Rèmes", u"Santones", u"Ceutrones", u"Turones", u"Tricasses", u"Parisii", u"Carnutes", u"Meldes", u" Aulerques Brannovices", u"Bituriges Cubes", u"Éduens", u"Séquanes",
     u"Carni", u"Cénomans", u"Insubres", u"Taurins", u"Anares", u"Comasques", u"Laevi", u"Lépontiens", u"Libici", u"Marici", u"Orobiens", u"Salasses", u"Aduatuques", u"Ambiens",
     u"Atrebates", u"Bellovaques", u"Caeroesi", u"Calètes", u"Catalaunes", u"Catuslogues", u"Condruses", u"Éburons", u"Geidumnes", u"Leuques", u"Médiomatriques", u"Ménapiens", u"Morins", u"Nerviens", u"Pémanes",
-    u"Rèmes", u"Sègnes", u"Silvanectes", u"Suessions", u"Tongres", u"Trévires", u"Tricasses", u"Viromanduens", u"Abrincates", u"Ambarres", u"Ambilatres ,Ambivarètes ,Andecaves", u"Aulerques Brannovices",
+    u"Rèmes", u"Sègnes", u"Silvanectes", u"Suessions", u"Tongres", u"Trévires", u"Tricasses", u"Viromanduens", u"Abrincates", u"Ambarres", u"Ambilatres" ,u"Ambivarètes" ,u"Andecaves", u"Aulerques Brannovices",
     u"Aulerques Cénomans", u"Aulerques Diablintes", u"Aulerques Éburovices", u"Bajocasses", u"Bituriges Cubes", u"Blannovii", u"Cadurques", u"Cénomans", u"Coriosolites", u"Éduens", u"Gabales", u"Helviens", u"Lémovices",
     u"Lexoviens,Lingons", u"Meldes", u"Mandubiens", u"Namnètes", u"Osismes", u"Parisii", u"Petrocores", u"Riedones", u"Rutènes", u"Santons", u"Ségusiaves", u"Sénons", u"Séquanes", u"Turons", u"Unelles", u"Vadicasses",
     u"Vellaves", u"Vénètes", u"Véliocasses", u"Viducasses", u"Agésinates", u"Arvernes", u"Bituriges Vivisques", u"Nitiobroges", u"Pictons ", u"Ausques", u"Bénéharnais", u"Biguerres", u"Boïates", u"Campanii",

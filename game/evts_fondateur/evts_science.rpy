@@ -10,6 +10,7 @@ init -5 python:
     from spe import situation_fondateur
     from spe.peuple import peuple
     from spe.civilisation import civ
+    from spe.civilisation import celtes
 
     # simples marqueurs de fait/pas fait des événements
     inventionEcriturePasFait = condition.Condition("inventionEcriture", "1", condition.Condition.DIFFERENT)
@@ -35,12 +36,12 @@ label inventionEcriture:
     std "[titreFondateur], j'ai personnellement vu des érudits étrangers qui dessinent des symboles sur des surfaces comme la pierre ou la cire et s'en servent pour mémoriser des choses et des chiffres."
     std "Je pense qu'adopter ce système et aller observer comment il fonctionne pourrait nous être très utile."
     menu:
-        "Étonnante idée. Nous devons développer cette technique et l'utiliser autant que possible..":
+        "Étonnante idée. Nous devons développer cette technique et l'utiliser autant que possible.":
             $ AjouterACarac(peuple.Peuple.C_INTEL, 0.5)
-        "C'est intreéssant, nous devrions l'utiliser pour nous organiser et compter.":
+        "C'est intéressant, nous devrions l'utiliser pour nous organiser et compter.":
             pass
         "Tout cela n'est que perte de temps et mépris de nos bonnes et solides mémoires qui nous ont toujours bien servi et continuerons de le faire.":
             $ RetirerACarac(peuple.Peuple.C_INTEL, 0.5)
-            $ AjouterAAffinite(civ.Celte.NOM, 0.3)
+            $ AjouterAAffinite(celtes.Celte.NOM, 0.3)
 
     jump fin_cycle

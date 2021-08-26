@@ -49,6 +49,6 @@ label toleranceAuMelange:
             $ AjouterACarac(peuple.Peuple.C_COOPERATION, 0.3)
             $ AjouterACarac(peuple.Peuple.C_VIOLENCE, 0.3)
             $ AjouterAAffinite(civ.Russe.NOM, 0.5)
-            $ AjouterAAffinite(civ.Romaine.NOM, 0.5)
+            $ AjouterAAffinite(civ.Romain.NOM, 0.5)
 
     jump fin_cycle
