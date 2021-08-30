@@ -17,8 +17,7 @@ init -5 python:
         global selecteur_
 
         toleranceAuMelange = declencheur.Declencheur(proba.Proba(0.1, True), "toleranceAuMelange")
-        toleranceAuMelange.AjouterCondition(estEnModeFondateur)
-        toleranceAuMelange.AjouterCondition(toleranceAuMelangePasFait)
+        toleranceAuMelange.AjouterConditions([estEnModeFondateur, toleranceAuMelangePasFait])
         selecteur_.ajouterDeclencheur(toleranceAuMelange)
 
 label toleranceAuMelange:

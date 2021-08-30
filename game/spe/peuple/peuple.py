@@ -47,7 +47,7 @@ class Peuple:
 
 class CeltesSudFrance(Peuple):
 
-    NOM = u"Avatiques"
+    NOM = u"Celtes de la Gaule Narbonaise" # des Avatiques
 
     def __init__(self):
         self.nom_ = CeltesSudFrance.NOM

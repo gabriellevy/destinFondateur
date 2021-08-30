@@ -17,10 +17,7 @@ init -5 python:
         global selecteur_
         # création de religion
         arriveeChristianisme = declencheur.Declencheur(proba.Proba(0.1, True), "arriveeChristianisme")
-        arriveeChristianisme.AjouterCondition(estEnModeHisto)
-        arriveeChristianisme.AjouterCondition(anneeSup100)
-        arriveeChristianisme.AjouterCondition(arriveeChristianismePasFait)
-        arriveeChristianisme.AjouterCondition(estPasChretien)
+        arriveeChristianisme.AjouterConditions([estEnModeHisto, anneeSup100, arriveeChristianismePasFait, estPasChretien])
         selecteur_.ajouterDeclencheur(arriveeChristianisme)
 
 label arriveeChristianisme:

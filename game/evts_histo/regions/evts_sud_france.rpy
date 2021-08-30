@@ -25,21 +25,12 @@ init -5 python:
         global selecteur_
 
         apprentissageEcritureParMassilia = declencheur.Declencheur(proba.Proba(0.4, True), "apprentissageEcritureParMassilia")
-        apprentissageEcritureParMassilia.AjouterCondition(estEnModeHisto)
-        apprentissageEcritureParMassilia.AjouterCondition(anneeSupMoins600)
-        apprentissageEcritureParMassilia.AjouterCondition(anneeInf0)
-        apprentissageEcritureParMassilia.AjouterCondition(apprentissageEcritureParMassiliaPasFait)
-        apprentissageEcritureParMassilia.AjouterCondition(siSudFrance)
-        apprentissageEcritureParMassilia.AjouterCondition(rencontreMassilaFait)
-        apprentissageEcritureParMassilia.AjouterCondition(niveauEcritureNul)
+        apprentissageEcritureParMassilia.AjouterConditions( [estEnModeHisto, anneeSupMoins600, anneeInf0, apprentissageEcritureParMassiliaPasFait,
+            siSudFrance, rencontreMassilaFait, niveauEcritureNul])
         selecteur_.ajouterDeclencheur(apprentissageEcritureParMassilia)
 
         rencontreMassila = declencheur.Declencheur(proba.Proba(1.0, True), "rencontreMassila")
-        rencontreMassila.AjouterCondition(estEnModeHisto)
-        rencontreMassila.AjouterCondition(anneeSupMoins600)
-        rencontreMassila.AjouterCondition(anneeInf0)
-        rencontreMassila.AjouterCondition(rencontreMassilaPasFait)
-        rencontreMassila.AjouterCondition(siSudFrance)
+        rencontreMassila.AjouterConditions( [estEnModeHisto, anneeSupMoins600, anneeInf0, rencontreMassilaPasFait, siSudFrance])
         selecteur_.ajouterDeclencheur(rencontreMassila)
 
 label rencontreMassila:

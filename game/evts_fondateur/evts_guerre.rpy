@@ -18,8 +18,7 @@ init -5 python:
         global selecteur_
 
         traitementEnnemisMorts = declencheur.Declencheur(proba.Proba(0.1, True), "traitementEnnemisMorts")
-        traitementEnnemisMorts.AjouterCondition(estEnModeFondateur)
-        traitementEnnemisMorts.AjouterCondition(traitementEnnemisMortsPasFait)
+        traitementEnnemisMorts.AjouterConditions([estEnModeFondateur, traitementEnnemisMortsPasFait])
         selecteur_.ajouterDeclencheur(traitementEnnemisMorts)
 
 label traitementEnnemisMorts:

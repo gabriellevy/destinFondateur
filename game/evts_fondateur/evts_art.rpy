@@ -17,9 +17,7 @@ init -5 python:
         global selecteur_
 
         droitSculpture = declencheur.Declencheur(proba.Proba(0.1, True), "droitSculpture")
-        droitSculpture.AjouterCondition(estEnModeFondateur)
-        droitSculpture.AjouterCondition(estPasAthee)
-        droitSculpture.AjouterCondition(droitSculpturePasFait)
+        droitSculpture.AjouterConditions([estEnModeFondateur, estPasAthee, droitSculpturePasFait])
         selecteur_.ajouterDeclencheur(droitSculpture)
 
 label droitSculpture:

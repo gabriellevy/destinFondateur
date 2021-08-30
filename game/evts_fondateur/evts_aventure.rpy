@@ -18,9 +18,7 @@ init -5 python:
         global selecteur_
         # tenté par l'aventure marine ?
         aventurierDesMers = declencheur.Declencheur(proba.Proba(0.3, True), "aventurierDesMers")
-        aventurierDesMers.AjouterCondition(estEnModeFondateur)
-        aventurierDesMers.AjouterCondition(estDansRegionCotiere)
-        aventurierDesMers.AjouterCondition(aventurierDesMersPasFait)
+        aventurierDesMers.AjouterConditions([estEnModeFondateur, estDansRegionCotiere, aventurierDesMersPasFait])
         selecteur_.ajouterDeclencheur(aventurierDesMers)
 
 label aventurierDesMers:

@@ -19,9 +19,7 @@ init -5 python:
         global selecteur_
 
         inventionEcriture = declencheur.Declencheur(proba.Proba(0.2, True), "inventionEcriture")
-        inventionEcriture.AjouterCondition(estEnModeFondateur)
-        inventionEcriture.AjouterCondition(inventionEcriturePasFait)
-        inventionEcriture.AjouterCondition(anneeInf100)
+        inventionEcriture.AjouterConditions([estEnModeFondateur, inventionEcriturePasFait, anneeInf100])
         selecteur_.ajouterDeclencheur(inventionEcriture)
 
 label inventionEcriture:

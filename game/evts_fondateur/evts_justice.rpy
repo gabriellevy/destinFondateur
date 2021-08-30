@@ -16,10 +16,9 @@ init -5 python:
     ruseEtForcePasFait = condition.Condition("ruseEtForce", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsJusticeF():
         global selecteur_
-        
+
         ruseEtForce = declencheur.Declencheur(proba.Proba(0.1, True), "ruseEtForce")
-        ruseEtForce.AjouterCondition(estEnModeFondateur)
-        ruseEtForce.AjouterCondition(aventurierDesMersPasFait)
+        ruseEtForce.AjouterConditions([ estEnModeFondateur, ruseEtForcePasFait])
         selecteur_.ajouterDeclencheur(ruseEtForce)
 
 label ruseEtForce:

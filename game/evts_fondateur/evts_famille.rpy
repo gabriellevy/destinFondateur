@@ -19,14 +19,11 @@ init -5 python:
         global selecteur_
         # mariage du fondateur
         mariageFondateur = declencheur.Declencheur(proba.Proba(0.3, True), "mariageFondateur")
-        mariageFondateur.AjouterCondition(estEnModeFondateur)
-        mariageFondateur.AjouterCondition(mariageFondateurPasFait)
-        mariageFondateur.AjouterCondition(siTribue)
+        mariageFondateur.AjouterConditions([estEnModeFondateur, mariageFondateurPasFait, siTribue])
         selecteur_.ajouterDeclencheur(mariageFondateur)
         # fêtes et mariage
         fetesMariage = declencheur.Declencheur(proba.Proba(0.1, True), "fetesMariage")
-        fetesMariage.AjouterCondition(estEnModeFondateur)
-        fetesMariage.AjouterCondition(fetesMariagePasFait)
+        fetesMariage.AjouterConditions([estEnModeFondateur, fetesMariagePasFait])
         selecteur_.ajouterDeclencheur(fetesMariage)
 
 label fetesMariage:

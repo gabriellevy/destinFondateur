@@ -16,9 +16,7 @@ init -5 python:
         global selecteur_
         # création de religion
         creationReligion = declencheur.Declencheur(proba.Proba(0.5, True), "creationReligion")
-        creationReligion.AjouterCondition(estEnModeFondateur)
-        creationReligion.AjouterCondition(aPasDeReligion)
-        creationReligion.AjouterCondition(creationReligionPasFait)
+        creationReligion.AjouterConditions([estEnModeFondateur, aPasDeReligion, creationReligionPasFait])
         selecteur_.ajouterDeclencheur(creationReligion)
 
 label creationReligion:
