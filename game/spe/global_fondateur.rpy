@@ -7,6 +7,7 @@ init -2 python:
     from abs.univers import temps
     from abs.humanite.sante import pbsante
     from spe.peuple import peuple
+    from spe.peuple import peuples
     from spe.region import region
     from spe.region import regions
     from spe.civilisation import civ
@@ -25,13 +26,13 @@ init -2 python:
     # situation_.collectionQuartiers = quartiers_
     metiers_ = metier.CollectionMetiers()
     situation_.collectionMetiers = metiers_
-    peuples_ = peuple.CollectionPeuples()
+    peuples_ = peuples.CollectionPeuples()
     situation_.collectionPeuples = peuples_
     regions_ = regions.CollectionRegions()
     situation_.collectionRegions = regions_
     civs_ = civs.CollectionCivs()
     situation_.collectionCivs = civs_
-    interfaceMode_ = 3
+    interfaceMode_ = 0
     nbInterfaceMode_ = 5
 
     def AjouterAAffinite(idCiv, num):

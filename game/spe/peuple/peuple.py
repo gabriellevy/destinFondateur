@@ -15,9 +15,11 @@ class Peuple:
     # ------------- val de souveraineté
     TRIBUE = u"Tribu"
     # caracs principale d'identité de peuple
+    # C_VIOLENCE celtes 0.6
     C_VIOLENCE = u"Violence"
     C_CREATIVITE = u"Creativité"
     C_AVENTURE = u"Aventure" # peuple qui ne se satisfait pas de ce qu'il a mais cherche toujours à aller plus loin (inclut donc l'ambition et aussi la curiosité)
+    # C_INTEL celtes 0.1
     C_INTEL = u"Intellectualisme" # Les écrivains, intellectuels et philosophes sont respectés. La ruse est plus acceptée aussi. => favorise la science
     C_LEGALISME = u"Légalisme"
     C_SENSUALITE = u"Sensualité" # peuples où la recherche du plaisir des sens au sens large est un but avoué de la vie
@@ -44,55 +46,3 @@ class Peuple:
         """
         situation.SetValCarac(Peuple.C_COHESION, 1)
         situation.SetValCarac(Peuple.C_SOUV, Peuple.TRIBUE)
-
-class CeltesSudFrance(Peuple):
-
-    NOM = u"Celtes de la Gaule Narbonaise" # des Avatiques
-
-    def __init__(self):
-        self.nom_ = CeltesSudFrance.NOM
-        self.labelDepart_ = "choix_peuple_avatiques"
-
-    def SelectionDePeuple(self, situation):
-        """
-        changements de caracs quand on sélectionne ce peuple
-        """
-        # début en -600:
-        situation.AvanceDeXJours(400 * 365)
-        Peuple.SelectionDePeuple(self, situation)
-        civilisationDepart = celtes.Celte()
-        situation[civilisationDepart.nom_] = 1
-        regionObj = situation.collectionRegions[sud_france.SudFrance.NOM]
-        regionObj.SelectionDeRegion(situation)
-        situation[Peuple.C_PEUPLE] = civilisationDepart.GenererNomPeuple()
-        situation[science.Science.C_ECRITURE] = 0
-
-class CollectionPeuples:
-
-    def __init__(self):
-        self.lPeuples_ = dict()
-
-        celtesSudFrance = CeltesSudFrance()
-        self.SetPeuple(CeltesSudFrance.NOM, celtesSudFrance)
-
-    def __getitem__(self, idPeuple):
-        # assert not idPeuple in self.lPeuples_, u"Pas de peuple '{}'".format(idPeuple)
-        return self.lPeuples_[idPeuple]
-
-    def __setitem__(self, idPeuple, peuple):
-        self.SetPeuple(idPeuple, peuple)
-
-    def SetPeuple (self, idPeuple, peuple):
-        self.lPeuples_[idPeuple] = peuple
-
-    def __len__(self):
-        return len(self.lPeuples_)
-
-    def __str__(self):
-        """Affichage quand on affiche l'objet (print)"""
-        if len(self.lPeuples_) == 0:
-            return "Aucun Peuple."
-        str = u"Liste de toutes les peuples : "
-        for peuple in self.lPeuples_:
-            str = str + peuple + ","
-        return str

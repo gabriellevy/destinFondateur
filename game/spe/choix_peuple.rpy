@@ -29,19 +29,6 @@ init -5 python:
         # compétences professionnelles
         # situation[metier.Politique.NOM] = trait.Trait.SEUIL_A
 
-        # caracs spécifiques peuple
-        situation[peuple.Peuple.C_VIOLENCE] = 0
-        situation[peuple.Peuple.C_CREATIVITE] = 0
-        situation[peuple.Peuple.C_AVENTURE] = 0
-        situation[peuple.Peuple.C_INTEL] = 0
-        situation[peuple.Peuple.C_LEGALISME] = 0
-        situation[peuple.Peuple.C_SENSUALITE] = 0
-        situation[peuple.Peuple.C_SPIRITUALITE] = 0
-        situation[peuple.Peuple.C_COOPERATION] = 0
-        situation[peuple.Peuple.C_LIBERTE] = 0
-        situation[peuple.Peuple.C_ARGENT] = 0
-        situation[peuple.Peuple.C_SEXISME] = 0
-
         # quartierDeDepart = situation.collectionQuartiers.getQuartierAleatoire(True)
         # situation.SetCarac(quartier.Quartier.C_QUARTIER, quartierDeDepart.nom_)
         if civRef is not None:

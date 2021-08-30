@@ -42,9 +42,6 @@ label rencontreMassila:
 
 label apprentissageEcritureParMassilia:
     $ situation_.SetValCarac("apprentissageEcritureParMassilia", "1")
-    menu:
-        "l'écriture c'est trop cool":
-            pass
     $ civRef = situation_.GetCivilisationDeReference()
     "Vos voisins phocéens de Massila parlent et surtout écrivent en grec. Comme vous commercez avec eux ils décident d'initier les [nomPeuple] car c'est un art très pratique pour tenir les comptes."
     $ intellectualisme = situation_.GetValCarac(peuple.Peuple.C_INTEL)
