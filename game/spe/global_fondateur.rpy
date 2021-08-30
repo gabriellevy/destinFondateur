@@ -31,8 +31,8 @@ init -2 python:
     situation_.collectionRegions = regions_
     civs_ = civs.CollectionCivs()
     situation_.collectionCivs = civs_
-    interfaceMode_ = 0
-    nbInterfaceMode_ = 4
+    interfaceMode_ = 3
+    nbInterfaceMode_ = 5
 
     def AjouterAAffinite(idCiv, num):
         """

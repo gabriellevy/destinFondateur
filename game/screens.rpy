@@ -1557,6 +1557,7 @@ screen valeurs_traits():
     $ adressePortrait = situation_.DeterminerPortrait()
     $ donneesDebug = situation_.AfficherDebug()
     $ strGeo = situation_.AfficherGeographie()
+    $ strScience = situation_.AffichageScience()
     frame:
         xpos 5 ypos 5
         vbox:
@@ -1578,5 +1579,7 @@ screen valeurs_traits():
                 text _(u"[donneesDebug]")
             elif interfaceMode_ == 2: # géographie
                 text _(u"[strGeo]")
-            elif interfaceMode_ == 3:
+            elif interfaceMode_ == 3: # science
+                text _(u"[strScience]")
+            elif interfaceMode_ == 4:
                 text _(u"[descriptionCivilisation]")

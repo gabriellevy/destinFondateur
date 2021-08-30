@@ -3,6 +3,7 @@ from spe.region import region
 from spe.region import sud_france
 from spe.civilisation import civ
 from spe.civilisation import celtes
+from spe.science import science
 
 class Peuple:
     C_PEUPLE = u"Peuple"
@@ -64,6 +65,7 @@ class CeltesSudFrance(Peuple):
         regionObj = situation.collectionRegions[sud_france.SudFrance.NOM]
         regionObj.SelectionDeRegion(situation)
         situation[Peuple.C_PEUPLE] = civilisationDepart.GenererNomPeuple()
+        situation[science.Science.C_ECRITURE] = 0
 
 class CollectionPeuples:
 

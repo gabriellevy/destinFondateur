@@ -7,6 +7,7 @@ from spe import portrait_fondateur
 from abs.humanite import portrait
 from spe.peuple import peuple
 from spe.region import region
+from spe.science import science
 from spe.civilisation import civ
 from spe.region import geo
 from spe.univers import date_fondateur
@@ -69,6 +70,19 @@ class SituationFondateur(situation.Situation):
                 str = u"{}\n{}({})".format(str, civK, valCiv)
         return str
 
+    def AffichageScience(self):
+        str=u""
+        # écriture :
+        valEcriture = self.GetValCaracInt(science.Science.C_ECRITURE)
+        if valEcriture < 0.2:
+            str = u"{}\nAnalphabêtes".format(str)
+        elif valEcriture < 0.5:
+            str = u"{}\nAlphabêtisés".format(str)
+        elif valEcriture < 0.5:
+            str = u"{}\Litéraires".format(str)
+
+        return str
+
     def AffichagePeuple(self):
         return u"{}".format(self.caracs_[peuple.Peuple.C_PEUPLE])
 
@@ -94,8 +108,6 @@ class SituationFondateur(situation.Situation):
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_ARGENT, self.caracs_[peuple.Peuple.C_ARGENT])
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_SEXISME, self.caracs_[peuple.Peuple.C_SEXISME])
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_AVENTURE, self.caracs_[peuple.Peuple.C_AVENTURE])
-        str = u"{}\n temps.Date.DATE_ANNEES : {}".format(str, self.caracs_[temps.Date.DATE_ANNEES])
-
         str = u"{}\n{}".format(str, self.caracs_[peuple.Peuple.C_SOUV])
         return str
 
@@ -109,7 +121,6 @@ class SituationFondateur(situation.Situation):
     def GetDateDuJour(self):
         nbJours = self.caracs_[temps.Date.DATE]
         return date_fondateur.DateFondateur(nbJours)
-
 
     def GetDate(self, dateEnJours):
         """
