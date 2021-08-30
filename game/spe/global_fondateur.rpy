@@ -8,6 +8,7 @@ init -2 python:
     from abs.humanite.sante import pbsante
     from spe.peuple import peuple
     from spe.region import region
+    from spe.region import regions
     from spe.civilisation import civ
     from spe.civilisation import civs
     import random
@@ -26,11 +27,11 @@ init -2 python:
     situation_.collectionMetiers = metiers_
     peuples_ = peuple.CollectionPeuples()
     situation_.collectionPeuples = peuples_
-    regions_ = region.CollectionRegions()
+    regions_ = regions.CollectionRegions()
     situation_.collectionRegions = regions_
     civs_ = civs.CollectionCivs()
     situation_.collectionCivs = civs_
-    interfaceMode_ = 1
+    interfaceMode_ = 0
     nbInterfaceMode_ = 4
 
     def AjouterAAffinite(idCiv, num):

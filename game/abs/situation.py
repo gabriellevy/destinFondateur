@@ -125,7 +125,8 @@ class Situation:
         if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.CreerCarac(idCarac, 0)
 
-        finalVal = self.caracs_[idCarac] + valCarac
+        valActuelleF = float(self.caracs_[idCarac])
+        finalVal = valActuelleF + float(valCarac)
         if idCarac in self.valsMax_ and finalVal > self.valsMax_[idCarac]:
             finalVal = self.valsMax_[idCarac]
         self.SetCarac(idCarac, finalVal)
@@ -135,7 +136,8 @@ class Situation:
         if not idCarac in self.caracs_ or self.caracs_[idCarac] == "":
             self.CreerCarac(idCarac, 0)
 
-        finalVal = self.caracs_[idCarac] - valCarac
+        valActuelleF = float(self.caracs_[idCarac])
+        finalVal = valActuelleF - valCarac
         if idCarac in self.valsMin_ and finalVal < self.valsMin_[idCarac]:
             finalVal = self.valsMin_[idCarac]
         self.SetCarac(idCarac, finalVal)

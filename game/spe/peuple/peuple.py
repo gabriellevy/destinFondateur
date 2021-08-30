@@ -1,5 +1,6 @@
 import random
 from spe.region import region
+from spe.region import sud_france
 from spe.civilisation import civ
 from spe.civilisation import celtes
 
@@ -15,8 +16,8 @@ class Peuple:
     # caracs principale d'identité de peuple
     C_VIOLENCE = u"Violence"
     C_CREATIVITE = u"Creativité"
-    C_AVENTURE = u"Aventure" # peuple qui ne se satisfait aps de ce qu'il a mais cherche toujours à aller plus loin (inclut donc l'ambition)
-    C_INTEL = u"Intellectualisme" # Les écrivains, intellectuels et philosophes sont respectés. La ruse est plus acceptée
+    C_AVENTURE = u"Aventure" # peuple qui ne se satisfait pas de ce qu'il a mais cherche toujours à aller plus loin (inclut donc l'ambition et aussi la curiosité)
+    C_INTEL = u"Intellectualisme" # Les écrivains, intellectuels et philosophes sont respectés. La ruse est plus acceptée aussi. => favorise la science
     C_LEGALISME = u"Légalisme"
     C_SENSUALITE = u"Sensualité" # peuples où la recherche du plaisir des sens au sens large est un but avoué de la vie
     C_SPIRITUALITE = u"Spiritualité" # Appréciation des superstitions, religions, ésotérismes, la magie
@@ -60,7 +61,7 @@ class CeltesSudFrance(Peuple):
         Peuple.SelectionDePeuple(self, situation)
         civilisationDepart = celtes.Celte()
         situation[civilisationDepart.nom_] = 1
-        regionObj = situation.collectionRegions[region.SudFrance.NOM]
+        regionObj = situation.collectionRegions[sud_france.SudFrance.NOM]
         regionObj.SelectionDeRegion(situation)
         situation[Peuple.C_PEUPLE] = civilisationDepart.GenererNomPeuple()
 

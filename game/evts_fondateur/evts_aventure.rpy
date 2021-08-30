@@ -37,7 +37,7 @@ label aventurierDesMers:
     std "Mais ces marins et commerçants ne cessent de me parler de terres lointaines fascinantes, où un homme décidé peut faire des fortunes."
     std "J'aimerais ouvrir notre peuple au commerce en affrétant un navire mais je n'ose me décider."
     menu:
-        "Le vrai bonheur d'un homme est d'honorer ses ancêtres dans son pays, pas d'abandonner sa famille pour risquer la noyage pour des chimères.":
+        "Le vrai bonheur d'un homme est d'honorer ses ancêtres dans son pays, pas d'abandonner sa famille pour risquer la noyade pour des chimères.":
             $ AjouterACarac(peuple.Peuple.C_COHESION, 0.1)
             $ RetirerACarac(peuple.Peuple.C_AVENTURE, 0.3)
         "Va poursuivre l'aventure et la prospérité. C'est le meilleur moyen de servir ton peuple et ta famille.":
