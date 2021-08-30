@@ -14,14 +14,47 @@ init -5 python:
 
     siTribue = condition.Condition(peuple.Peuple.C_SOUV, peuple.Peuple.TRIBUE, condition.Condition.EGAL)
     mariageFondateurPasFait = condition.Condition("mariageFondateur", "1", condition.Condition.DIFFERENT)
+    fetesMariagePasFait = condition.Condition("fetesMariage", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsFamilleF():
         global selecteur_
-        # mariage
-        mariageFondateur = declencheur.Declencheur(proba.Proba(0.5, True), "mariageFondateur")
+        # mariage du fondateur
+        mariageFondateur = declencheur.Declencheur(proba.Proba(0.3, True), "mariageFondateur")
         mariageFondateur.AjouterCondition(estEnModeFondateur)
         mariageFondateur.AjouterCondition(mariageFondateurPasFait)
         mariageFondateur.AjouterCondition(siTribue)
         selecteur_.ajouterDeclencheur(mariageFondateur)
+        # fêtes et mariage
+        fetesMariage = declencheur.Declencheur(proba.Proba(0.1, True), "fetesMariage")
+        fetesMariage.AjouterCondition(estEnModeFondateur)
+        fetesMariage.AjouterCondition(fetesMariagePasFait)
+        selecteur_.ajouterDeclencheur(fetesMariage)
+
+label fetesMariage:
+    $ situation_.SetValCarac("fetesMariage", "1")
+    $ civRef = situation_.GetCivilisationDeReference()
+    $ nomChefFamille = civRef.GenererPatronyme(True)
+    $ nomChefFamilleImg = civRef.GenererImagePerso(True, 50)
+    $ titreFondateur = civRef.GetTitreFondateur(situation_)
+    $ std = Character(nomPerso)
+    "[nomChefFamille] est un homme noble et riche, un des plus importants de la tribue."
+    std "[titreFondateur], j'ai besoin de vos sages conseils. Mon fils se marie aujourd'hui et je suis partagé entre l'envie de donner une très grande fête et la peur qu'elle dégénère."
+    std "Car ce jour est sacré et je trouve que les beuveries et les farces déshonoreraient ma famille."
+    $ renpy.show(nomChefFamilleImg, [right])
+    with moveinright
+    menu:
+        "Les fêtes sont les grands moments de relâchement des tensions et de fraternisation. Invitez tout le monde et festoyez. On se souviendra de votre générosité et de ce grand jour.":
+            $ AjouterACarac(peuple.Peuple.C_SENSUALITE, 0.5)
+            $ AjouterACarac(peuple.Peuple.C_COHESION, 0.1)
+            $ AjouterACarac(peuple.Peuple.C_ARGENT, 0.1)
+        "Les festins sont dégradants et vulgaires. Les mariages sont sacrés et doivent rester dignes.":
+            $ RetirerACarac(peuple.Peuple.C_SENSUALITE, 0.3)
+            $ AjouterACarac(peuple.Peuple.C_SPIRITUALITE, 0.1)
+            $ AjouterACarac(peuple.Peuple.C_LEGALISME, 0.1)
+        "Donnez de la dignité au mariage en invitant poètes et musiciens. En remplaçant la débauche par l'art votre prestige sera au plus haut.":
+            $ AjouterACarac(peuple.Peuple.C_CREATIVITE, 0.2)
+            $ AjouterACarac(peuple.Peuple.C_COHESION, 0.1)
+
+    jump fin_cycle
 
 label mariageFondateur:
     $ situation_.SetValCarac("mariageFondateur", "1")

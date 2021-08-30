@@ -16,7 +16,7 @@ init -5 python:
     ruseEtForcePasFait = condition.Condition("ruseEtForce", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsJusticeF():
         global selecteur_
-        # tenté par l'aventure marine ?
+        
         ruseEtForce = declencheur.Declencheur(proba.Proba(0.1, True), "ruseEtForce")
         ruseEtForce.AjouterCondition(estEnModeFondateur)
         ruseEtForce.AjouterCondition(aventurierDesMersPasFait)
