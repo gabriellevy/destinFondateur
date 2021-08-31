@@ -18,4 +18,4 @@ class SudFrance(region.Region):
     def SelectionDeRegion(self, situation):
         region.Region.SelectionDeRegion(self, situation)
         situation.SetValCarac(geo.Geo.C_COTIERE, "1")
-        situation.SetValCarac(SudFrance.C_RAPPORT_MASSILIA, "0")
+        situation.SetValCarac(SudFrance.C_RAPPORT_MASSILIA, "0.4") # valeur de base à la rencontre ??

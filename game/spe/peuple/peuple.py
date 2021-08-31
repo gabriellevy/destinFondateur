@@ -15,7 +15,7 @@ class Peuple:
     # ------------- val de souveraineté
     TRIBUE = u"Tribu"
     # caracs principale d'identité de peuple
-    # C_VIOLENCE celtes 0.6
+    # C_VIOLENCE celtes 0.6 moins de 0.3 = non violent au point de facilement collaborer et payer des rançons
     C_VIOLENCE = u"Violence"
     C_CREATIVITE = u"Creativité"
     C_AVENTURE = u"Aventure" # peuple qui ne se satisfait pas de ce qu'il a mais cherche toujours à aller plus loin (inclut donc l'ambition et aussi la curiosité)
