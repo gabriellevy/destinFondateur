@@ -11,6 +11,7 @@ class SudFrance(region.Region):
 
     # caracs liées aux voisins :
     C_RAPPORT_MASSILIA = u"Rapports avec Massilia" # 0 = haîne, 1. = alliance
+    C_RAPPORT_AVATIQUES = u"Rapports avec les avatiques" # 0 = haîne, 1. = alliance
 
     def __init__(self):
         self.nom_ = SudFrance.NOM
@@ -18,4 +19,5 @@ class SudFrance(region.Region):
     def SelectionDeRegion(self, situation):
         region.Region.SelectionDeRegion(self, situation)
         situation.SetValCarac(geo.Geo.C_COTIERE, "1")
-        situation.SetValCarac(SudFrance.C_RAPPORT_MASSILIA, "0.4") # valeur de base à la rencontre ??
+        situation.SetValCarac(SudFrance.C_RAPPORT_MASSILIA, 0.4) # valeur de base à la rencontre ??
+        situation.SetValCarac(SudFrance.C_RAPPORT_AVATIQUES, 0.7) # valeur de base à la rencontre ??

@@ -32,7 +32,7 @@ label fetesMariage:
     $ nomChefFamille = civRef.GenererPatronyme(True)
     $ nomChefFamilleImg = civRef.GenererImagePerso(True, 50)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
-    $ std = Character(nomPerso)
+    $ std = Character(nomChefFamille)
     "[nomChefFamille] est un homme noble et riche, un des plus importants de la tribue."
     std "[titreFondateur], j'ai besoin de vos sages conseils. Mon fils se marie aujourd'hui et je suis partagé entre l'envie de donner une très grande fête et la peur qu'elle dégénère."
     std "Car ce jour est sacré et je trouve que les beuveries et les farces déshonoreraient ma famille."

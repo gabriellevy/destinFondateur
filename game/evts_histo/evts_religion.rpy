@@ -2,6 +2,7 @@ init -5 python:
     import random
     from abs.religions import religion
     from abs import declencheur
+    from spe import declencheur_fondateur
     from abs import selecteur
     from abs import proba
     from abs import condition

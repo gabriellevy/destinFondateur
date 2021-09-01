@@ -43,6 +43,7 @@ init -1 python:
     # historique
     AjouterEvtsRienHisto()
     AjouterEvtsReligieuxH()
+    AjouterEvtsSudFranceH()
 
 # Le jeu commence ici
 label start:
