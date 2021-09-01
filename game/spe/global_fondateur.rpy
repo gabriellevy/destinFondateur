@@ -53,10 +53,10 @@ init -2 python:
 
     def RetirerAPopulationPourcent(pourcent):
         global situation_
-        population = situation_GetValCaracInt(peuple.Peuple.C_POP)
+        population = situation_.GetValCaracInt(peuple.Peuple.C_POP)
         RetirerACarac(peuple.Peuple.C_POP, population/100)
 
     def AjouterAPopulationPourcent(pourcent):
         global situation_
-        population = situation_GetValCaracInt(peuple.Peuple.C_POP)
+        population = situation_.GetValCaracInt(peuple.Peuple.C_POP)
         AjouterACarac(peuple.Peuple.C_POP, population/100)

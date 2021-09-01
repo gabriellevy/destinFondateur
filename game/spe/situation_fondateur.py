@@ -128,6 +128,24 @@ class SituationFondateur(situation.Situation):
         """
         return date_fondateur.DateFondateur(dateEnJours)
 
+    def AvanceDeXJours(self, nbJoursPasses):
+        situation.Situation.AvanceDeXJours(self, nbJoursPasses)
+
+        # progression de la population :
+        population = self.GetValCaracInt(peuple.Peuple.C_POP)
+        popGagnee = (population * nbJoursPasses) / (365 * 100) # formule pour 1% par an
+
+        # petit bonus pour les peuples sexistes (femmes moins éduquées et quasi obligées de procréer)
+        sexisme = self.GetValCaracInt(peuple.Peuple.C_SEXISME)
+        popGagnee = popGagnee * (0.75 + sexisme/2)
+
+        # petit random :
+        sexisme = self.GetValCaracInt(peuple.Peuple.C_SEXISME)
+        popGagnee = popGagnee * (0.75 + random.uniform(0, 1.0)/2)
+
+        popGagnee = int(popGagnee)
+        self.AjouterACarac(peuple.Peuple.C_POP, popGagnee)
+
     def TourSuivant(self):
         """
         Passage au "tour" suivant dans un destin c'est à dire grosso modo
