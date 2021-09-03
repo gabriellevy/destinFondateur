@@ -1,5 +1,6 @@
 import random
 from spe.civilisation import celtes
+from spe.civilisation import romains
 from spe.civilisation import civ
 
 class CollectionCivs:
@@ -25,8 +26,8 @@ class CollectionCivs:
         self.SetCiv(civ.Grecque.NOM, grecque)
         russe = civ.Russe()
         self.SetCiv(civ.Russe.NOM, russe)
-        romain = civ.Romain()
-        self.SetCiv(civ.Romain.NOM, romain)
+        romain = romains.Romain()
+        self.SetCiv(romains.Romain.NOM, romain)
         mongol = civ.Mongol()
         self.SetCiv(civ.Mongol.NOM, mongol)
         celteObj = celtes.Celte()

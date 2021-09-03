@@ -11,7 +11,8 @@ class SudFrance(region.Region):
 
     # caracs liées aux voisins :
     C_RAPPORT_MASSILIA = u"Rapports avec Massilia" # 0 = haîne, 1. = alliance
-    C_RAPPORT_AVATIQUES = u"Rapports avec les avatiques" # 0 = haîne, 1. = alliance
+    C_RAPPORT_AVATIQUES = u"Rapports avec les Avatiques" # 0 = haîne, 1. = alliance
+    C_RAPPORT_SALYENS = u"Rapports avec les Salyens" # 0 = haîne, 1. = alliance
 
     def __init__(self):
         self.nom_ = SudFrance.NOM

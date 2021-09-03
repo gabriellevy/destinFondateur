@@ -233,27 +233,6 @@ class Russe(Civ):
         nom = Civ.GetTitreFondateur(self, situation)
         return "??? {}".format(nom)
 
-class Romain(Civ):
-    NOM = u"Romain"
-
-    def __init__(self):
-        self.nom_ = Romain.NOM
-
-    def GenererPrenom(self, masculin):
-        if masculin:
-            return u"prénom masculin romain PAS FAIT"
-        return u"prénom féminin romain PAS FAIT"
-
-    def GenererNomPeuple(self):
-        return u"nom peuple romain PAS FAIT"
-
-    def GenererNom(self):
-        return u"nom romain PAS FAIT"
-
-    def GetTitreFondateur(self, situation):
-        nom = Civ.GetTitreFondateur(self, situation)
-        return "Pater {}".format(nom)
-
 class Mongol(Civ):
     NOM = u"Mongol"
 

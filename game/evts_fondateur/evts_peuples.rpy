@@ -10,6 +10,7 @@ init -5 python:
     from spe import situation_fondateur
     from spe.peuple import peuple
     from spe.civilisation import civ
+    from spe.civilisation import romains
 
     # simples marqueurs de fait/pas fait des événements
     toleranceAuMelangePasFait = condition.Condition("toleranceAuMelange", "1", condition.Condition.DIFFERENT)
@@ -48,6 +49,6 @@ label toleranceAuMelange:
             $ AjouterACarac(peuple.Peuple.C_COOPERATION, 0.3)
             $ AjouterACarac(peuple.Peuple.C_VIOLENCE, 0.3)
             $ AjouterAAffinite(civ.Russe.NOM, 0.5)
-            $ AjouterAAffinite(civ.Romain.NOM, 0.5)
+            $ AjouterAAffinite(romains.Romain.NOM, 0.5)
 
     jump fin_cycle

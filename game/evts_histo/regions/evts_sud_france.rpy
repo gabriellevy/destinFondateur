@@ -15,11 +15,13 @@ init -5 python:
     from spe.science import science
     from spe.richesse import richesse
     from spe import declencheur_fondateur
+    from spe.civilisation import romains
 
     # Massilia
     apprentissageEcritureParMassiliaPasFait = condition.Condition("apprentissageEcritureParMassilia", "1", condition.Condition.DIFFERENT)
     rencontreMassilaPasFait = condition.Condition("rencontreMassila", "1", condition.Condition.DIFFERENT)
     guerreAvatiquesPhoceensPasFait = condition.Condition("guerreAvatiquesPhoceens", "1", condition.Condition.DIFFERENT)
+    interventionRomeAMassaliaPasFait = condition.Condition("interventionRomeAMassalia", "1", condition.Condition.DIFFERENT)
     rencontreMassilaFait = condition.Condition("rencontreMassila", "1", condition.Condition.EGAL)
     mauvaisRapportAvecMassalia = condition.Condition(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5, condition.Condition.INFERIEUR)
     mauvaisRapportAvecAvatiques = condition.Condition(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.5, condition.Condition.INFERIEUR)
@@ -55,33 +57,54 @@ init -5 python:
         attaqueParMassalia.EvtHistoArriveEntreDateAetB(-600, 0)
         selecteur_.ajouterDeclencheur(attaqueParMassalia)
 
-        pillageMassaliaParPhoceens = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "pillageMassaliaParPhoceens")
+        pillageMassaliaParAvatiques = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "pillageMassaliaParAvatiques")
         # peut arriver plusieurs fois
-        pillageMassaliaParPhoceens.AjouterConditions( [siSudFrance, rencontreMassilaFait])
-        pillageMassaliaParPhoceens.EvtHistoArriveEntreDateAetB(-600, 0)
-        selecteur_.ajouterDeclencheur(pillageMassaliaParPhoceens)
+        pillageMassaliaParAvatiques.AjouterConditions( [siSudFrance, rencontreMassilaFait])
+        pillageMassaliaParAvatiques.EvtHistoArriveEntreDateAetB(-600, 0)
+        selecteur_.ajouterDeclencheur(pillageMassaliaParAvatiques)
 
-label pillageMassaliaParPhoceens:
+        interventionRomeAMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.8, True), "interventionRomeAMassalia")
+        interventionRomeAMassalia.AjouterConditions( [siSudFrance, rencontreMassilaFait, interventionRomeAMassaliaPasFait])
+        interventionRomeAMassalia.EvtHistoArriveEntreDateAetB(-180, 0)
+        selecteur_.ajouterDeclencheur(interventionRomeAMassalia)
+
+label interventionRomeAMassalia:
     menu:
-        "pillageMassaliaParPhoceens regarde bien la SUITE":
+        "interventionRomeAMassalia regarde bien la SUITE":
             pass
-    "Les celtes avatiques s'enhardissent et pillent de plus en plus souvent les bateaux et convois des phocéens de Massalia"
+    $ situation_.SetValCarac("interventionRomeAMassalia", "1")
+    "Après avoir subi des raids celtes réguliers les phocéens de Massalia décident de demander l'intervention des romains pour pacifier la région."
+    "Pour la première fois les celtes Salyens et avatiques découvrent cet ennemi dangereux et discipliné. Ils résistent très bravement mais sont contraints à reculer et leur place forte est détruite."
+    $ rapport_massalia = situation_.GetValCaracInt(sud_france.SudFrance.C_RAPPORT_MASSILIA)
+    $ violence = situation_.GetValCaracInt(peuple.Peuple.C_VIOLENCE)
+    if rapport_massalia > 0.5 and violence < 0.5:
+        "Les [nomPeuple] sont perçus comme non dangereux et parviennent à se tenir à l'écart des combats. Les autres celtes voient celà d'un très mauvais oeil mais ils sont trop affaiblis pour se venger dans l'immédiat."
+        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.1)
+        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_SALYENS, 0.1)
+        $ situation_.SetValCarac(romains.Romain.C_RAPPORT_ROME, 0.3)
+    else:
+        "Les [nomPeuple] sont inévitablement entrainés dans la guerre aux côtés des autres celtes et sont durement défaits avec eux."
+        $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
+        $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_SALYENS, 0.05)
+        $ situation_.SetValCarac(romains.Romain.C_RAPPORT_ROME, 0.0)
+        $ situation_.SetValCarac(romains.Romain.C_GUERRE, 1)
+    jump fin_cycle
+
+label pillageMassaliaParAvatiques:
+    "Les celtes avatiques s'enhardissent et pillent de plus en plus souvent les bateaux et convois des phocéens de Massalia."
     $ violence = situation_.GetValCaracInt(peuple.Peuple.C_VIOLENCE)
     if violence > 0.5:
-        "Les [nomPeuple]sautent sur l'occasion et se joignent à leurs frères pour réculter un beau butin et de belles têtes tranchées comme trophée."
+        "Les [nomPeuple] sautent sur l'occasion et se joignent à leurs frères pour récolter un beau butin et de belles têtes tranchées comme trophée."
         $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.4)
         $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
         $ AjouterACarac(richesse.Richesse.C_TRIBUS, 0.3)
     else:
-        "Les [nomPeuple] prfèrent ne pas s'en mêler ce qui leur attire le mérpis des autres celtes."
+        "Les [nomPeuple] préfèrent ne pas s'en mêler ce qui leur attire le mépris des autres celtes."
         $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
 
     jump fin_cycle
 
 label guerreAvatiquesPhoceens:
-    menu:
-        "guerreAvatiquesPhoceens regarde bien la SUITE":
-            pass
     $ situation_.SetValCarac("guerreAvatiquesPhoceens", "1")
     "L'expansion des phocéens de Massalia se heurte de plus en plus souvent aux peuples celtes des environs."
     "De leur côté les celtes avatiques sont de plus en plus tentés par le pillage de la riche Massalia. Cela va dégénérer en guerre ouverte."
