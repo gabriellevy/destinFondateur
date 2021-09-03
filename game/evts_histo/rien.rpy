@@ -9,6 +9,7 @@ init -5 python:
     from abs.humanite import trait
     # from religions import religion
     # from geographie import quartier
+    from spe.civilisation import celtes
 
     def AjouterEvtsRienHisto():
         global selecteur_, situation_
@@ -26,6 +27,11 @@ init -5 python:
         if religionActuelle == religion.Christianisme.NOM:
             evtsVides_.append("evtRien_saints")
             evtsVides_.append("evtRien_Christianisme_1")
+
+        # ------------------------------ selon civilisation dominante :
+        civRef = situation_.GetCivilisationDeReference()
+        if civRef.nom_ == celtes.Celte.NOM:
+            evtsVides_.append("evtRien_devinCelte")
 
         # fond selon quartier
         # if sceneParDefaut == "":

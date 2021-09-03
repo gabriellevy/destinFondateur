@@ -46,7 +46,7 @@ label choix_peuple:
         # menu_items.append(("Never mind", Pass))
         peupleChoisi = menu(menu_items)
         SelectionPeuple(peupleChoisi, situation_)
-    "fin choix"
+    
     jump fin_cycle
 
 label choix_peuple_avatiques:
