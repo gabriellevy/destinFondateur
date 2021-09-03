@@ -55,6 +55,29 @@ init -5 python:
         attaqueParMassalia.EvtHistoArriveEntreDateAetB(-600, 0)
         selecteur_.ajouterDeclencheur(attaqueParMassalia)
 
+        pillageMassaliaParPhoceens = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "pillageMassaliaParPhoceens")
+        # peut arriver plusieurs fois
+        pillageMassaliaParPhoceens.AjouterConditions( [siSudFrance, rencontreMassilaFait])
+        pillageMassaliaParPhoceens.EvtHistoArriveEntreDateAetB(-600, 0)
+        selecteur_.ajouterDeclencheur(pillageMassaliaParPhoceens)
+
+label pillageMassaliaParPhoceens:
+    menu:
+        "pillageMassaliaParPhoceens regarde bien la SUITE":
+            pass
+    "Les celtes avatiques s'enhardissent et pillent de plus en plus souvent les bateaux et convois des phocéens de Massalia"
+    $ violence = situation_.GetValCaracInt(peuple.Peuple.C_VIOLENCE)
+    if violence > 0.5:
+        "Les [nomPeuple]sautent sur l'occasion et se joignent à leurs frères pour réculter un beau butin et de belles têtes tranchées comme trophée."
+        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.4)
+        $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
+        $ AjouterACarac(richesse.Richesse.C_TRIBUS, 0.3)
+    else:
+        "Les [nomPeuple] prfèrent ne pas s'en mêler ce qui leur attire le mérpis des autres celtes."
+        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
+
+    jump fin_cycle
+
 label guerreAvatiquesPhoceens:
     menu:
         "guerreAvatiquesPhoceens regarde bien la SUITE":
