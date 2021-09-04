@@ -29,6 +29,12 @@ class Peuple:
     C_ARGENT = u"Argent" # La richesse est très valorisée et au coeur des coutumes
     C_SEXISME = u"Sexisme" # Niveau de différence de traitement entre les sexes
 
+    # ------------ état militaire et diplomatique du peuple
+    C_DIPLOMATIE = u"Diplomatie" # diplomacie "en général" c'est à dire passe en mode guerre si le peuple est en guerre même avec un seul ennemi
+    # ------------- val de C_DIPLOMATIE
+    PAIX = u"Paix"
+    GUERRE = u"Guerre"
+
     def __init__(self):
         self.nom_ = u"pas de nom de peuple, doit être overridé"
 
@@ -45,4 +51,5 @@ class Peuple:
         changements de caracs quand on sélectionne ce peuple
         """
         situation.SetValCarac(Peuple.C_COHESION, 1)
+        situation.SetValCarac(Peuple.C_DIPLOMATIE, Peuple.PAIX)
         situation.SetValCarac(Peuple.C_SOUV, Peuple.TRIBUE)

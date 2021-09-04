@@ -40,10 +40,12 @@ init -1 python:
     AjouterEvtsScience()
     AjouterEvtsGuerreF()
     # AjouterEvtsMaladies()
-    # historique
+    # ------------------ historique --------------------
     AjouterEvtsRienHisto()
     AjouterEvtsReligieuxH()
     AjouterEvtsSudFranceH()
+    # *** civs
+    AjouterEvtsCeltesH()
 
 # Le jeu commence ici
 label start:

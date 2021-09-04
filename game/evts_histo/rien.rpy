@@ -18,6 +18,8 @@ init -5 python:
         selecteur_.ajouterDeclencheur(selecteurDEvenementVide_h)
 
     def LancerEvtVideH(situation):
+        diplomatie = situation_.GetValCarac( peuple.Peuple.C_DIPLOMATIE)
+
         sceneParDefaut = ""
         # régénère les événements compatibles avec la situation
         evtsVides_ = ["evtRien1_h", "evtRien2_h" ] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
@@ -31,7 +33,14 @@ init -5 python:
         # ------------------------------ selon civilisation dominante :
         civRef = situation_.GetCivilisationDeReference()
         if civRef.nom_ == celtes.Celte.NOM:
-            evtsVides_.append("evtRien_devinCelte")
+            evtsVides_.append("evtRien_celtes_devin")
+            evtsVides_.append("evtRien_celtes_moqueriesBarde")
+            evtsVides_.append("evtRien_celtes_spectaclePoesie")
+            evtsVides_.append("evtRien_celtes_ecoleDruides")
+            evtsVides_.append("evtRien_celtes_nouveauDruide")
+            evtsVides_.append("evtRien_celtes_druideRenegat")
+            if diplomatie == peuple.Peuple.GUERRE:
+                evtsVides_.append("evtRien_celtes_auguresGuerre")
 
         # fond selon quartier
         # if sceneParDefaut == "":
