@@ -31,7 +31,7 @@ label arriveeChristianisme:
         "Mais les [nomPeuple] ont la tête bien sur les épaules et bien peu prennent au sérieux cette étrange religion."
     elif spiritualite < 0.7:
         "Les missionnaires chrétiens font de nombreuses conversions parmi les vôtres. Les classes supérieures sont perplexes sur la conduite à adopter."
-        $ AjouterACarac(civ.Christianisme.NOM, 0.3)
+        $ AjouterACaracCiv(civ.Christianisme.NOM, 0.3)
         if violence > 0.5:
             "Devant le refus des chrétiens d'honorer les vrais dieux, des [nomPeuple] perdent patience et des émeutes éclatent."
             "Beaucoup de chrétiens et plusieurs de leurs missionnaires sont massacrés. Cela semble néanmoins avoir peut d'effet sur leur ferveur"
@@ -39,7 +39,7 @@ label arriveeChristianisme:
             $ RetirerAPopulationPourcent(1)
     else:
         "Les [nomPeuple] embrasse avec ferveur la nouvelle religion et a tôt fait de mélanger ss anciennes croyances avec la nouvelle bien plus parfaite foi."
-        $ AjouterACarac(civ.Christianisme.NOM, 0.6)
+        $ AjouterACaracCiv(civ.Christianisme.NOM, 0.6)
 
 
     jump fin_cycle

@@ -42,6 +42,9 @@ class SituationFondateur(situation.Situation):
         return self.GetValCarac(portrait.Portrait.C_PORTRAIT)
 
     def GetCivilisationDeReference(self):
+        """
+        recalcule la civilisation de référence du peuple
+        """
         civPlusHaute = None
         valPlusHaute = 0
         for civK in self.collectionCivs.lCivs_.keys():

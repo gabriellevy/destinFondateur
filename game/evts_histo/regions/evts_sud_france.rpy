@@ -178,7 +178,7 @@ label apprentissageEcritureParMassilia:
     else:
         "Plusieurs commerçants [nomPeuple] s'y intéressent essentiellement pour tenir leurs comptes."
         $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5)
-        $ AjouterACarac(civ.Grecque.NOM, 0.1)
+        $ AjouterACaracCiv(civ.Grecque.NOM, 0.1)
         $ AjouterACarac(peuple.Peuple.C_INTEL, 0.1)
         $ AjouterACarac(science.Science.C_ECRITURE, 0.3)
     jump fin_cycle

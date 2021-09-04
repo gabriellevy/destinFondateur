@@ -60,3 +60,40 @@ init -2 python:
         global situation_
         population = situation_.GetValCaracInt(peuple.Peuple.C_POP)
         AjouterACarac(peuple.Peuple.C_POP, population/100)
+
+    # -------------------------- fonctions de manipulation de caracs de civilisation (inclue les formules et systèmes de rééquilibrages)
+    def AjouterACaracCiv(caracId, num):
+        global situation_
+        # ne peut pas dépasser 1 et si c'est le cas tout est recalulé proportionellement pour la remettre à 1
+        valCaracCiv = situation_.GetValCaracInt(caracId) + float(num)
+        if valCaracCiv > 1.0:
+            # cette civilisation est la principale du joueur et les autres sont rééquilibrées à partir de celle ci
+            ratio = 1/valCaracCiv
+            # toutes les vals de civ sont divisées par ce ratio :
+            for civK in self.collectionCivs.lCivs_.keys():
+                valCiv = self.GetValCaracInt(civK)
+                if valCiv != "":
+                    situation_.SetValCarac(civK, valCiv/ratio)
+            situation_.SetValCarac(caracId, 1.0)
+            situation_.caracs_[civ.Civ.C_CIV] = caracId
+        else:
+            situation_.AjouterACarac(caracId, num)
+
+        textChangtCarac = u"{} + {}".format(caracId, num)
+        renpy.show_screen("fading_text", textChangtCarac, time_, x_debut, y_debut, x_fin, y_fin, color="#4f4", size=24, alpha=1.0)
+        renpy.pause(time_)
+        renpy.hide_screen("fading_text")
+        situation_.GetCivilisationDeReference()
+
+    def RetirerACarac(caracId, num):
+        global situation_# ne peut pas dépasser 1 et si c'est le cas tout est recalulé proportionellement pour la remettre à 1
+        valCaracCiv = situation_.GetValCaracInt(caracId) + float(num)
+        if valCaracCiv < 0:
+            situation_.SetValCarac(caracId, 0.0)
+        else:
+            textChangtCarac = u"{} - {}".format(caracId, num)
+            renpy.show_screen("fading_text", textChangtCarac, time_, x_debut, y_debut, x_fin, y_fin, color="#e11", size=24, alpha=1.0)
+            renpy.pause(time_)
+            renpy.hide_screen("fading_text")
+            situation_.RetirerACarac(caracId, num)
+        situation_.GetCivilisationDeReference()
