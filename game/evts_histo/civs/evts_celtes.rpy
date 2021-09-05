@@ -27,9 +27,33 @@ init -5 python:
         bonsArtisans.AjouterConditions([estCelte, estEnModeHisto, creativiteMoinsQueHuit])
         selecteur_.ajouterDeclencheur(bonsArtisans)
 
+        bonsSculpteurs = declencheur.Declencheur(proba.Proba(0.02, True), "bonsArtisans")
+        bonsSculpteurs.AjouterConditions([estCelte, estEnModeHisto, creativiteMoinsQueHuit])
+        selecteur_.ajouterDeclencheur(bonsSculpteurs)
+
+label bonsSculpteurs:
+    menu:
+        "hop bonsSculpteurs"
+        "youpi bonsSculpteurs":
+            pass
+    $ bonsSculpteurs = situation_.GetValCaracInt("bonsSculpteurs")
+    if bonsSculpteurs == 1:
+        scene bg statue2
+        $ situation_.SetValCarac("bonsSculpteurs", "2")
+    elif bonsSculpteurs == 2:
+        scene bg statue3
+        $ situation_.SetValCarac("bonsSculpteurs", "3")
+    else:
+        scene bg statue1
+        $ situation_.SetValCarac("bonsSculpteurs", "1")
+    "Les artisans [nomPeuple] font des progrès remarquables dans la sculpture en bronze."
+    $ AjouterACarac(peuple.Peuple.C_CREATIVITE, 0.1)
+
+    jump fin_cycle
+
 label bonsArtisans:
     "Les artisans [nomPeuple] font des progrès remarquables dans la création de torques et de bracelets d'argents."
-    $ AjouterACarac(peuple.Peuple.C_CREATIVITE, 0.2)
+    $ AjouterACarac(peuple.Peuple.C_CREATIVITE, 0.1)
 
     jump fin_cycle
 

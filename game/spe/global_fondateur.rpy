@@ -54,12 +54,14 @@ init -2 python:
     def RetirerAPopulationPourcent(pourcent):
         global situation_
         population = situation_.GetValCaracInt(peuple.Peuple.C_POP)
-        RetirerACarac(peuple.Peuple.C_POP, population/100)
+        retraitPop = int(population/100) + 1
+        RetirerACarac(peuple.Peuple.C_POP, retraitPop)
 
     def AjouterAPopulationPourcent(pourcent):
         global situation_
         population = situation_.GetValCaracInt(peuple.Peuple.C_POP)
-        AjouterACarac(peuple.Peuple.C_POP, population/100)
+        ajoutPop = int(population/100) + 1
+        AjouterACarac(peuple.Peuple.C_POP, ajoutPop)
 
     # -------------------------- fonctions de manipulation de caracs de civilisation (inclue les formules et systèmes de rééquilibrages)
     def AjouterACaracCiv(caracId, num):

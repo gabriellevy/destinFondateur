@@ -69,9 +69,6 @@ init -5 python:
         selecteur_.ajouterDeclencheur(interventionRomeAMassalia)
 
 label interventionRomeAMassalia:
-    menu:
-        "interventionRomeAMassalia regarde bien la SUITE":
-            pass
     $ situation_.SetValCarac("interventionRomeAMassalia", "1")
     "Après avoir subi des raids celtes réguliers les phocéens de Massalia décident de demander l'intervention des romains pour pacifier la région."
     "Pour la première fois les celtes Salyens et avatiques découvrent cet ennemi dangereux et discipliné. Ils résistent très bravement mais sont contraints à reculer et leur place forte est détruite."
@@ -184,9 +181,6 @@ label apprentissageEcritureParMassilia:
     jump fin_cycle
 
 label attaqueParMassalia:
-    menu:
-        "attaque Par Massalia regarde bien la SUITE":
-            pass
     "Les rapports des [nomPeuple] avec les phocéens de Massalia sont devenus très mauvais et ceux-ci décident de lancer un raid contre leur village pour les chasser des environs."
     $ population = situation_.GetValCaracInt(peuple.Peuple.C_POP)
     $ violence = situation_.GetValCaracInt(peuple.Peuple.C_VIOLENCE)
