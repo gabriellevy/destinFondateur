@@ -27,7 +27,7 @@ class Peuple:
     C_COOPERATION = u"Coopération" # Facilité à s'entendre avec les autres peuples et à coopérer avec eux (inclut tolérance)
     C_LIBERTE = u"Liberté" # Peuple qui sont fiers de leur liberté, de leurs droits. L'esclavagey est mal vu et moins brutal
     C_ARGENT = u"Argent" # La richesse est très valorisée et au coeur des coutumes
-    C_SEXISME = u"Sexisme" # Niveau de différence de traitement entre les sexes
+    C_SEXISME = u"Sexisme" # Niveau de différence de traitement entre les sexes. Patriarcat très fort = 1.0
 
     # ------------ état militaire et diplomatique du peuple
     C_DIPLOMATIE = u"Diplomatie" # diplomacie "en général" c'est à dire passe en mode guerre si le peuple est en guerre même avec un seul ennemi
