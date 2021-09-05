@@ -96,7 +96,7 @@ class SituationFondateur(situation.Situation):
         return u"{}".format(self.caracs_[religion.Religion.C_RELIGION])
 
     def AffichagePopulation(self):
-        return u"Population : {}".format(self.caracs_[peuple.Peuple.C_POP])
+        return u"Population : {}".format(int(self.caracs_[peuple.Peuple.C_POP]))
 
     def AfficherDebug(self):
         str = u"{} : {}".format(peuple.Peuple.C_COHESION, self.caracs_[peuple.Peuple.C_COHESION])

@@ -69,6 +69,7 @@ init -5 python:
         selecteur_.ajouterDeclencheur(interventionRomeAMassalia)
 
 label interventionRomeAMassalia:
+    scene bg massalia
     $ situation_.SetValCarac("interventionRomeAMassalia", "1")
     "Après avoir subi des raids celtes réguliers les phocéens de Massalia décident de demander l'intervention des romains pour pacifier la région."
     "Pour la première fois les celtes Salyens et avatiques découvrent cet ennemi dangereux et discipliné. Ils résistent très bravement mais sont contraints à reculer et leur place forte est détruite."
@@ -88,6 +89,7 @@ label interventionRomeAMassalia:
     jump fin_cycle
 
 label pillageMassaliaParAvatiques:
+    scene bg massalia
     "Les celtes avatiques s'enhardissent et pillent de plus en plus souvent les bateaux et convois des phocéens de Massalia."
     $ violence = situation_.GetValCaracInt(peuple.Peuple.C_VIOLENCE)
     if violence > 0.5:
@@ -102,6 +104,7 @@ label pillageMassaliaParAvatiques:
     jump fin_cycle
 
 label guerreAvatiquesPhoceens:
+    scene bg massalia
     $ situation_.SetValCarac("guerreAvatiquesPhoceens", "1")
     "L'expansion des phocéens de Massalia se heurte de plus en plus souvent aux peuples celtes des environs."
     "De leur côté les celtes avatiques sont de plus en plus tentés par le pillage de la riche Massalia. Cela va dégénérer en guerre ouverte."
@@ -157,13 +160,17 @@ label guerreAvatiquesPhoceens:
     jump fin_cycle
 
 label rencontreMassila:
+    scene bg massalia
     $ situation_.SetValCarac("rencontreMassila", "1")
-    menu:
-        "A FAIRE coucou massilia (texte d'ambiance etc)":
-            pass
+    "Une rumeur est venue jusqu'aux [nomPeuple] : des étrangers au langage et aux coutumes inconnues se sont installés en bordure de la mer à l'embouchure du Rhône, à moins de 100 lieux de leur village."
+    "Les habitations qu'ils construisent sont d'un style étrange, de toute évidence lointain. Et on dit qu'ils appartiennent au lointain peuple des grecs et qu'ils ont été banni jusqu'à ces rivages."
+    "En tout cas leurs navires sont nombreux et impressionnants et d'un type que vous n'aviez jamais vu."
+    "D'autres celtes sont déjà entrés en contact avec eux et ont commencé à commercer. Ces étrangers sont très friands de l'artisanat et des fourrures locales et les expédient par delà les mers."
+    "Ils ont baptisé leur cité naissante 'Massalia' et nul doute que vous les verrez de près tôt ou tard."
     jump fin_cycle
 
 label apprentissageEcritureParMassilia:
+    scene bg massalia
     $ situation_.SetValCarac("apprentissageEcritureParMassilia", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     "Vos voisins phocéens de Massila parlent et surtout écrivent en grec. Comme vous commercez avec eux ils décident d'initier les [nomPeuple] car c'est un art très pratique pour tenir les comptes."
@@ -181,6 +188,7 @@ label apprentissageEcritureParMassilia:
     jump fin_cycle
 
 label attaqueParMassalia:
+    scene bg massalia
     "Les rapports des [nomPeuple] avec les phocéens de Massalia sont devenus très mauvais et ceux-ci décident de lancer un raid contre leur village pour les chasser des environs."
     $ population = situation_.GetValCaracInt(peuple.Peuple.C_POP)
     $ violence = situation_.GetValCaracInt(peuple.Peuple.C_VIOLENCE)
