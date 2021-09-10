@@ -77,13 +77,13 @@ label interventionRomeAMassalia:
     $ violence = situation_.GetValCaracInt(peuple.Peuple.C_VIOLENCE)
     if rapport_massalia > 0.5 and violence < 0.5:
         "Les [nomPeuple] sont perçus comme non dangereux et parviennent à se tenir à l'écart des combats. Les autres celtes voient celà d'un très mauvais oeil mais ils sont trop affaiblis pour se venger dans l'immédiat."
-        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.1)
-        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_SALYENS, 0.1)
+        $ RetirerACaracPos(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.1)
+        $ RetirerACaracPos(sud_france.SudFrance.C_RAPPORT_SALYENS, 0.1)
         $ situation_.SetValCarac(romains.Romain.C_RAPPORT_ROME, 0.3)
     else:
         "Les [nomPeuple] sont inévitablement entrainés dans la guerre aux côtés des autres celtes et sont durement défaits avec eux."
-        $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
-        $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_SALYENS, 0.05)
+        $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
+        $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_SALYENS, 0.05)
         $ situation_.SetValCarac(romains.Romain.C_RAPPORT_ROME, 0.0)
         $ situation_.SetValCarac(romains.Romain.C_GUERRE, 1)
     jump fin_cycle
@@ -94,12 +94,12 @@ label pillageMassaliaParAvatiques:
     $ violence = situation_.GetValCaracInt(peuple.Peuple.C_VIOLENCE)
     if violence > 0.5:
         "Les [nomPeuple] sautent sur l'occasion et se joignent à leurs frères pour récolter un beau butin et de belles têtes tranchées comme trophée."
-        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.4)
-        $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
-        $ AjouterACarac(richesse.Richesse.C_TRIBUS, 0.3)
+        $ RetirerACaracPos(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.4)
+        $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
+        $ AjouterACaracInf1(richesse.Richesse.C_TRIBUS, 0.3)
     else:
         "Les [nomPeuple] préfèrent ne pas s'en mêler ce qui leur attire le mépris des autres celtes."
-        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
+        $ RetirerACaracPos(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.05)
 
     jump fin_cycle
 
@@ -124,9 +124,9 @@ label guerreAvatiquesPhoceens:
             "Malheureusement ces grecs ci sont disciplinés et bien armés et se cachent derrières des armures et des boucliers."
             "Les [nomPeuple] sont contraints de rester sur la défensive et voient leur village incendié par les envahisseurs."
             $ RetirerAPopulationPourcent(7)
-            $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.2)
-            $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.2)
-            $ RetirerACarac(richesse.Richesse.C_TRIBUS, 0.1)
+            $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.2)
+            $ RetirerACaracPos(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.2)
+            $ RetirerACaracPos(richesse.Richesse.C_TRIBUS, 0.1)
             jump guerreAvatiquesPhoceens_fin
     elif rapport_avatiques < 0.2:
         label guerreAvatiquesPhoceens_allies_massalia:
@@ -134,9 +134,9 @@ label guerreAvatiquesPhoceens:
             "C'est l'occasion pour les [nomPeuple] de se venger de leurs frères avatiques détestés en s'alliant aux puissants marins grecs en armure."
             "Ils parviennent ainsi à participer à quelques pillages juteux."
             $ RetirerAPopulationPourcent(3)
-            $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.2)
-            $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.2)
-            $ AjouterACarac(richesse.Richesse.C_TRIBUS, 0.3)
+            $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.2)
+            $ RetirerACaracPos(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.2)
+            $ AjouterACaracInf1(richesse.Richesse.C_TRIBUS, 0.3)
             jump guerreAvatiquesPhoceens_fin
     elif violence < 0.2:
         "Les [nomPeuple] sont aussi pacifiques qu'on peut l'être et fuient les combats, quitte à fuir leur village temporairement."
@@ -148,8 +148,8 @@ label guerreAvatiquesPhoceens:
         jump guerreAvatiquesPhoceens_allies_massalia
 
     label guerreAvatiquesPhoceens_neutralite:
-        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.1)
-        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.1)
+        $ RetirerACaracPos(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.1)
+        $ RetirerACaracPos(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.1)
         jump guerreAvatiquesPhoceens_fin
 
     label guerreAvatiquesPhoceens_fin:
@@ -178,13 +178,13 @@ label apprentissageEcritureParMassilia:
     $ curiosite = situation_.GetValCarac(peuple.Peuple.C_AVENTURE)
     if curiosite < 0.5 and intellectualisme < 0.2:
         "Mais les [nomPeuple] les repoussent. Ils ont toujours bien vécu sans se compliquer la vie avec ça et continueront."
-        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5)
+        $ RetirerACaracPos(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5)
     else:
         "Plusieurs commerçants [nomPeuple] s'y intéressent essentiellement pour tenir leurs comptes."
-        $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5)
+        $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5)
         $ AjouterACaracCiv(civ.Grecque.NOM, 0.1)
-        $ AjouterACarac(peuple.Peuple.C_INTEL, 0.1)
-        $ AjouterACarac(science.Science.C_ECRITURE, 0.3)
+        $ AjouterACaracIdentite(peuple.Peuple.C_INTEL, 0.1)
+        $ AjouterACaracInf1(science.Science.C_ECRITURE, 0.3)
     jump fin_cycle
 
 label attaqueParMassalia:
@@ -195,14 +195,14 @@ label attaqueParMassalia:
     if population > 4000 and violence > 0.3:
         "Les guerriers [nomPeuple] tiennent bon et parviennent à tendre une embuscade aux phocéens qui préfèrent négocier un traité que de prendre le risque de se battre."
         "Les [nomPeuple] conservent leurs terres et recevront un tribu régulier contre la promesse de respecter les commerçants phocéens."
-        $ AjouterACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5)
-        $ AjouterACarac(richesse.Richesse.C_TRIBUS, 0.5)
+        $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5)
+        $ AjouterACaracInf1(richesse.Richesse.C_TRIBUS, 0.5)
         $ RetirerAPopulationPourcent(2)
     else:
         "Les [nomPeuple] sont vaincus et leur village détruit. Les phocéens ne tentent cependant pas de les exterlminer. Ils veulent juste s'étendre en volant leurs terres."
         "Les [nomPeuple] se réinstallent donc à bonne distance, affaiblis mais furieux et décidés à ne pas se laisser encore surprendre."
-        $ AjouterACarac(peuple.Peuple.C_VIOLENCE, 0.1)
-        $ RetirerACarac(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.3)
+        $ AjouterACaracIdentite(peuple.Peuple.C_VIOLENCE, 0.1)
+        $ RetirerACaracPos(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.3)
         $ RetirerAPopulationPourcent(10)
 
     jump fin_cycle

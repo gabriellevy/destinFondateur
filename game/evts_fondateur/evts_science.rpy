@@ -35,11 +35,11 @@ label inventionEcriture:
     std "Je pense qu'adopter ce système et aller observer comment il fonctionne pourrait nous être très utile."
     menu:
         "Étonnante idée. Nous devons développer cette technique et l'utiliser autant que possible.":
-            $ AjouterACarac(peuple.Peuple.C_INTEL, 0.5)
+            $ AjouterACaracIdentite(peuple.Peuple.C_INTEL, 0.5)
         "C'est intéressant, nous devrions l'utiliser pour nous organiser et compter.":
             pass
         "Tout cela n'est que perte de temps et mépris de nos bonnes et solides mémoires qui nous ont toujours bien servi et continuerons de le faire.":
-            $ RetirerACarac(peuple.Peuple.C_INTEL, 0.5)
+            $ RetirerACaracPos(peuple.Peuple.C_INTEL, 0.5)
             $ AjouterAAffinite(celtes.Celte.NOM, 0.3)
 
     jump fin_cycle

@@ -47,13 +47,13 @@ label bonsSculpteurs:
         scene bg statue1
         $ situation_.SetValCarac("bonsSculpteurs", "1")
     "Les artisans [nomPeuple] font des progrès remarquables dans la sculpture en bronze."
-    $ AjouterACarac(peuple.Peuple.C_CREATIVITE, 0.1)
+    $ AjouterACaracIdentite(peuple.Peuple.C_CREATIVITE, 0.1)
 
     jump fin_cycle
 
 label bonsArtisans:
     "Les artisans [nomPeuple] font des progrès remarquables dans la création de torques et de bracelets d'argents."
-    $ AjouterACarac(peuple.Peuple.C_CREATIVITE, 0.1)
+    $ AjouterACaracIdentite(peuple.Peuple.C_CREATIVITE, 0.1)
 
     jump fin_cycle
 
@@ -61,6 +61,6 @@ label nouveauBarde:
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomBarde = civRef.GenererPatronyme(True)
     "Après 12 ans d'études, de voyages et de travail acharné, [nomBarde] est devenu un grand barde qui honorela grandeur des [nomPeuple]."
-    $ AjouterACarac(peuple.Peuple.C_COHESION, 0.2)
+    $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.2)
 
     jump fin_cycle

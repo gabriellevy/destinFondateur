@@ -39,3 +39,4 @@ class CeltesSudFrance(peuple.Peuple):
         situation[peuple.Peuple.C_LIBERTE] = 0.3
         situation[peuple.Peuple.C_ARGENT] = 0.1
         situation[peuple.Peuple.C_SEXISME] = 0.3
+        situation[peuple.Peuple.C_ENDURANCE] = 0.3

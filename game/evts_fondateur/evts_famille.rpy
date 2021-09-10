@@ -45,17 +45,17 @@ label mariageEtAccouplement:
     std "Ces deux vues sont irréconciliables. Récemment un homme en a tué un autre qui avait séduit et engrossé sa fille et refusait de l'épouser. Quelle voie devons nous suivre ?"
     menu:
         "C'est le père et seulement lui qui doit choisir le fiancé de sa fille. Toute copulation hors mariage est un crime.":
-            $ AjouterACarac(peuple.Peuple.C_SEXISME, 0.3)
-            $ AjouterACarac(peuple.Peuple.C_COHESION, 0.2)
+            $ AjouterACaracIdentite(peuple.Peuple.C_SEXISME, 0.3)
+            $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.2)
         "Si une femme et un homme se jugent dignes l'un de l'autre, ils peuvent se marier. Après seulement ils pourront s'accoupler":
-            $ RetirerACarac(peuple.Peuple.C_SEXISME, 0.2)
-            $ AjouterACarac(peuple.Peuple.C_LIBERTE, 0.2)
-            $ RetirerACarac(peuple.Peuple.C_COHESION, 0.1)
+            $ RetirerACaracPos(peuple.Peuple.C_SEXISME, 0.2)
+            $ AjouterACaracIdentite(peuple.Peuple.C_LIBERTE, 0.2)
+            $ RetirerACaracPos(peuple.Peuple.C_COHESION, 0.1)
         "L'amour est le plus important, le mariage est accessoire. Laissez les jeunes gens se découvrir et s'épouser à leur gré.":
-            $ AjouterACarac(peuple.Peuple.C_SENSUALITE, 0.2)
-            $ AjouterACarac(peuple.Peuple.C_LIBERTE, 0.5)
-            $ RetirerACarac(peuple.Peuple.C_SEXISME, 0.2)
-            $ RetirerACarac(peuple.Peuple.C_COHESION, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_SENSUALITE, 0.2)
+            $ AjouterACaracIdentite(peuple.Peuple.C_LIBERTE, 0.5)
+            $ RetirerACaracPos(peuple.Peuple.C_SEXISME, 0.2)
+            $ RetirerACaracPos(peuple.Peuple.C_COHESION, 0.1)
 
     jump fin_cycle
 
@@ -73,16 +73,16 @@ label fetesMariage:
     std "Car ce jour est sacré et je trouve que les beuveries et les farces déshonoreraient ma famille."
     menu:
         "Les fêtes sont les grands moments de relâchement des tensions et de fraternisation. Invitez tout le monde et festoyez. On se souviendra de votre générosité et de ce grand jour.":
-            $ AjouterACarac(peuple.Peuple.C_SENSUALITE, 0.5)
-            $ AjouterACarac(peuple.Peuple.C_COHESION, 0.1)
-            $ AjouterACarac(peuple.Peuple.C_ARGENT, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_SENSUALITE, 0.5)
+            $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_ARGENT, 0.1)
         "Les festins sont dégradants et vulgaires. Les mariages sont sacrés et doivent rester dignes.":
-            $ RetirerACarac(peuple.Peuple.C_SENSUALITE, 0.3)
-            $ AjouterACarac(peuple.Peuple.C_SPIRITUALITE, 0.1)
-            $ AjouterACarac(peuple.Peuple.C_LEGALISME, 0.1)
+            $ RetirerACaracPos(peuple.Peuple.C_SENSUALITE, 0.3)
+            $ AjouterACaracIdentite(peuple.Peuple.C_SPIRITUALITE, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_LEGALISME, 0.1)
         "Donnez de la dignité au mariage en invitant poètes et musiciens. En remplaçant la débauche par l'art votre prestige sera au plus haut.":
-            $ AjouterACarac(peuple.Peuple.C_CREATIVITE, 0.2)
-            $ AjouterACarac(peuple.Peuple.C_COHESION, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_CREATIVITE, 0.2)
+            $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.1)
 
     jump fin_cycle
 
@@ -101,15 +101,15 @@ label mariageFondateur:
     menu:
         "Toujours les nobles élans du coeur doivent prendre le pas sur le froid calcul. Vous faites votre déclaration à [nomFianceeAmour].":
             "Elle accepte et vous vous mariez heureux. Au pris du ressentiment des nobles de la tribu."
-            $ AjouterACarac(peuple.Peuple.C_SENSUALITE, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_SENSUALITE, 0.1)
             $ AjouterAAffinite(civ.Francais.NOM, 0.3)
-            $ RetirerACarac(peuple.Peuple.C_COHESION, 0.1)
+            $ RetirerACaracPos(peuple.Peuple.C_COHESION, 0.1)
         "Le corps et le coeur doivent se soumettre à la raison et au bien de la tribu. Vous acceptez le marriage avec [nomFianceeArgent]":
-            $ AjouterACarac(peuple.Peuple.C_COHESION, 0.3)
+            $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.3)
         "Le plaisir des sens est indigne du sage ascète que vous êtes. Vous choisissez le célibat.":
             $ AjouterAAffinite(civ.Christianisme.NOM, 0.4)
-            $ RetirerACarac(peuple.Peuple.C_SENSUALITE, 0.3)
+            $ RetirerACaracPos(peuple.Peuple.C_SENSUALITE, 0.3)
         "Pourquoi choisir ? En tant que figure morale des [nomPeuple] vous a^pprouvez la polygamie et épousez [nomFianceeAmour] et [nomFianceeArgent]":
-            $ AjouterACarac(peuple.Peuple.C_SENSUALITE, 0.3)
+            $ AjouterACaracIdentite(peuple.Peuple.C_SENSUALITE, 0.3)
 
     jump fin_cycle

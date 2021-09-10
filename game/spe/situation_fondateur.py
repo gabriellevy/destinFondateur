@@ -28,6 +28,10 @@ class SituationFondateur(situation.Situation):
         self.collectionPeuples = None
         self.collectionRegions = None
         self.collectionCivs = None
+        self.listeCaracsIdentite_ = [peuple.Peuple.C_VIOLENCE, peuple.Peuple.C_CREATIVITE, peuple.Peuple.C_AVENTURE,
+            peuple.Peuple.C_INTEL, peuple.Peuple.C_LEGALISME, peuple.Peuple.C_SENSUALITE, peuple.Peuple.C_SPIRITUALITE,
+            peuple.Peuple.C_COOPERATION, peuple.Peuple.C_LIBERTE, peuple.Peuple.C_ARGENT, peuple.Peuple.C_SEXISME,
+            peuple.Peuple.C_ENDURANCE]
         self.SetValCarac(SituationFondateur.C_MODE, SituationFondateur.C_MODE_FONDATEUR)
 
     ############################ affichage ###########################
@@ -100,7 +104,12 @@ class SituationFondateur(situation.Situation):
 
     def AfficherDebug(self):
         str = u"{} : {}".format(peuple.Peuple.C_COHESION, self.caracs_[peuple.Peuple.C_COHESION])
-        str = u"{}\n\nIdentité de peuple : \n{} : {}".format(str, peuple.Peuple.C_VIOLENCE, self.caracs_[peuple.Peuple.C_VIOLENCE])
+        str = u"{}\n\nIdentité de peuple :".format(str)
+        for carac in self.listeCaracsIdentite_:
+            str = u"{}\n - {} : {}".format(str, carac, self.caracs_[carac])
+
+        """
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_VIOLENCE, self.caracs_[peuple.Peuple.C_VIOLENCE])
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_CREATIVITE, self.caracs_[peuple.Peuple.C_CREATIVITE])
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_INTEL, self.caracs_[peuple.Peuple.C_INTEL])
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_LEGALISME, self.caracs_[peuple.Peuple.C_LEGALISME])
@@ -111,7 +120,9 @@ class SituationFondateur(situation.Situation):
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_ARGENT, self.caracs_[peuple.Peuple.C_ARGENT])
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_SEXISME, self.caracs_[peuple.Peuple.C_SEXISME])
         str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_AVENTURE, self.caracs_[peuple.Peuple.C_AVENTURE])
+        str = u"{}\n - {} : {}".format(str, peuple.Peuple.C_ENDURANCE, self.caracs_[peuple.Peuple.C_ENDURANCE])
         str = u"{}\n{}".format(str, self.caracs_[peuple.Peuple.C_SOUV])
+        """
         return str
 
     def AfficherGeographie(self):

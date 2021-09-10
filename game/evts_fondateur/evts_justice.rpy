@@ -22,7 +22,7 @@ init -5 python:
         ruseEtForce.AjouterConditions([ estEnModeFondateur, ruseEtForcePasFait])
         selecteur_.ajouterDeclencheur(ruseEtForce)
 
-        enlevementEtViol = declencheur.Declencheur(proba.Proba(0.1, True), "ruseEtForce")
+        enlevementEtViol = declencheur.Declencheur(proba.Proba(0.1, True), "enlevementEtViol")
         enlevementEtViol.AjouterConditions([ estEnModeFondateur, enlevementEtViolPasFait])
         selecteur_.ajouterDeclencheur(enlevementEtViol)
 
@@ -42,13 +42,13 @@ label enlevementEtViol:
     std "Quel est le meilleur moyen de régler la situation ?"
     menu:
         "Exécuter le ravisseur.":
-            $ AjouterACarac(peuple.Peuple.C_VIOLENCE, 0.2)
+            $ AjouterACaracIdentite(peuple.Peuple.C_VIOLENCE, 0.2)
             # A FAIRE : ajouter une deuxième partie au dialogue où il se révèle qu'elle était consentente et est-ce que ça change quelque chose ?
         "Forcer le ravisseur à épouser la victime.":
-            $ AjouterACarac(peuple.Peuple.C_SEXISME, 0.3)
-            $ AjouterACarac(peuple.Peuple.C_VIOLENCE, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_SEXISME, 0.3)
+            $ AjouterACaracIdentite(peuple.Peuple.C_VIOLENCE, 0.1)
         "Obliger le ravisseur à payer un lourd dédommagement à la famille de la victime.":
-            $ AjouterACarac(peuple.Peuple.C_ARGENT, 0.2)
+            $ AjouterACaracIdentite(peuple.Peuple.C_ARGENT, 0.2)
 
     jump fin_cycle
 
@@ -73,12 +73,12 @@ label ruseEtForce:
     std "Peu importe ton avis, [titreFondateur] décidera de ta punition."
     menu:
         "L'honneur réside dans la force et le courage. [nomPersoTueur] a eu tort et sera puni.":
-            $ RetirerACarac(peuple.Peuple.C_VIOLENCE, 0.3)
+            $ RetirerACaracPos(peuple.Peuple.C_VIOLENCE, 0.3)
             $ AjouterAAffinite(celtes.Celte.NOM, 0.2)
             $ AjouterAAffinite(civ.Germanique.NOM, 0.2)
         "Seule la réussite compte. [nomPersoTueur] était dans son droit et a bien agi.":
-            $ AjouterACarac(peuple.Peuple.C_INTEL, 0.3)
+            $ AjouterACaracIdentite(peuple.Peuple.C_INTEL, 0.3)
         "Nul ne doit se venger sans consulter un sage qui déterminera les fautes et les punitions. [nomPersoTueur] sera jugé pour son crime.":
-            $ AjouterACarac(peuple.Peuple.C_LEGALISME, 0.3)
+            $ AjouterACaracIdentite(peuple.Peuple.C_LEGALISME, 0.3)
 
     jump fin_cycle

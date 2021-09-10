@@ -35,10 +35,10 @@ label traitementEnnemisMorts:
         "Rien. Laissez les aux bêtes sauvages.":
             pass
         "Traitez-les comme vous traiteriez les corps des nôtres..":
-            $ RetirerACarac(peuple.Peuple.C_COHESION, 0.3)
-            $ AjouterACarac(peuple.Peuple.C_COOPERATION, 0.5)
+            $ RetirerACaracPos(peuple.Peuple.C_COHESION, 0.3)
+            $ AjouterACaracIdentite(peuple.Peuple.C_COOPERATION, 0.5)
         "Que les guerriers se fassent des trophées si ils le souhaitent.":
-            $ AjouterACarac(peuple.Peuple.C_VIOLENCE, 0.3)
+            $ AjouterACaracIdentite(peuple.Peuple.C_VIOLENCE, 0.3)
             if civRef.nom_ == celtes.Celte.NOM:
                 "Les guerriers [nomPeuple] s'empressent de décapiter leurs ennemis morts à la manière celte et les exposent dans leurs huttes."
 

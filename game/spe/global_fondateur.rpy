@@ -44,6 +44,18 @@ init -2 python:
         id = u"affinite{}".format(idCiv)
         situation_.AjouterACarac(id, num)
 
+    def AjouterACaracInf1(caracId, num):
+        global situation_
+        val = situation_.GetValCaracInt(caracId) + float(num)
+        if val > 1.0:
+            situation_.SetValCarac(caracId, 1)
+        else:
+            situation_.AjouterACarac(caracId, num)
+        textChangtCarac = u"{} + {}".format(caracId, num)
+        renpy.show_screen("fading_text", textChangtCarac, time_, x_debut, y_debut, x_fin, y_fin, color="#4f4", size=24, alpha=1.0)
+        renpy.pause(time_)
+        renpy.hide_screen("fading_text")
+
     def InterfaceSuivante():
         global interfaceMode_, nbInterfaceMode_
         interfaceMode_ = interfaceMode_ + 1
@@ -55,7 +67,7 @@ init -2 python:
         global situation_
         population = situation_.GetValCaracInt(peuple.Peuple.C_POP)
         retraitPop = int(population/100) + 1
-        RetirerACarac(peuple.Peuple.C_POP, retraitPop)
+        RetirerACaracPos(peuple.Peuple.C_POP, retraitPop)
 
     def AjouterAPopulationPourcent(pourcent):
         global situation_
@@ -72,8 +84,8 @@ init -2 python:
             # cette civilisation est la principale du joueur et les autres sont rééquilibrées à partir de celle ci
             ratio = 1/valCaracCiv
             # toutes les vals de civ sont divisées par ce ratio :
-            for civK in self.collectionCivs.lCivs_.keys():
-                valCiv = self.GetValCaracInt(civK)
+            for civK in situation_.collectionCivs.lCivs_.keys():
+                valCiv = situation_.GetValCaracInt(civK)
                 if valCiv != "":
                     situation_.SetValCarac(civK, valCiv/ratio)
             situation_.SetValCarac(caracId, 1.0)
@@ -87,11 +99,42 @@ init -2 python:
         renpy.hide_screen("fading_text")
         situation_.GetCivilisationDeReference()
 
-    def RetirerACarac(caracId, num):
-        global situation_# ne peut pas dépasser 1 et si c'est le cas tout est recalulé proportionellement pour la remettre à 1
+    def AjouterACaracIdentite(caracId, num):
+        global situation_
+        # ne peut pas dépasser 1 et si c'est le cas tout est recalulé proportionellement pour la remettre à 1
         valCaracCiv = situation_.GetValCaracInt(caracId) + float(num)
-        if valCaracCiv < 0:
-            situation_.SetValCarac(caracId, 0.0)
+        if valCaracCiv > 1.0:
+            # cette identité est la principale du peuple et les autres sont rééquilibrées à partir de celle ci
+            ratio = 1/valCaracCiv
+            # toutes les identités sont divisées par ce ratio :
+            for carac in situation_.listeCaracsIdentite_:
+                valCiv = situation_.GetValCaracInt(carac)
+                if valCiv != "":
+                    nouvelleVal = valCiv/ratio
+                    if nouvelleVal > 1:
+                        nouvelleVal = 1
+                    if nouvelleVal < 0:
+                        nouvelleVal = 0
+                    situation_.SetValCarac(carac, nouvelleVal)
+            situation_.SetValCarac(caracId, 1.0)
+        else:
+            situation_.AjouterACarac(caracId, num)
+
+        textChangtCarac = u"{} + {}".format(caracId, num)
+        renpy.show_screen("fading_text", textChangtCarac, time_, x_debut, y_debut, x_fin, y_fin, color="#4f4", size=24, alpha=1.0)
+        renpy.pause(time_)
+        renpy.hide_screen("fading_text")
+        situation_.GetCivilisationDeReference()
+
+    def RetirerACaracPos(caracId, num):
+        """
+        retire 'num' à la carac 'caracId' mais en restant 'positif'.
+        donc si cela met le nombre en dessous de 0 il vaut 0
+        """
+        global situation_
+        valCarac = situation_.GetValCaracInt(caracId) - float(num)
+        if valCarac < 0:
+            situation_.SetValCarac(caracId, 0)
         else:
             textChangtCarac = u"{} - {}".format(caracId, num)
             renpy.show_screen("fading_text", textChangtCarac, time_, x_debut, y_debut, x_fin, y_fin, color="#e11", size=24, alpha=1.0)

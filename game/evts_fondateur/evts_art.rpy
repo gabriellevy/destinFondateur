@@ -32,9 +32,9 @@ label droitSculpture:
         "C'est hors de question. Aucune figure humaine ou divine ne doit être représentée et encore moins vénérée.":
             $ AjouterAAffinite(civ.Juive.NOM, 0.3)
             $ AjouterAAffinite(civ.Arabe.NOM, 0.3)
-            $ RetirerACarac(peuple.Peuple.C_CREATIVITE, -0.1)
+            $ RetirerACaracPos(peuple.Peuple.C_CREATIVITE, 0.1)
         "La divinité a des avatars humains parfaits que vous pouvez représenter.":
             $ AjouterAAffinite(civ.Grecque.NOM, 0.3)
-            $ RetirerACarac(peuple.Peuple.C_CREATIVITE, 0.3)
+            $ RetirerACaracPos(peuple.Peuple.C_CREATIVITE, 0.3)
 
     jump fin_cycle

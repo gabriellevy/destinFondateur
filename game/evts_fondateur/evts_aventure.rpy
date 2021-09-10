@@ -36,11 +36,11 @@ label aventurierDesMers:
     std "J'aimerais ouvrir notre peuple au commerce en affrétant un navire mais je n'ose me décider."
     menu:
         "Le vrai bonheur d'un homme est d'honorer ses ancêtres dans son pays, pas d'abandonner sa famille pour risquer la noyade pour des chimères.":
-            $ AjouterACarac(peuple.Peuple.C_COHESION, 0.1)
-            $ RetirerACarac(peuple.Peuple.C_AVENTURE, 0.3)
+            $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.1)
+            $ RetirerACaracPos(peuple.Peuple.C_AVENTURE, 0.3)
         "Va poursuivre l'aventure et la prospérité. C'est le meilleur moyen de servir ton peuple et ta famille.":
-            $ AjouterACarac(peuple.Peuple.C_COHESION, -0.02)
-            $ AjouterACarac(peuple.Peuple.C_AVENTURE, 0.5)
+            $ RetirerACaracPos(peuple.Peuple.C_COHESION, 0.02)
+            $ AjouterACaracIdentite(peuple.Peuple.C_AVENTURE, 0.5)
             $ AjouterAAffinite(civ.Nordique.NOM, 0.3)
             $ AjouterAAffinite(civ.Phenicien.NOM, 0.5)
 

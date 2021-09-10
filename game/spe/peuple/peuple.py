@@ -28,6 +28,7 @@ class Peuple:
     C_LIBERTE = u"Liberté" # Peuple qui sont fiers de leur liberté, de leurs droits. L'esclavagey est mal vu et moins brutal
     C_ARGENT = u"Argent" # La richesse est très valorisée et au coeur des coutumes
     C_SEXISME = u"Sexisme" # Niveau de différence de traitement entre les sexes. Patriarcat très fort = 1.0
+    C_ENDURANCE = u"Endurance" # A quel point ce peuple supporte les souffrance et persiste
 
     # ------------ état militaire et diplomatique du peuple
     C_DIPLOMATIE = u"Diplomatie" # diplomacie "en général" c'est à dire passe en mode guerre si le peuple est en guerre même avec un seul ennemi

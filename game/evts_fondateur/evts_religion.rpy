@@ -37,11 +37,11 @@ label creationReligion:
             $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Polytheiste.NOM)
         "Il n'y a qu'un seul Dieu et nous sommes son peuple élu. Les autres ne sont que poussière.":
             $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Monotheiste.NOM)
-            $ AjouterACarac(peuple.Peuple.C_COHESION, 0.1)
-            $ RetirerACarac(peuple.Peuple.C_COOPERATION, 0.3)
+            $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.1)
+            $ RetirerACaracPos(peuple.Peuple.C_COOPERATION, 0.3)
             $ AjouterAAffinite(civ.Juive.NOM, 0.5)
         "La divinité n'existe pas. Seuls règnent le hasard et la volonté.":
             $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Atheisme.NOM)
-            $ RetirerACarac(peuple.Peuple.C_COHESION, 0.02)
+            $ RetirerACaracPos(peuple.Peuple.C_COHESION, 0.02)
 
     jump fin_cycle
