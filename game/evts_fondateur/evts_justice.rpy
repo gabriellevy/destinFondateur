@@ -14,12 +14,43 @@ init -5 python:
     from spe.region import geo
 
     ruseEtForcePasFait = condition.Condition("ruseEtForce", "1", condition.Condition.DIFFERENT)
+    enlevementEtViolPasFait = condition.Condition("enlevementEtViol", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsJusticeF():
         global selecteur_
 
         ruseEtForce = declencheur.Declencheur(proba.Proba(0.1, True), "ruseEtForce")
         ruseEtForce.AjouterConditions([ estEnModeFondateur, ruseEtForcePasFait])
         selecteur_.ajouterDeclencheur(ruseEtForce)
+
+        enlevementEtViol = declencheur.Declencheur(proba.Proba(0.1, True), "ruseEtForce")
+        enlevementEtViol.AjouterConditions([ estEnModeFondateur, enlevementEtViolPasFait])
+        selecteur_.ajouterDeclencheur(enlevementEtViol)
+
+label enlevementEtViol:
+    # NOTE : un joueur standard pensera à la prison. Mais cela n'existait pas à l'époque. Ajouter un choix couteux de ce genre ? Expliqueur ce détail d'une manière détournée ?
+    $ situation_.SetValCarac("enlevementEtViol", "1")
+    $ civRef = situation_.GetCivilisationDeReference()
+    $ nomEnleveur = civRef.GenererPatronyme(True)
+    $ nomEnlevee = civRef.GenererPatronyme(False)
+    $ nomRapporteur = civRef.GenererPatronyme(True)
+    $ imgRapporteur = civRef.GenererImagePerso(True, 50)
+    $ titreFondateur = civRef.GetTitreFondateur(situation_)
+    $ std = Character(nomRapporteur)
+    $ renpy.show(imgRapporteur, [right])
+    with moveinright
+    std "[nomEnleveur] a enlevé la jeune [nomEnlevee] et l'a déshonorée. La famille est furieuse et nous sommes au bord d'un règlement de compte sanglant entre clans."
+    std "Quel est le meilleur moyen de régler la situation ?"
+    menu:
+        "Exécuter le ravisseur.":
+            $ AjouterACarac(peuple.Peuple.C_VIOLENCE, 0.2)
+            # A FAIRE : ajouter une deuxième partie au dialogue où il se révèle qu'elle était consentente et est-ce que ça change quelque chose ?
+        "Forcer le ravisseur à épouser la victime.":
+            $ AjouterACarac(peuple.Peuple.C_SEXISME, 0.3)
+            $ AjouterACarac(peuple.Peuple.C_VIOLENCE, 0.1)
+        "Obliger le ravisseur à payer un lourd dédommagement à la famille de la victime.":
+            $ AjouterACarac(peuple.Peuple.C_ARGENT, 0.2)
+
+    jump fin_cycle
 
 label ruseEtForce:
     $ situation_.SetValCarac("ruseEtForce", "1")

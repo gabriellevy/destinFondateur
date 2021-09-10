@@ -43,7 +43,7 @@ label toleranceAuMelange:
             $ AjouterACarac(peuple.Peuple.C_COOPERATION, 1.0)
             $ AjouterACarac(peuple.Peuple.C_CREATIVITE, 0.1)
             $ RetirerACarac(peuple.Peuple.C_COHESION, 0.5)
-        "Soyez prudents. LEs étrangers amènent parfois de bonnes choses mais ils sont tout aussi souvent trompeurs et corrupteurs.":
+        "Soyez prudents. Les étrangers amènent parfois de bonnes choses mais ils sont tout aussi souvent trompeurs et corrupteurs.":
             $ AjouterACarac(peuple.Peuple.C_COOPERATION, 0.1)
         "Dominez les étrangers. Et quand vous vous êtes assurés de votre supériorité, vous pouvez vous mélanger avec eux et les intégrer à votre groupe.":
             $ AjouterACarac(peuple.Peuple.C_COOPERATION, 0.3)
