@@ -39,6 +39,8 @@ init -1 python:
     AjouterEvtsPeuples()
     AjouterEvtsScience()
     AjouterEvtsGuerreF()
+    AjouterEvtsGuerreF()
+    AjouterEvtsMoeursF()
     # AjouterEvtsMaladies()
     # ------------------ historique --------------------
     AjouterEvtsRienHisto()
