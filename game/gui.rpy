@@ -63,10 +63,10 @@ define gui.interface_text_color = u'#ffffff'
 define gui.text_font = "DejaVuSans.ttf"
 
 ## Les polices utilisées pour le nom des personnages.
-define gui.name_text_font = "gui/CloisterBlack.ttf"
+define gui.name_text_font = gui.preference("font", "DejaVuSans.ttf")
 
 ## Les polices utilisées pour les textes « hors du jeu ».
-define gui.interface_text_font = "gui/CloisterBlack.ttf"
+define gui.interface_text_font = gui.preference("font", "DejaVuSans.ttf")
 
 ## La taille normale pour les dialogues.
 define gui.text_size = 22

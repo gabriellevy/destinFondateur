@@ -34,10 +34,6 @@ init -5 python:
         if civRef is not None:
             situation[identite.Identite.C_NOM] = civRef.GenererPatronyme(True)
 
-    def SelectionPeuple(peupleObj, situation):
-        peupleObj.SelectionDePeuple(situation)
-        renpy.jump(peupleObj.labelDepart_)
-
 label choix_peuple:
     $ index_peuple = 0
 
@@ -45,8 +41,11 @@ label choix_peuple:
         menu_items = [(cle, valeur) for cle, valeur in situation_.collectionPeuples.lPeuples_.items()]
         # menu_items.append(("Never mind", Pass))
         peupleChoisi = menu(menu_items)
-        SelectionPeuple(peupleChoisi, situation_)
-    
+        peupleChoisi.SelectionDePeuple(situation_)
+        civRef = situation_.GetCivilisationDeReference()
+        renpy.run(gui.SetPreference("font", civRef.GetPolice(), True))
+        renpy.jump(peupleChoisi.labelDepart_)
+
     jump fin_cycle
 
 label choix_peuple_avatiques:

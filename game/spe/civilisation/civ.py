@@ -14,6 +14,13 @@ class Civ:
         """Affichage quand on affiche l'objet (print)"""
         return u"{}".format(self.nom_)
 
+    def GetPolice(self):
+        """
+        police à afficher quand cette civ est la civ dominante
+        """
+        # germanique par défaut pour l'instant
+        return u"gui/polices/CloisterBlack.ttf"
+
     def GenererPrenom(self, masculin):
         if masculin:
             return u"Pas de prénom masculin, doit être overridé"

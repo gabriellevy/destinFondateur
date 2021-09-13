@@ -75,6 +75,12 @@ class Celte(civ.Civ):
     def __init__(self):
         self.nom_ = Celte.NOM
 
+    def GetPolice(self):
+        """
+        police à afficher quand cette civ est la civ dominante
+        """
+        return u"gui/polices/stonehen.ttf"
+
     def GenererPrenom(self, masculin):
         if masculin:
             return random.choice(Celte.PRENOMS_M)
