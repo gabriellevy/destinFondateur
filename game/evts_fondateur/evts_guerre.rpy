@@ -14,12 +14,35 @@ init -5 python:
 
     # simples marqueurs de fait/pas fait des événements
     traitementEnnemisMortsPasFait = condition.Condition("traitementEnnemisMorts", "1", condition.Condition.DIFFERENT)
+    femmesEtGuerrePasFait = condition.Condition("femmesEtGuerre", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsGuerreF():
         global selecteur_
 
         traitementEnnemisMorts = declencheur.Declencheur(proba.Proba(0.1, True), "traitementEnnemisMorts")
         traitementEnnemisMorts.AjouterConditions([estEnModeFondateur, traitementEnnemisMortsPasFait])
         selecteur_.ajouterDeclencheur(traitementEnnemisMorts)
+
+        femmesEtGuerre = declencheur.Declencheur(proba.Proba(0.1, True), "femmesEtGuerre")
+        femmesEtGuerre.AjouterConditions([estEnModeFondateur, femmesEtGuerrePasFait])
+        selecteur_.ajouterDeclencheur(femmesEtGuerre)
+
+label femmesEtGuerre:
+    $ situation_.SetValCarac("femmesEtGuerre", "1")
+    $ civRef = situation_.GetCivilisationDeReference()
+    $ titreFondateur = civRef.GetTitreFondateur(situation_)
+    "[titreFondateur], que doivent faire leurs femmes quand les [nomPeuple] partent à la guerre ?"
+    menu:
+        "Les femmes doivent défendre leur peuple de la même manière que les hommes.":
+            $ RetirerACaracPos(peuple.Peuple.C_SEXISME, 0.3)
+            # représenter d'une manière quelconque le fait que cela provoque des pertes plus forts (et moins de fécondité post guerre)
+        "Emmenez les femmes aux combats. Elles encourageront les hommes depuis les arrières et panseront leurs blessures":
+            $ AjouterAAffinite(celtes.Celte.NOM, 0.3)
+            $ AjouterAAffinite(civ.Germanique.NOM, 0.3)
+            # représenter d'une manière quelconque le fait que les défaites provoquent un massacre parmi les femmes
+        "Aucune femme ne doit approcher du champs de bataille.":
+            $ AjouterACaracIdentite(peuple.Peuple.C_SEXISME, 0.3)
+
+    jump fin_cycle
 
 label traitementEnnemisMorts:
     $ situation_.SetValCarac("traitementEnnemisMorts", "1")
@@ -34,7 +57,7 @@ label traitementEnnemisMorts:
     menu:
         "Rien. Laissez les aux bêtes sauvages.":
             pass
-        "Traitez-les comme vous traiteriez les corps des nôtres..":
+        "Traitez-les comme vous traiteriez les corps des nôtres.":
             $ RetirerACaracPos(peuple.Peuple.C_COHESION, 0.3)
             $ AjouterACaracIdentite(peuple.Peuple.C_COOPERATION, 0.5)
         "Que les guerriers se fassent des trophées si ils le souhaitent.":

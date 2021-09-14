@@ -12,12 +12,30 @@ init -5 python:
     from spe.civilisation import civ
 
     creationReligionPasFait = condition.Condition("creationReligion", "1", condition.Condition.DIFFERENT)
+    ameApresLaMortPasFait = condition.Condition("ameApresLaMort", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsReligieux():
         global selecteur_
         # création de religion
         creationReligion = declencheur.Declencheur(proba.Proba(0.5, True), "creationReligion")
         creationReligion.AjouterConditions([estEnModeFondateur, aPasDeReligion, creationReligionPasFait])
         selecteur_.ajouterDeclencheur(creationReligion)
+
+        ameApresLaMort = declencheur.Declencheur(proba.Proba(0.1, True), "ameApresLaMort")
+        ameApresLaMort.AjouterConditions([estEnModeFondateur, aUneReligion, estPasAthee, ameApresLaMortPasFait])
+        selecteur_.ajouterDeclencheur(ameApresLaMort)
+
+label ameApresLaMort:
+    $ situation_.SetValCarac("ameApresLaMort", "1")
+    $ civRef = situation_.GetCivilisationDeReference()
+    $ titreFondateur = civRef.GetTitreFondateur(situation_)
+    "Le doute et la peur se répandent parmi les [nomPeuple]. Pitié [titreFondateur], dites nous ce qui arrive aux âmes des morts."
+    menu:
+        "L'âme n'existe pas. Tout est corporel et matériel.":
+            $ RetirerACaracPos(peuple.Peuple.C_SPIRITUALITE, 0.2)
+        "L'âme à la mort se réincarne dans le corps d'un nouvel être vivant en train de naître.":
+            $ AjouterACaracIdentite(peuple.Peuple.C_SPIRITUALITE, 0.5) # le plus haut pour moi car rapproche de tous les êtres vivants et d'un grand cycle mais bon, jsuis peut-être pas objectif...
+        "À notre mort notre âme s'envole vers l'au delà.":
+            $ AjouterACaracIdentite(peuple.Peuple.C_SPIRITUALITE, 0.3)
 
 label creationReligion:
     $ situation_.SetValCarac("creationReligion", "1")
