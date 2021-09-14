@@ -37,6 +37,8 @@ label ameApresLaMort:
         "À notre mort notre âme s'envole vers l'au delà.":
             $ AjouterACaracIdentite(peuple.Peuple.C_SPIRITUALITE, 0.3)
 
+    jump fin_cycle
+    
 label creationReligion:
     $ situation_.SetValCarac("creationReligion", "1")
     $ civRef = situation_.GetCivilisationDeReference()
