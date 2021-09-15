@@ -41,6 +41,7 @@ init -1 python:
     AjouterEvtsGuerreF()
     AjouterEvtsGuerreF()
     AjouterEvtsMoeursF()
+    AjouterEvtsPouvoirF()
     # AjouterEvtsMaladies()
     # ------------------ historique --------------------
     AjouterEvtsRienHisto()
@@ -66,7 +67,7 @@ label fin_cycle:
     # jump combat_avant_garde # tmp test
 
     $ situation_.TourSuivant()
-
+    
     jump debut_cycle
 
 label mort:

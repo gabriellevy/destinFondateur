@@ -109,7 +109,7 @@ label mariageFondateur:
         "Le plaisir des sens est indigne du sage ascète que vous êtes. Vous choisissez le célibat.":
             $ AjouterAAffinite(civ.Christianisme.NOM, 0.4)
             $ RetirerACaracPos(peuple.Peuple.C_SENSUALITE, 0.3)
-        "Pourquoi choisir ? En tant que figure morale des [nomPeuple] vous a^pprouvez la polygamie et épousez [nomFianceeAmour] et [nomFianceeArgent]":
+        "Pourquoi choisir ? En tant que figure morale des [nomPeuple] vous approuvez la polygamie et épousez [nomFianceeAmour] et [nomFianceeArgent]":
             $ AjouterACaracIdentite(peuple.Peuple.C_SENSUALITE, 0.3)
 
     jump fin_cycle

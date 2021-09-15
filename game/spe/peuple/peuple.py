@@ -14,6 +14,7 @@ class Peuple:
     C_SOUV = u"Souveraineté"
     # ------------- val de souveraineté
     TRIBUE = u"Tribu"
+    MINORITE = u"Minorité" # dominé dans un empire ou un royaume
     # caracs principale d'identité de peuple
     # C_VIOLENCE celtes 0.6 moins de 0.3 = non violent au point de facilement collaborer et payer des rançons
     C_VIOLENCE = u"Violence"
@@ -25,10 +26,11 @@ class Peuple:
     C_SENSUALITE = u"Sensualité" # peuples où la recherche du plaisir des sens au sens large est un but avoué de la vie
     C_SPIRITUALITE = u"Spiritualité" # Appréciation des superstitions, religions, ésotérismes, la magie
     C_COOPERATION = u"Coopération" # Facilité à s'entendre avec les autres peuples et à coopérer avec eux (inclut tolérance)
-    C_LIBERTE = u"Liberté" # Peuple qui sont fiers de leur liberté, de leurs droits. L'esclavagey est mal vu et moins brutal
+    C_LIBERTE = u"Liberté" # Peuple qui sont fiers de leur liberté, de leurs droits. L'esclavage y est mal vu et moins brutal
     C_ARGENT = u"Argent" # La richesse est très valorisée et au coeur des coutumes
     C_SEXISME = u"Sexisme" # Niveau de différence de traitement entre les sexes. Patriarcat très fort = 1.0
     C_ENDURANCE = u"Endurance" # A quel point ce peuple supporte les souffrance et persiste
+    C_CLASSE = u"Classe" # si le peuple est composé de classes sociales cloisonnées
 
     # ------------ état militaire et diplomatique du peuple
     C_DIPLOMATIE = u"Diplomatie" # diplomacie "en général" c'est à dire passe en mode guerre si le peuple est en guerre même avec un seul ennemi
