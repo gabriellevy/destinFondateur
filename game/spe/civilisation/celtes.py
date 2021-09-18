@@ -92,21 +92,25 @@ class Celte(civ.Civ):
     def GenererImagePerso(self, masculin, age, tabImagesInterdites):
         images = []
         if masculin:
-            if age > 18 and age < 35:
+            if age >= 18 and age <= 35:
                 images.append( "celte_m_18_35")
-            if age > 20 and age < 50:
+            if age >= 20 and age <= 50:
                 images.append("celte_m_20_50")
-            if age > 30 and age < 40:
+            if age >= 30 and age <= 40:
                 images.append("celte_m_30_50")
-        else:
-            if age > 50:
+            if age >= 35 and age <= 65:
+                images.append("celte_m_35_65")
+        else: # femmes
+            if age >= 50:
                 images.append( "celte_f_50+")
-            if age > 20 and age < 40:
+            if age >= 20 and age <= 40:
                 images.append("celte_f_20_40")
-            if age > 20 and age < 45:
+            if age >= 20 and age <= 45:
                 images.append("celte_f_20-45")
-            if age > 13 and age < 30:
+            if age >= 13 and age <= 30:
                 images.append( "celte_f_13-30")
+            if age >= 30 and age <= 50:
+                images.append( "celte_f_30-50")
 
         for image in tabImagesInterdites:
             if image in images:

@@ -13,7 +13,7 @@ init -5 python:
     from spe.civilisation import romains
 
     # simples marqueurs de fait/pas fait des événements
-    metierLePlusImportantPasFait = condition.Condition("habillementEtDecence", "1", condition.Condition.DIFFERENT)
+    metierLePlusImportantPasFait = condition.Condition("metierLePlusImportant", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsMetiersF():
         global selecteur_
 

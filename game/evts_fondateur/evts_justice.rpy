@@ -16,6 +16,7 @@ init -5 python:
     ruseEtForcePasFait = condition.Condition("ruseEtForce", "1", condition.Condition.DIFFERENT)
     enlevementEtViolPasFait = condition.Condition("enlevementEtViol", "1", condition.Condition.DIFFERENT)
     punitionMeurtrePasFait = condition.Condition("punitionMeurtre", "1", condition.Condition.DIFFERENT)
+    jugementPourDettePasFait = condition.Condition("jugementPourDette", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsJusticeF():
         global selecteur_
 
@@ -30,6 +31,32 @@ init -5 python:
         punitionMeurtre = declencheur.Declencheur(proba.Proba(0.1, True), "punitionMeurtre")
         punitionMeurtre.AjouterConditions([ estEnModeFondateur, punitionMeurtrePasFait])
         selecteur_.ajouterDeclencheur(punitionMeurtre)
+
+        jugementPourDette = declencheur.Declencheur(proba.Proba(0.1, True), "jugementPourDette")
+        jugementPourDette.AjouterConditions([ estEnModeFondateur, jugementPourDettePasFait])
+        selecteur_.ajouterDeclencheur(jugementPourDette)
+
+label jugementPourDette:
+    $ situation_.SetValCarac("jugementPourDette", "1")
+    $ civRef = situation_.GetCivilisationDeReference()
+    $ titreFondateur = civRef.GetTitreFondateur(situation_)
+
+    $ nomCriminel = civRef.GenererPatronyme(True)
+    $ nomRapporteur = civRef.GenererPatronyme(True)
+    $ imgRapporteur = civRef.GenererImagePerso(True, 40, [])
+    $ std = Character(nomRapporteur)
+    $ renpy.show(imgRapporteur, [right])
+    with moveinright
+    std "[titreFondateur], je suis désemparé. [nomCriminel] me doit trois têtes de bétail et refuse de me les rendre."
+    std "Il sait qu'il est plus puissant et plus respecté que moi dans le clan, et que personne ne m'aidera contre lui. Que faire ?"
+    menu:
+        "Affronte le face à face en guerrier.":
+            $ AjouterACaracIdentite(peuple.Peuple.C_VIOLENCE, 0.2)
+
+        "Va devant sa porte et jeûne au vu et au su de tout le village. Il devra intervenir pour téviter la mort ou verra son honneur terni pour toujours.":
+            $ AjouterACaracIdentite(peuple.Peuple.C_ENDURANCE, 0.2)
+
+    jump fin_cycle
 
 label punitionMeurtre:
     $ situation_.SetValCarac("punitionMeurtre", "1")
@@ -71,9 +98,6 @@ label punitionMeurtre:
 
         "[nomCriminel] doit payer l'amende pour homicide convenue à la famille de [nomVictime]":
             $ AjouterACaracIdentite(peuple.Peuple.C_ARGENT, 0.3)
-
-
-
 
     jump fin_cycle
 
