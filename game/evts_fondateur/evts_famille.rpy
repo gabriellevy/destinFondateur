@@ -35,7 +35,7 @@ label mariageEtAccouplement:
     $ situation_.SetValCarac("mariageEtAccouplement", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomChefFamille = civRef.GenererPatronyme(True)
-    $ nomChefFamilleImg = civRef.GenererImagePerso(True, 50)
+    $ nomChefFamilleImg = civRef.GenererImagePerso(True, 50, [])
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     $ std = Character(nomChefFamille)
     $ renpy.show(nomChefFamilleImg, [right])
@@ -63,7 +63,7 @@ label fetesMariage:
     $ situation_.SetValCarac("fetesMariage", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomChefFamille = civRef.GenererPatronyme(True)
-    $ nomChefFamilleImg = civRef.GenererImagePerso(True, 50)
+    $ nomChefFamilleImg = civRef.GenererImagePerso(True, 50, [])
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     $ std = Character(nomChefFamille)
     $ renpy.show(nomChefFamilleImg, [right])
@@ -92,7 +92,7 @@ label mariageFondateur:
     $ nomChefFamille = civRef.GenererPatronyme(True)
     $ nomFianceeAmour = civRef.GenererPatronyme(False)
     $ nomFianceeArgent = civRef.GenererPatronyme(False)
-    $ fianceeAmourImg = civRef.GenererImagePerso(False, 20)
+    $ fianceeAmourImg = civRef.GenererImagePerso(False, 20, [])
     "Vous êtes l'homme le plus respecté de la tribu et vous n'êtes donc pas réellement surpris quand [nomChefFamille] vient vous proposer sa fille [nomFianceeArgent] en mariage."
     "C'est tout de même un grand honneur et une occasion à saisir. Leur famille est très riche et puissante. Une union entre eux et vous serait à n'en pas douter l'occasion de renforcer votre position à tous et de garantor l'avenir du village."
     "Seulement ces calculs ne suivent pas le désir réel de votre coeur. Vous étiez en effet sur le point d'avouer vos sentiments et votre désir de mariage à la belle [nomFianceeAmour]."

@@ -50,7 +50,7 @@ label traitementEnnemisMorts:
     $ nomPerso = civRef.GenererPatronyme(True)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     $ std = Character(nomPerso)
-    $ plaignantImg = civRef.GenererImageGuerrier(True, 25)
+    $ plaignantImg = civRef.GenererImageGuerrier(True, 25, [])
     $ renpy.show(plaignantImg, [right])
     with moveinright
     std "[titreFondateur], nous avons tué des pillards qui tentaient de voler notre réserve. Ce devrait être jour de fête mais nos guerriers se disputent sur ce qu'e l'on doit faire des corps des ennemis tués."

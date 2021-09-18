@@ -31,7 +31,9 @@ class SituationFondateur(situation.Situation):
         self.listeCaracsIdentite_ = [peuple.Peuple.C_VIOLENCE, peuple.Peuple.C_CREATIVITE, peuple.Peuple.C_AVENTURE,
             peuple.Peuple.C_INTEL, peuple.Peuple.C_LEGALISME, peuple.Peuple.C_SENSUALITE, peuple.Peuple.C_SPIRITUALITE,
             peuple.Peuple.C_COOPERATION, peuple.Peuple.C_LIBERTE, peuple.Peuple.C_ARGENT, peuple.Peuple.C_SEXISME,
-            peuple.Peuple.C_ENDURANCE, peuple.Peuple.C_CLASSE]
+            peuple.Peuple.C_ENDURANCE]
+        self.listeCaracsStructurePolitique_ = [ peuple.Peuple.C_CLASSE, peuple.Peuple.C_INDIVIDUALISME, peuple.Peuple.C_CLANIQUE,
+            peuple.Peuple.C_FEODALE, peuple.Peuple.C_NATIONALITE, peuple.Peuple.C_THEOCRATIE ]
         self.SetValCarac(SituationFondateur.C_MODE, SituationFondateur.C_MODE_FONDATEUR)
 
     ############################ affichage ###########################

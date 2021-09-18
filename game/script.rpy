@@ -1,7 +1,27 @@
 ﻿# Persos
 define narrator = Character(color="#fafad8", what_italic=True)
-define std = Character('Perso standard...', color="#009900") # personnage standard remplacé selon les situations. (son nom est mis à jour)
-define std2 = Character('Perso standard2...', color="#009900") # personnage standard remplacé selon les situations. (son nom est mis à jour)
+define std = Character('Perso standard...', color="#B22222") # personnage standard remplacé selon les situations. (son nom est mis à jour)
+define std2 = Character('Perso standard2...', color="#9400D3") # personnage standard remplacé selon les situations. (son nom est mis à jour)
+define std3 = Character('Perso standard3...', color="#556B2F") # personnage standard remplacé selon les situations. (son nom est mis à jour)
+define std4 = Character('Perso standard4...', color="#191970") # personnage standard remplacé selon les situations. (son nom est mis à jour)
+define std5 = Character('Perso standard5...', color="#2F4F4F") # personnage standard remplacé selon les situations. (son nom est mis à jour)
+
+#transforms :
+transform tout_a_droite:
+    xpos 1500 xanchor 0.5 ypos 350 yanchor 0.5
+    linear 1 xpos 1100
+transform a_droite:
+    xpos 1500 xanchor 0.5 ypos 350 yanchor 0.5
+    linear 1 xpos 880
+transform un_peu_a_droite:
+    xpos 1500 xanchor 0.5 ypos 350 yanchor 0.5
+    linear 1 xpos 650
+transform a_gauche:
+    xpos -100 xanchor 0.5 ypos 350 yanchor 0.5
+    linear 1 xpos 240
+transform tout_a_gauche:
+    xpos -100 xanchor 0.5 ypos 350 yanchor 0.5
+    linear 1 xpos 70
 
 # Musiques
 define audio.epique_principale = "musique/epique_principale.ogg"
@@ -42,6 +62,7 @@ init -1 python:
     AjouterEvtsGuerreF()
     AjouterEvtsMoeursF()
     AjouterEvtsPouvoirF()
+    AjouterEvtsMetiersF()
     # AjouterEvtsMaladies()
     # ------------------ historique --------------------
     AjouterEvtsRienHisto()
@@ -67,7 +88,7 @@ label fin_cycle:
     # jump combat_avant_garde # tmp test
 
     $ situation_.TourSuivant()
-    
+
     jump debut_cycle
 
 label mort:

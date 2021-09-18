@@ -27,7 +27,7 @@ label toleranceAuMelange:
     $ nomPerso = civRef.GenererPatronyme(True)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     $ std = Character(nomPerso)
-    $ plaignantImg = civRef.GenererImagePerso(False, 50)
+    $ plaignantImg = civRef.GenererImagePerso(False, 50, [])
     # $ annee = situation_.GetAnnee() A FAIRE : ces fonctions
     # $ peupleVoisin = situation_.GetRegion().GetVoisinAleatoire(annee) A FAIRE : ces fonctions
     $ peupleVoisin = civRef.GenererNomPeuple() # TMP à remplacer par ce qui est dessus

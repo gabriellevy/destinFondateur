@@ -29,7 +29,7 @@ label parure:
     $ situation_.SetValCarac("parure", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
-    $ imgPerso = civRef.GenererImagePerso(True, 50) # homme de 50 ans
+    $ imgPerso = civRef.GenererImagePerso(True, 50, []) # homme de 50 ans
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     $ std = Character(nomPerso)
     $ renpy.show(imgPerso, [right])

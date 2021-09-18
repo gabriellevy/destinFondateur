@@ -28,7 +28,7 @@ label inventionEcriture:
     $ nomPerso = civRef.GenererPatronyme(True)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     $ std = Character(nomPerso)
-    $ plaignantImg = civRef.GenererImagePerso(True, 50)
+    $ plaignantImg = civRef.GenererImagePerso(True, 50, [])
     $ renpy.show(plaignantImg, [right])
     with moveinright
     std "[titreFondateur], j'ai personnellement vu des érudits étrangers qui dessinent des symboles sur des surfaces comme la pierre ou la cire et s'en servent pour mémoriser des choses et des chiffres."

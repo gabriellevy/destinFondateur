@@ -89,11 +89,34 @@ class Celte(civ.Civ):
     def GenererNomPeuple(self):
         return random.choice(Celte.NOMS_PEUPLES)
 
-    def GenererImagePerso(self, masculin, age):
+    def GenererImagePerso(self, masculin, age, tabImagesInterdites):
+        images = []
         if masculin:
-            return "celte_m_20_50"
+            if age > 18 and age < 35:
+                images.append( "celte_m_18_35")
+            if age > 20 and age < 50:
+                images.append("celte_m_20_50")
+            if age > 30 and age < 40:
+                images.append("celte_m_30_50")
         else:
-            return "celte_f_20_40"
+            if age > 50:
+                images.append( "celte_f_50+")
+            if age > 20 and age < 40:
+                images.append("celte_f_20_40")
+            if age > 20 and age < 45:
+                images.append("celte_f_20-45")
+            if age > 13 and age < 30:
+                images.append( "celte_f_13-30")
+
+        for image in tabImagesInterdites:
+            if image in images:
+                images.remove(image)
+
+        if len(images) == 0:
+            images.append("rien a afficher : {} {} ans".format(masculin, age))
+
+        image = random.choice(images)
+        return image
 
     def GenererNom(self):
         return u""

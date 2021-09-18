@@ -27,7 +27,7 @@ label choixRoi:
     $ civRef = situation_.GetCivilisationDeReference()
     $ estMale = random.uniform(0, 1.0) > 0.5
     $ nomPerso = civRef.GenererPatronyme(estMale)
-    $ imgPerso = civRef.GenererImagePerso(estMale, 50) # homme de 50 ans
+    $ imgPerso = civRef.GenererImagePerso(estMale, 50, []) # homme de 50 ans
     $ std = Character(nomPerso)
     $ renpy.show(imgPerso, [right])
     with moveinright
@@ -37,7 +37,7 @@ label choixRoi:
     $ estPasAthee = situation_.GetValCarac(religion.Religion.C_RELIGION) != religion.Atheisme.NOM
     menu:
         "Cherchez la personne dont les ancêtres sont les plus glorieux.":
-            $ AjouterACaracIdentite(peuple.Peuple.C_CLASSE, 0.3)
+            $ AjouterACaracStructurePolitique(peuple.Peuple.C_CLASSE, 0.3)
         "Le plus fort doit régner":
             $ AjouterACaracIdentite(peuple.Peuple.C_VIOLENCE, 0.3)
         "Le plus riche doit régner. Lui seul aura l'influence nécessaire.":

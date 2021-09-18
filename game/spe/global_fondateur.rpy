@@ -126,6 +126,33 @@ init -2 python:
         renpy.hide_screen("fading_text")
         situation_.GetCivilisationDeReference()
 
+    def AjouterACaracStructurePolitique(caracId, num):
+        global situation_
+        # ne peut pas dépasser 1 et si c'est le cas tout est recalulé proportionellement pour la remettre à 1
+        valCarac = situation_.GetValCaracInt(caracId) + float(num)
+        if valCarac > 1.0:
+            # cette structure politique est la principale du peuple et les autres sont rééquilibrées à partir de celle ci
+            ratio = 1/valCarac
+            # toutes les identités sont divisées par ce ratio :
+            for carac in situation_.listeCaracsStructurePolitique_:
+                val = situation_.GetValCaracInt(carac)
+                if val != "":
+                    nouvelleVal = val/ratio
+                    if nouvelleVal > 1:
+                        nouvelleVal = 1
+                    if nouvelleVal < 0:
+                        nouvelleVal = 0
+                    situation_.SetValCarac(carac, nouvelleVal)
+            situation_.SetValCarac(caracId, 1.0)
+        else:
+            situation_.AjouterACarac(caracId, num)
+
+        textChangtCarac = u"{} + {}".format(caracId, num)
+        renpy.show_screen("fading_text", textChangtCarac, time_, x_debut, y_debut, x_fin, y_fin, color="#4f4", size=24, alpha=1.0)
+        renpy.pause(time_)
+        renpy.hide_screen("fading_text")
+        situation_.GetCivilisationDeReference()
+
     def RetirerACaracPos(caracId, num):
         """
         retire 'num' à la carac 'caracId' mais en restant 'positif'.

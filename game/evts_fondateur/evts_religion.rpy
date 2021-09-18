@@ -38,12 +38,12 @@ label ameApresLaMort:
             $ AjouterACaracIdentite(peuple.Peuple.C_SPIRITUALITE, 0.3)
 
     jump fin_cycle
-    
+
 label creationReligion:
     $ situation_.SetValCarac("creationReligion", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
-    $ persoImg = civRef.GenererImagePerso(True, 30)
+    $ persoImg = civRef.GenererImagePerso(True, 30, [])
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     "Un jour [nomPerso] vient vous voir tandis que vous méditez dans une clairière."
     $ renpy.show(persoImg, [right])

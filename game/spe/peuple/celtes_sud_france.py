@@ -40,4 +40,9 @@ class CeltesSudFrance(peuple.Peuple):
         situation[peuple.Peuple.C_ARGENT] = 0.1
         situation[peuple.Peuple.C_SEXISME] = 0.3
         situation[peuple.Peuple.C_ENDURANCE] = 0.3
+        # caracs de structure politique
         situation[peuple.Peuple.C_CLASSE] = 0.3
+        situation[peuple.Peuple.C_INDIVIDUALISME] = 0
+        situation[peuple.Peuple.C_CLANIQUE] = 1
+        situation[peuple.Peuple.C_FEODALE] = 0
+        situation[peuple.Peuple.C_NATIONALITE] = 0

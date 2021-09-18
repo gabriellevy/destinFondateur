@@ -27,7 +27,7 @@ label habillementEtDecence:
     $ nomVieilleDame = civRef.GenererPatronyme(False)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     $ std = Character(nomVieilleDame)
-    $ imgVieilleDame = civRef.GenererImagePerso(False, 50)
+    $ imgVieilleDame = civRef.GenererImagePerso(False, 50, [])
     $ renpy.show(imgVieilleDame, [right])
     with moveinright
     std "[titreFondateur], les gens et particulièrement les jeunes s'habillent et se comportent de manière particulièrement indécente."

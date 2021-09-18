@@ -15,7 +15,7 @@ class Peuple:
     # ------------- val de souveraineté
     TRIBUE = u"Tribu"
     MINORITE = u"Minorité" # dominé dans un empire ou un royaume
-    # caracs principale d'identité de peuple
+    # -------------------------- caracs principale d'identité de peuple
     # C_VIOLENCE celtes 0.6 moins de 0.3 = non violent au point de facilement collaborer et payer des rançons
     C_VIOLENCE = u"Violence"
     C_CREATIVITE = u"Creativité"
@@ -30,7 +30,13 @@ class Peuple:
     C_ARGENT = u"Argent" # La richesse est très valorisée et au coeur des coutumes
     C_SEXISME = u"Sexisme" # Niveau de différence de traitement entre les sexes. Patriarcat très fort = 1.0
     C_ENDURANCE = u"Endurance" # A quel point ce peuple supporte les souffrance et persiste
+    # -------------------------- caracs de structure politique
     C_CLASSE = u"Classe" # si le peuple est composé de classes sociales cloisonnées
+    C_INDIVIDUALISME = u"Individualisme"
+    C_CLANIQUE = u"Clanique"
+    C_FEODALE = u"Féodale"
+    C_NATIONALITE = u"Nationalité"
+    C_THEOCRATIE = u"Théocratie"
 
     # ------------ état militaire et diplomatique du peuple
     C_DIPLOMATIE = u"Diplomatie" # diplomacie "en général" c'est à dire passe en mode guerre si le peuple est en guerre même avec un seul ennemi

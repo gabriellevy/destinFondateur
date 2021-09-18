@@ -36,11 +36,14 @@ class Civ:
         prenom = self.GenererPrenom(masculin)
         return "{} {}".format(prenom, self.GenererNom())
 
-    def GenererImagePerso(self, masculin, age):
+    def GenererImagePerso(self, masculin, age, tabImagesInterdites):
         # if masculin:
         return "à overrider GenererImagePerso pour votre civ"
 
-    def GenererImageGuerrier(self, masculin, age):
+    def GenererImageGuerrier(self, masculin, age,tabImagesInterdites):
+        """
+        tabImagesInterdites list des images qui ne peuvent pas être sélectionnées
+        """
         # if masculin:
         return "à overrider GenererImageGuerrier pour votre civ"
 
