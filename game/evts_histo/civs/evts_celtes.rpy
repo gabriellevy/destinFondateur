@@ -15,6 +15,7 @@ init -5 python:
 
     creativiteAuMoinsCorrecte = condition.Condition(peuple.Peuple.C_CREATIVITE, 0.3, condition.Condition.SUPERIEUR)
     creativiteMoinsQueHuit = condition.Condition(peuple.Peuple.C_CREATIVITE, 0.8, condition.Condition.INFERIEUR)
+    violenceMoinsQueCinq = condition.Condition(peuple.Peuple.C_VIOLENCE, 0.5, condition.Condition.INFERIEUR)
     estCelte = condition.Condition(civ.Civ.C_CIV, celtes.Celte.NOM, condition.Condition.EGAL)
     def AjouterEvtsCeltesH():
         global selecteur_
@@ -34,6 +35,15 @@ init -5 python:
         festinCelte = declencheur.Declencheur(proba.Proba(0.02, True), "festinCelte")
         festinCelte.AjouterConditions([estCelte, estEnModeHisto])
         selecteur_.ajouterDeclencheur(festinCelte)
+
+        raidePourBetail = declencheur.Declencheur(proba.Proba(0.004, True), "raidePourBetail")
+        raidePourBetail.AjouterConditions([estCelte, estEnModeHisto, violenceMoinsQueCinq])
+        selecteur_.ajouterDeclencheur(raidePourBetail)
+
+label raidePourBetail:
+    "Un clan rival a volé beaucoup des vaches des [nomPeuple]. Il va falloir être plus vigilant... ou plus agressif."
+    $ RetirerACaracPos(richesse.Richesse.C_TRIBUS, 0.05)
+    jump fin_cycle
 
 label festinCelte:
     $ nomRoi = civRef.GenererPatronyme(True)

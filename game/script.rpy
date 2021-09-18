@@ -79,6 +79,7 @@ label start:
     jump choix_peuple
 
 label debut_cycle:
+    scene bg village_celte # A FAIRE : fond de base selon culture, époque, et lieu dominants
     show screen valeurs_traits
     $ prochainEvt = determinationEvtCourant(situation_)
     $ renpy.jump(prochainEvt)
