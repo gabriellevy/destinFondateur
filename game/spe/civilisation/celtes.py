@@ -92,7 +92,7 @@ class Celte(civ.Civ):
     def GenererImagePerso(self, masculin, age, tabImagesInterdites):
         images = []
         if masculin:
-            if age >= 18 and age <= 35:
+            if age >= 16 and age <= 35:
                 images.append( "celte_m_18_35")
             if age >= 20 and age <= 50:
                 images.append("celte_m_20_50")
@@ -118,6 +118,33 @@ class Celte(civ.Civ):
 
         if len(images) == 0:
             images.append("rien a afficher : {} {} ans".format(masculin, age))
+
+        image = random.choice(images)
+        return image
+
+    def GenererImageGuerrier(self, masculin, age, tabImagesInterdites):
+        images = []
+        if masculin:
+            if age >= 20 and age <= 45:
+                images.append( "celte_m_g_20_45")
+            if age >= 16 and age <= 40:
+                images.append( "celte_m_g_16_40")
+            if age >= 18 and age <= 35:
+                images.append( "celte_m_g_18_35")
+            if age >= 30 and age <= 50:
+                images.append( "celte_m_g_30_50")
+            if age >= 30:
+                images.append( "celte_m_g_30+")
+        else: # femmes
+            if age >= 16 and age <= 35:
+                images.append( "celte_f_g_16-35")
+
+        for image in tabImagesInterdites:
+            if image in images:
+                images.remove(image)
+
+        if len(images) == 0:
+            images.append("rien a afficher : guerrier {} {} ans".format(masculin, age))
 
         image = random.choice(images)
         return image

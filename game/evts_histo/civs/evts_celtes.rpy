@@ -31,6 +31,26 @@ init -5 python:
         bonsSculpteurs.AjouterConditions([estCelte, estEnModeHisto, creativiteMoinsQueHuit])
         selecteur_.ajouterDeclencheur(bonsSculpteurs)
 
+        festinCelte = declencheur.Declencheur(proba.Proba(0.02, True), "festinCelte")
+        festinCelte.AjouterConditions([estCelte, estEnModeHisto])
+        selecteur_.ajouterDeclencheur(festinCelte)
+
+label festinCelte:
+    $ nomRoi = civRef.GenererPatronyme(True)
+    $ nomFille = civRef.GenererPatronyme(False)
+    "Le roi [nomRoi] a donné un grand festin pour les fiançailles de sa fille [nomFille]."
+    $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.1)
+    "L'hydromel coule à flot et pour l'occasion le roi a même servi du vin à tous ses invités."
+    "Un énorme chaudron ouvragé est au cen tre de la pièce et les invités sont allongés sur des lits tout autour. Plus ou moins proches du roi selon leur rang."
+    $ creativite = situation_.GetValCarac(peuple.Peuple.C_CREATIVITE)
+    if creativite > 0.3:
+        "Le grand barde [nomBarde] a été convié et si bien honoré qu'il a composé un gand poème de compliment en l'honneur du roi [nomRoi]."
+        $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.05)
+    else:
+        "Malheureusement al cour manque de poètes et le spectacle laisse à désirer mais la nourriture compense."
+
+    jump fin_cycle
+
 label bonsSculpteurs:
     menu:
         "hop bonsSculpteurs"
