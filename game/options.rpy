@@ -59,7 +59,7 @@ define config.has_voice = True
 # define config.sample_sound = "sample-sound.ogg"
 # define config.sample_voice = "sample-voice.ogg"
 
-define config.main_menu_music = "musique/menu.ogg"
+# define config.main_menu_music = "musique/menu.ogg"
 
 ## Transitions #################################################################
 ##

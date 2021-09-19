@@ -26,6 +26,12 @@ class Civ:
             return u"Pas de prénom masculin, doit être overridé"
         return u"Pas de prénom féminin, doit être overridé"
 
+    def GetMusiqueAJouer(self):
+        """
+        renvoie un tableau de chemins de musiques à jouer dans le style de la civilisation en question
+        """
+        return []
+
     def GenererNomPeuple(self):
         return u"Pas de nom de peuple, doit être overridé"
 

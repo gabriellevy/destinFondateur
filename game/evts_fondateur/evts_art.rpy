@@ -35,7 +35,7 @@ label parure:
     $ renpy.show(imgPerso, [right])
     with moveinright
     std "Pardonnez moi de vous ennuyer avec des futilités, [titreFondateur], mais une habitude se développe parmi nos jeunes gens surtout mais même parmi le peuple tout entier."
-    std "Il s'agit de se décorer le corps avec des symbole et surtout des bijoux créés par des artisans."
+    std "Il s'agit de se décorer le corps avec des symboles et surtout des bijoux créés par des artisans."
     std "Cet art a un tel succès que l'ornement devient la principale activité de nos jeunes gens, au point que nous commençons à craindre qu'il les rende futiles et sans profondeur d'esprit."
 
     menu:

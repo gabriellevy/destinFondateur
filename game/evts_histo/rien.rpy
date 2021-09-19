@@ -22,7 +22,7 @@ init -5 python:
 
         sceneParDefaut = ""
         # régénère les événements compatibles avec la situation
-        evtsVides_ = ["evtRien1_h", "evtRien2_h" ] # note : peut-être n'utiliser ces événements bidons que si on n'en a aps de plus intéressants ?
+        evtsVides_ = ["evtRien1_h", "evtRien2_h" ] # note : peut-être n'utiliser ces événements bidons que si on n'en a pas de plus intéressants ?
 
         # selon religion
         religionActuelle = situation_.GetValCarac(religion.Religion.C_RELIGION)
