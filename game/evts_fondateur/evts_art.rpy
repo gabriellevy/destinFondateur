@@ -65,7 +65,7 @@ label droitSculpture:
             $ AjouterAAffinite(civ.Arabe.NOM, 0.3)
             $ RetirerACaracPos(peuple.Peuple.C_CREATIVITE, 0.1)
         "La divinité a des avatars humains parfaits que vous pouvez représenter.":
-            $ AjouterAAffinite(civ.Grecque.NOM, 0.3)
+            $ AjouterAAffinite(grecs.Grecque.NOM, 0.3)
             $ RetirerACaracPos(peuple.Peuple.C_CREATIVITE, 0.3)
 
     jump fin_cycle

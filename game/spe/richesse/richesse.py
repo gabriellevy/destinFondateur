@@ -10,3 +10,4 @@ class Richesse:
     """
     # caracs liées à la richesse du peuple
     C_TRIBUS = u"Tribus" # rançons soutirées aux peuples voisins. SOuvent score élevé après des batailles gagnées mais diminue rapidement tous les ans
+    C_COMMERCE = u"Commerce"

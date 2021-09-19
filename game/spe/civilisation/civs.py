@@ -1,5 +1,6 @@
 import random
 from spe.civilisation import celtes
+from spe.civilisation import grecs
 from spe.civilisation import romains
 from spe.civilisation import civ
 
@@ -22,8 +23,8 @@ class CollectionCivs:
         self.SetCiv(civ.Arabe.NOM, arabe)
         juive = civ.Juive()
         self.SetCiv(civ.Juive.NOM, juive)
-        grecque = civ.Grecque()
-        self.SetCiv(civ.Grecque.NOM, grecque)
+        grecque = grecs.Grecque()
+        self.SetCiv(grecs.Grecque.NOM, grecque)
         russe = civ.Russe()
         self.SetCiv(civ.Russe.NOM, russe)
         romain = romains.Romain()

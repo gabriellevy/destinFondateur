@@ -16,6 +16,10 @@ init -5 python:
     from spe.richesse import richesse
     from spe import declencheur_fondateur
     from spe.civilisation import romains
+    from spe.civilisation import grecs
+
+    # caracs
+    cooperationPlusQueTrois = condition.Condition(peuple.Peuple.C_COOPERATION, 0.3, condition.Condition.SUPERIEUR_EGAL)
 
     # Massilia
     apprentissageEcritureParMassiliaPasFait = condition.Condition("apprentissageEcritureParMassilia", "1", condition.Condition.DIFFERENT)
@@ -25,6 +29,7 @@ init -5 python:
     rencontreMassilaFait = condition.Condition("rencontreMassila", "1", condition.Condition.EGAL)
     mauvaisRapportAvecMassalia = condition.Condition(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5, condition.Condition.INFERIEUR)
     mauvaisRapportAvecAvatiques = condition.Condition(sud_france.SudFrance.C_RAPPORT_AVATIQUES, 0.5, condition.Condition.INFERIEUR)
+    RapportAvecMassaliaPasTropMauvais = condition.Condition(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.3, condition.Condition.SUPERIEUR)
 
     # science
     niveauEcritureNul = condition.Condition(science.Science.C_ECRITURE, "0.3", condition.Condition.INFERIEUR)
@@ -51,6 +56,12 @@ init -5 python:
         guerreAvatiquesPhoceens.EvtHistoArriveEntreDateAetB(-210, -190)
         selecteur_.ajouterDeclencheur(guerreAvatiquesPhoceens)
 
+        interventionRomeAMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.8, True), "interventionRomeAMassalia")
+        # ENVIRON -180 AVANT jc
+        interventionRomeAMassalia.AjouterConditions( [siSudFrance, rencontreMassilaFait, interventionRomeAMassaliaPasFait])
+        interventionRomeAMassalia.EvtHistoArriveEntreDateAetB(-180, 0)
+        selecteur_.ajouterDeclencheur(interventionRomeAMassalia)
+
         attaqueParMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "attaqueParMassalia")
         # peut arriver plusieurs fois
         attaqueParMassalia.AjouterConditions( [siSudFrance, mauvaisRapportAvecMassalia, rencontreMassilaFait])
@@ -63,10 +74,19 @@ init -5 python:
         pillageMassaliaParAvatiques.EvtHistoArriveEntreDateAetB(-600, 0)
         selecteur_.ajouterDeclencheur(pillageMassaliaParAvatiques)
 
-        interventionRomeAMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.8, True), "interventionRomeAMassalia")
-        interventionRomeAMassalia.AjouterConditions( [siSudFrance, rencontreMassilaFait, interventionRomeAMassaliaPasFait])
-        interventionRomeAMassalia.EvtHistoArriveEntreDateAetB(-180, 0)
-        selecteur_.ajouterDeclencheur(interventionRomeAMassalia)
+        commerceAvecMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "commerceAvecMassalia")
+        # peut arriver plusieurs fois
+        commerceAvecMassalia.AjouterConditions( [siSudFrance, rencontreMassilaFait, RapportAvecMassaliaPasTropMauvais, cooperationPlusQueTrois])
+        selecteur_.ajouterDeclencheur(commerceAvecMassalia)
+
+label commerceAvecMassalia:
+    scene bg massalia
+    "Le port de Massalia est un excellent partenaire de commerce. Vos pouvez y échanger de l'ambre et du [] contre du vin et de la céramique de luxe."
+    $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.1)
+    $ AjouterACaracInf1(richesse.Richesse.C_COMMERCE, 0.1)
+    $ AjouterACaracCiv(grecs.Grecque.NOM, 0.05)
+
+    jump fin_cycle
 
 label interventionRomeAMassalia:
     scene bg massalia
@@ -182,7 +202,7 @@ label apprentissageEcritureParMassilia:
     else:
         "Plusieurs commerçants [nomPeuple] s'y intéressent essentiellement pour tenir leurs comptes."
         $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5)
-        $ AjouterACaracCiv(civ.Grecque.NOM, 0.1)
+        $ AjouterACaracCiv(grecs.Grecque.NOM, 0.1)
         $ AjouterACaracIdentite(peuple.Peuple.C_INTEL, 0.1)
         $ AjouterACaracInf1(science.Science.C_ECRITURE, 0.3)
     jump fin_cycle
