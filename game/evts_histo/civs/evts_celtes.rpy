@@ -13,11 +13,19 @@ init -5 python:
     from spe.civilisation import civ
     from spe.civilisation import celtes
 
-    spiritualitePlusQueQuatre = condition.Condition(peuple.Peuple.C_SPIRITUALITE, 0.4, condition.Condition.SUPERIEUR)
-    creativiteAuMoinsCorrecte = condition.Condition(peuple.Peuple.C_CREATIVITE, 0.3, condition.Condition.SUPERIEUR)
-    creativiteMoinsQueHuit = condition.Condition(peuple.Peuple.C_CREATIVITE, 0.8, condition.Condition.INFERIEUR)
-    violenceMoinsQueCinq = condition.Condition(peuple.Peuple.C_VIOLENCE, 0.5, condition.Condition.INFERIEUR)
+    # caracs
+    spiritualitePlusQueQuatre = condition.Condition(peuple.Peuple.C_SPIRITUALITE, 0.4, condition.Condition.SUPERIEUR_EGAL)
+    spiritualitePlusQueHuit = condition.Condition(peuple.Peuple.C_SPIRITUALITE, 0.8, condition.Condition.SUPERIEUR_EGAL)
+    creativitePlusQueQuatre = condition.Condition(peuple.Peuple.C_CREATIVITE, 0.4, condition.Condition.SUPERIEUR_EGAL)
+    creativiteAuMoinsCorrecte = condition.Condition(peuple.Peuple.C_CREATIVITE, 0.3, condition.Condition.SUPERIEUR_EGAL)
+    creativiteMoinsQueHuit = condition.Condition(peuple.Peuple.C_CREATIVITE, 0.8, condition.Condition.INFERIEUR_EGAL)
+    violenceMoinsQueCinq = condition.Condition(peuple.Peuple.C_VIOLENCE, 0.5, condition.Condition.INFERIEUR_EGAL)
+    # base
     estCelte = condition.Condition(civ.Civ.C_CIV, celtes.Celte.NOM, condition.Condition.EGAL)
+    # diplomatie (à mettre ailleurs un de ces jours)
+    estEnGuerre = condition.Condition(peuple.Peuple.C_DIPLOMATIE, peuple.Peuple.GUERRE, condition.Condition.EGAL)
+    # bois sacré
+    aBoisSacre = condition.Condition(celtes.Celte.BOIS_SACRE, 1, condition.Condition.SUPERIEUR_EGAL)
     def AjouterEvtsCeltesH():
         global selecteur_
 
@@ -41,16 +49,44 @@ init -5 python:
         raidePourBetail.AjouterConditions([estCelte, estEnModeHisto, violenceMoinsQueCinq])
         selecteur_.ajouterDeclencheur(raidePourBetail)
 
-        consecrationDunBois = declencheur.Declencheur(proba.Proba(0.05, True), "consecrationDunBois")
+        proba_consecrationDunBois = proba.Proba(0.04)
+        proba_consecrationDunBois.ajouterModifProbaViaVals(0.04, spiritualitePlusQueHuit)
+        consecrationDunBois = declencheur.Declencheur(proba_consecrationDunBois, "consecrationDunBois")
         consecrationDunBois.AjouterConditions([estCelte, estEnModeHisto, spiritualitePlusQueQuatre])
         selecteur_.ajouterDeclencheur(consecrationDunBois)
+
+        sculptureBoisSacre = declencheur.Declencheur(proba.Proba(0.04, True), "sculptureBoisSacre")
+        sculptureBoisSacre.AjouterConditions([estCelte, estEnModeHisto, spiritualitePlusQueQuatre, creativitePlusQueQuatre])
+        selecteur_.ajouterDeclencheur(sculptureBoisSacre)
+
+        probaSacrificesHumainsCeltes = proba.Proba(0.005)
+        probaSacrificesHumainsCeltes.ajouterModifProbaViaVals(0.08, estEnGuerre)
+        sacrificesHumainsCeltes = declencheur.Declencheur(probaSacrificesHumainsCeltes, "sacrificesHumainsCeltes")
+        sacrificesHumainsCeltes.AjouterConditions([estCelte, estEnModeHisto, aBoisSacre])
+        selecteur_.ajouterDeclencheur(sacrificesHumainsCeltes)
+
+label sacrificesHumainsCeltes:
+    $ lieu = situation_.GetRegion()
+    $ nomForet = lieu.GetForet()
+    "Aujourd'hui est un jour favorable pour invoquer les dieux et les guerriers qui pressentent un combat proche exigent l'invocation d'Andraste la déesse de la victoire."
+    "Le prêtre les exhauce au delà de leurs espoirs en sacrifiant trois jeunes escalves dont le sang asperge les arbres de la forêt sacrée. Les présages sont bons, la victoire est assurée."
+    $ AjouterACaracIdentite(peuple.Peuple.C_VIOLENCE, 0.1)
+    jump fin_cycle
+
+label sculptureBoisSacre:
+    $ lieu = situation_.GetRegion()
+    $ nomForet = lieu.GetForet()
+    "Vos artistes ont été autorisés par les prêtres à pénétrer dans la [nomForet]. Ils sculpteront dans ce bois sacré les ombres des dieux directement dans le tronc des arbres."
+    "Le résultat est aussi majestueux qu'inquiétant et rend les cérénomies d'autant plus grandioses et solenelles. Surtout quand le sang des sacrifices asperge les statues."
+    $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.1)
+    jump fin_cycle
 
 label consecrationDunBois:
     $ lieu = situation_.GetRegion()
     $ nomForet = lieu.GetForet()
     "Les druides ont déterminé avec l'aide des oracles que la [nomForet] était sacrée. On ne pourra y pénétrer que sous la direction de son grand prêtre les jours de sacrifice."
     $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.05)
-    $ AjouterACarac(celte.Celte.BOIS_SACRE, 1)
+    $ AjouterACarac(celtes.Celte.BOIS_SACRE, 1)
     jump fin_cycle
 
 label raidePourBetail:
