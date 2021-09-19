@@ -22,6 +22,8 @@ init -5 python:
     cooperationPlusQueTrois = condition.Condition(peuple.Peuple.C_COOPERATION, 0.3, condition.Condition.SUPERIEUR_EGAL)
 
     # Massilia
+    plantationOliviersMassaliaPasFait = condition.Condition("plantationOliviersMassalia", "1", condition.Condition.DIFFERENT)
+    developpementMassaliaPasFait = condition.Condition("developpementMassalia", "1", condition.Condition.DIFFERENT)
     introductionMonnaieMassaliaPasFait = condition.Condition("introductionMonnaieMassalia", "1", condition.Condition.DIFFERENT)
     creationVignesMassaliaPasFait = condition.Condition("creationVignesMassalia", "1", condition.Condition.DIFFERENT)
     prospectionCommerceMassaliaPasFait = condition.Condition("prospectionCommerceMassalia", "1", condition.Condition.DIFFERENT)
@@ -71,6 +73,18 @@ init -5 python:
         creationVignesMassalia.AjouterConditions( [ creationVignesMassaliaPasFait, siSudFrance])
         creationVignesMassalia.EvtHistoArriveEntreDateAetB(-400, 0)
         selecteur_.ajouterDeclencheur(creationVignesMassalia)
+
+        developpementMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "developpementMassalia")
+        # ENVIRON -380 AVANT jc
+        developpementMassalia.AjouterConditions( [ developpementMassaliaPasFait, siSudFrance])
+        developpementMassalia.EvtHistoArriveEntreDateAetB(-380, 0)
+        selecteur_.ajouterDeclencheur(developpementMassalia)
+
+        plantationOliviersMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "plantationOliviersMassalia")
+        # ENVIRON -360 AVANT jc
+        plantationOliviersMassalia.AjouterConditions( [ plantationOliviersMassaliaPasFait, siSudFrance])
+        plantationOliviersMassalia.EvtHistoArriveEntreDateAetB(-360, 0)
+        selecteur_.ajouterDeclencheur(plantationOliviersMassalia)
 
         guerreAvatiquesPhoceens = declencheur_fondateur.DeclencheurFondateur(proba.Proba(1.0, True), "guerreAvatiquesPhoceens")
         # ENVIRON -200 AVANT jc
@@ -212,12 +226,35 @@ label introductionMonnaieMassalia:
         $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.1)
     jump fin_cycle
 
+label developpementMassalia:
+    scene bg massalia
+    $ situation_.SetValCarac("developpementMassalia", "1")
+    $ nomBarde = civRef.GenererPatronyme(True)
+    $ imgBarde = civRef.GenererImagePerso(True, 35, [])
+    $ std = Character(nomBarde)
+    $ renpy.show(imgBarde, [right])
+    with moveinright
+    "[nomBarde], un de vos meilleurs barde, a joué à Massalia. Il en a rapporté une description impressionnante."
+    std "Massalia est située sur un terrain rocheux. Son port se trouve au pied d’une falaise en amphithéâtre qui regarde vers le midi."
+    std "Elle est solidement fortifiée, de même que l’ensemble de la ville dont la dimension est considérable. Sur l’acropole sont fondés l’Ephésion et le sanctuaire d’Apollon Delphinien."
+    std "L’Ephésion est le temple réservé à l’Artémis d’Éphèse. En effet, alors que les Phocéens partaient de leur patrie, un oracle, dit-on, leur tomba du ciel qui disait de prendre pour chef de leur navigation un guide reçu d’Artémis d’Éphèse."
+    $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.05)
+    jump fin_cycle
+
 label prospectionCommerceMassalia:
     scene bg massalia
     $ situation_.SetValCarac("prospectionCommerceMassalia", "1")
     "Les Massaliottes prospectent dans toutes les directions et créent  des contrats commerciaux sur toute la côte et jusqu'en amont du Rhône."
     "Ils achètent surtout l'ambre et l'étain et vendent de la vaisselle, de la céramique, et du vin."
     $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.1)
+    jump fin_cycle
+
+label plantationOliviersMassalia:
+    scene bg massalia
+    $ situation_.SetValCarac("plantationOliviersMassalia", "1")
+    "Les massaliottes avaient déjà fait goûter aux [nomPeuple] leur précieuse huile d'olive qu'ils vendent à prix d'or. Mais c'est longtemps après qu'ils ont révélé que les arbres noueux qu'ils plantaient sur les coteaux qui bordent leur ville sont des oliviers."
+    "Cette plante inconnue par ici leur permettra de produire leur huile d'olive localement, de la vendre aux [nomPeuple], voire même de l'exporter !"
+    $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.04)
     jump fin_cycle
 
 label creationVignesMassalia:
