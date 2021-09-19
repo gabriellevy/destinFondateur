@@ -26,6 +26,7 @@ class CeltesSudFrance(peuple.Peuple):
         regionObj.SelectionDeRegion(situation)
         situation[peuple.Peuple.C_PEUPLE] = civilisationDepart.GenererNomPeuple()
         situation[science.Science.C_ECRITURE] = 0
+        civilisationDepart.MiseEnPlaceCaracsDepart(situation)
 
         # caracs d'identité
         situation[peuple.Peuple.C_VIOLENCE] = 0.6

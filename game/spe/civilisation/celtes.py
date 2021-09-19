@@ -3,15 +3,21 @@ from spe.civilisation import civ
 
 class Celte(civ.Civ):
 
+    # caracs spécifiques
+    BOIS_SACRE = u"Bois sacrés" # nom de bois sacrés
+
     NOM = u"Celte"
 
     def GetMusiqueAJouer(self):
         """
         renvoie un tableau de chemins de musiques à jouer dans le style de la civilisation en question
         """
-        musiques = ["musique/celtes/AnonymousAySantaMaria.ogg", "musique/celtes/Skyrim.ogg"]
+        musiques = ["musique/celtes/AnonymousAySantaMaria.ogg", "musique/celtes/Skyrim.ogg", "musique/celtes/DeLaTorreAlta.ogg"]
         random.shuffle(musiques)
         return musiques
+
+    def MiseEnPlaceCaracsDepart(self, situation):
+        situation[Celte.BOIS_SACRE] = 0
 
     def __init__(self):
         self.nom_ = Celte.NOM

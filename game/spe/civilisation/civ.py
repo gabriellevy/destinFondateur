@@ -6,6 +6,9 @@ class Civ:
     def __init__(self):
         self.nom_ = u"pas de nom de civilisation, doit être overridé"
 
+    def MiseEnPlaceCaracsDepart(self, situation):
+        pass
+
     def __repr__(self):
         """Affichage quand on entre cet objet dans l'interpréteur"""
         return u"Civilisation : {}".format(self.nom_)

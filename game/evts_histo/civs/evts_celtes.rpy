@@ -13,6 +13,7 @@ init -5 python:
     from spe.civilisation import civ
     from spe.civilisation import celtes
 
+    spiritualitePlusQueQuatre = condition.Condition(peuple.Peuple.C_SPIRITUALITE, 0.4, condition.Condition.SUPERIEUR)
     creativiteAuMoinsCorrecte = condition.Condition(peuple.Peuple.C_CREATIVITE, 0.3, condition.Condition.SUPERIEUR)
     creativiteMoinsQueHuit = condition.Condition(peuple.Peuple.C_CREATIVITE, 0.8, condition.Condition.INFERIEUR)
     violenceMoinsQueCinq = condition.Condition(peuple.Peuple.C_VIOLENCE, 0.5, condition.Condition.INFERIEUR)
@@ -39,6 +40,16 @@ init -5 python:
         raidePourBetail = declencheur.Declencheur(proba.Proba(0.004, True), "raidePourBetail")
         raidePourBetail.AjouterConditions([estCelte, estEnModeHisto, violenceMoinsQueCinq])
         selecteur_.ajouterDeclencheur(raidePourBetail)
+
+        consecrationDunBois = declencheur.Declencheur(proba.Proba(0.05, True), "consecrationDunBois")
+        consecrationDunBois.AjouterConditions([estCelte, estEnModeHisto, spiritualitePlusQueQuatre])
+        selecteur_.ajouterDeclencheur(consecrationDunBois)
+
+label consecrationDunBois:
+    "Les druides ont déterminé avec l'aide des oracles que la forêt de [nomForet] était sacrée. On ne pourra y pénétrer que sous al direction de son grand prêtre les jours de sacrifice."
+    $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.05)
+    $ AjouterACarac(celte.Celte.BOIS_SACRE, 1)
+    jump fin_cycle
 
 label raidePourBetail:
     "Un clan rival a volé beaucoup des vaches des [nomPeuple]. Il va falloir être plus vigilant... ou plus agressif."

@@ -67,7 +67,7 @@ label punitionMeurtre:
     $ nomVictime = civRef.GenererPatronyme(False)
     $ nomClanVictime = civRef.GenererNomPeuple()
     $ nomRapporteur = civRef.GenererPatronyme(True)
-    $ imgRapporteur = civRef.GenererImagePerso(True, 40, [])
+    $ imgRapporteur = civRef.GenererImagePerso(True, 40, [imgCriminel])
     $ std = Character(nomRapporteur)
     $ renpy.show(imgRapporteur, [right])
     with moveinright
