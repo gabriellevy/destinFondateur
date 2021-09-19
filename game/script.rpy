@@ -86,7 +86,7 @@ label debut_cycle:
 
 label fin_cycle:
     # "Fin d'un cycle."
-    # jump combat_avant_garde # tmp test
+    jump consecrationDunBois # tmp test
 
     # si aucune musique n'est sélectionnée, en prendre une au hasard dans la liste des musiques de la culture principale
     if renpy.music.get_playing() == None:

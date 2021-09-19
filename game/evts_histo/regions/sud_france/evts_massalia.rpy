@@ -22,6 +22,9 @@ init -5 python:
     cooperationPlusQueTrois = condition.Condition(peuple.Peuple.C_COOPERATION, 0.3, condition.Condition.SUPERIEUR_EGAL)
 
     # Massilia
+    introductionMonnaieMassaliaPasFait = condition.Condition("introductionMonnaieMassalia", "1", condition.Condition.DIFFERENT)
+    creationVignesMassaliaPasFait = condition.Condition("creationVignesMassalia", "1", condition.Condition.DIFFERENT)
+    prospectionCommerceMassaliaPasFait = condition.Condition("prospectionCommerceMassalia", "1", condition.Condition.DIFFERENT)
     apprentissageEcritureParMassiliaPasFait = condition.Condition("apprentissageEcritureParMassilia", "1", condition.Condition.DIFFERENT)
     rencontreMassilaPasFait = condition.Condition("rencontreMassila", "1", condition.Condition.DIFFERENT)
     guerreAvatiquesPhoceensPasFait = condition.Condition("guerreAvatiquesPhoceens", "1", condition.Condition.DIFFERENT)
@@ -46,9 +49,28 @@ init -5 python:
         selecteur_.ajouterDeclencheur(apprentissageEcritureParMassilia)
 
         rencontreMassila = declencheur_fondateur.DeclencheurFondateur(proba.Proba(1.0, True), "rencontreMassila")
+        # ENVIRON -600 AVANT jc
         rencontreMassila.AjouterConditions( [ rencontreMassilaPasFait, siSudFrance])
         rencontreMassila.EvtHistoArriveEntreDateAetB(-600, 0)
         selecteur_.ajouterDeclencheur(rencontreMassila)
+
+        prospectionCommerceMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.5, True), "prospectionCommerceMassalia")
+        # ENVIRON -550 AVANT jc
+        prospectionCommerceMassalia.AjouterConditions( [ prospectionCommerceMassaliaPasFait, siSudFrance])
+        prospectionCommerceMassalia.EvtHistoArriveEntreDateAetB(-550, 0)
+        selecteur_.ajouterDeclencheur(prospectionCommerceMassalia)
+
+        introductionMonnaieMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "introductionMonnaieMassalia")
+        # ENVIRON -470 AVANT jc
+        introductionMonnaieMassalia.AjouterConditions( [ introductionMonnaieMassaliaPasFait, siSudFrance])
+        introductionMonnaieMassalia.EvtHistoArriveEntreDateAetB(-470, 0)
+        selecteur_.ajouterDeclencheur(introductionMonnaieMassalia)
+
+        creationVignesMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "creationVignesMassalia")
+        # ENVIRON -400 AVANT jc
+        creationVignesMassalia.AjouterConditions( [ creationVignesMassaliaPasFait, siSudFrance])
+        creationVignesMassalia.EvtHistoArriveEntreDateAetB(-400, 0)
+        selecteur_.ajouterDeclencheur(creationVignesMassalia)
 
         guerreAvatiquesPhoceens = declencheur_fondateur.DeclencheurFondateur(proba.Proba(1.0, True), "guerreAvatiquesPhoceens")
         # ENVIRON -200 AVANT jc
@@ -81,7 +103,7 @@ init -5 python:
 
 label commerceAvecMassalia:
     scene bg massalia
-    "Le port de Massalia est un excellent partenaire de commerce. Vos pouvez y échanger de l'ambre et du [] contre du vin et de la céramique de luxe."
+    "Le port de Massalia est un excellent partenaire de commerce. Vos pouvez y échanger de l'ambre et de l'étain contre du vin et de la céramique de luxe."
     $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.1)
     $ AjouterACaracInf1(richesse.Richesse.C_COMMERCE, 0.1)
     $ AjouterACaracCiv(grecs.Grecque.NOM, 0.05)
@@ -177,6 +199,32 @@ label guerreAvatiquesPhoceens:
         "Ils ont brûlé le village de l'île des avatiques, tué des guerriers, pris des esclaves et montré leur supériorité mais les avatiques se sont réinstallés aussitôt après."
         $ RetirerAPopulationPourcent(2)
 
+    jump fin_cycle
+
+label introductionMonnaieMassalia:
+    scene bg massalia
+    $ situation_.SetValCarac("introductionMonnaieMassalia", "1")
+    "Les Massaliottes ont créé quelque chose d'incroyable. Ils façonnent de petits disques de métal précieux avec un symbole gravé dessus et s'en servent comme système de valeur pour els échanges commerciaux."
+    $ argent = situation_.GetValCaracInt(peuple.Peuple.C_ARGENT)
+    $ cooperation = situation_.GetValCaracInt(peuple.Peuple.C_COOPERATION)
+    if argent > 0.3 or cooperation > 0.3:
+        "Les [nomPeuple] sont très entousiastes et adoptent vite ce système esthétique et ingénieux."
+        $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.1)
+    jump fin_cycle
+
+label prospectionCommerceMassalia:
+    scene bg massalia
+    $ situation_.SetValCarac("prospectionCommerceMassalia", "1")
+    "Les Massaliottes prospectent dans toutes les directions et créent  des contrats commerciaux sur toute la côte et jusqu'en amont du Rhône."
+    "Ils achètent surtout l'ambre et l'étain et vendent de la vaisselle, de la céramique, et du vin."
+    $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.1)
+    jump fin_cycle
+
+label creationVignesMassalia:
+    scene bg massalia
+    $ situation_.SetValCarac("creationVignesMassalia", "1")
+    "Après leurs succès contre les ligures, les Massaliottes possèdent maintenant des coteaux et on dit qu'ils ont l'intention de faire posser du raison pour faire du vin !"
+    $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.1)
     jump fin_cycle
 
 label rencontreMassila:

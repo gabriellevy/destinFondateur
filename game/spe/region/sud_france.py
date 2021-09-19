@@ -1,5 +1,6 @@
 from spe.region import geo
 from spe.region import region
+import random
 
 class SudFrance(region.Region):
     """

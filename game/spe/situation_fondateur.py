@@ -179,4 +179,5 @@ class SituationFondateur(situation.Situation):
         return self.GetValCarac(SituationFondateur.C_MODE) == SituationFondateur.C_MODE_FONDATEUR
 
     def GetRegion(self):
-        return self.caracs_[region.Region.C_REGION]
+        regionStr = self.caracs_[region.Region.C_REGION]
+        return self.collectionRegions[regionStr]
