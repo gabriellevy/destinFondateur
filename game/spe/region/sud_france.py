@@ -22,3 +22,9 @@ class SudFrance(region.Region):
         situation.SetValCarac(geo.Geo.C_COTIERE, "1")
         situation.SetValCarac(SudFrance.C_RAPPORT_MASSILIA, 0.4) # valeur de base à la rencontre ??
         situation.SetValCarac(SudFrance.C_RAPPORT_AVATIQUES, 0.7) # valeur de base à la rencontre ??
+
+    def GetForet(self):
+        forets = ["Forêt des cèdres du Luberon", "Forêt des Dentelles de Montmirail", "Forêt de l'Esterel",
+        "Forêt des Maures", "Forêt de Menton", "Forêt du Mont-Ventoux",
+        "Forêt du Tanneron", "Forêt de la Sainte-Baume"]
+        return random.choice(forets)

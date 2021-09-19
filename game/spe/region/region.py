@@ -23,3 +23,9 @@ class Region:
         changements de caracs quand on sélectionne ce peuple
         """
         situation[Region.C_REGION] = self.nom_
+
+    def GetForet(self):
+        """
+        retourne un nom de forêt spécifique au lieu
+        """
+        return "pas de forêt pour cette région : {}".format(self.nom_)

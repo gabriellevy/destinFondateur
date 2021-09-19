@@ -177,3 +177,6 @@ class SituationFondateur(situation.Situation):
     #--------------
     def EstEnModeFondateur(self):
         return self.GetValCarac(SituationFondateur.C_MODE) == SituationFondateur.C_MODE_FONDATEUR
+
+    def GetRegion(self):
+        return self.caracs_[region.Region.C_REGION]

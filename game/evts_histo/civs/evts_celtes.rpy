@@ -46,7 +46,9 @@ init -5 python:
         selecteur_.ajouterDeclencheur(consecrationDunBois)
 
 label consecrationDunBois:
-    "Les druides ont déterminé avec l'aide des oracles que la forêt de [nomForet] était sacrée. On ne pourra y pénétrer que sous al direction de son grand prêtre les jours de sacrifice."
+    $ lieu = situation_.GetRegion()
+    $ nomForet = lieu.GetForet()
+    "Les druides ont déterminé avec l'aide des oracles que la [nomForet] était sacrée. On ne pourra y pénétrer que sous la direction de son grand prêtre les jours de sacrifice."
     $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.05)
     $ AjouterACarac(celte.Celte.BOIS_SACRE, 1)
     jump fin_cycle
