@@ -17,6 +17,7 @@ init -5 python:
     enlevementEtViolPasFait = condition.Condition("enlevementEtViol", "1", condition.Condition.DIFFERENT)
     punitionMeurtrePasFait = condition.Condition("punitionMeurtre", "1", condition.Condition.DIFFERENT)
     jugementPourDettePasFait = condition.Condition("jugementPourDette", "1", condition.Condition.DIFFERENT)
+    choixDesJugesPasFait = condition.Condition("choixDesJuges", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsJusticeF():
         global selecteur_
 
@@ -35,6 +36,37 @@ init -5 python:
         jugementPourDette = declencheur.Declencheur(proba.Proba(0.1, True), "jugementPourDette")
         jugementPourDette.AjouterConditions([ estEnModeFondateur, jugementPourDettePasFait])
         selecteur_.ajouterDeclencheur(jugementPourDette)
+
+        choixDesJuges = declencheur.Declencheur(proba.Proba(0.1, True), "choixDesJuges")
+        choixDesJuges.AjouterConditions([ estEnModeFondateur, choixDesJugesPasFait, siTribue])
+        selecteur_.ajouterDeclencheur(choixDesJuges)
+
+label choixDesJuges:
+    $ situation_.SetValCarac("choixDesJuges", "1")
+    $ civRef = situation_.GetCivilisationDeReference()
+    $ titreFondateur = civRef.GetTitreFondateur(situation_)
+
+    "[titreFondateur], de nombreuses personnes revendiquent le droit de juger les délits commis et de prononcer les punitions."
+    "C'est particulièrement ennuyeux quand les plaignants ne sont pas du même clan. Après vous, qui devrait avoir la plus haute autorité de juge ?"
+    $ estPasAthee = situation_.GetValCarac(religion.Religion.C_RELIGION) != religion.Atheisme.NOM
+    menu:
+        "les prêtres sont les juges de dernier recours, les dieux parleront à travers eux." if estPasAthee:
+            $ AjouterACaracIdentite(peuple.Peuple.C_INTEL, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_SPIRITUALITE, 0.1)
+
+        "Les nobles car leur force militaire seule fera que leurs décisions seront respectées":
+            $ AjouterACaracIdentite(peuple.Peuple.C_VIOLENCE, 0.1)
+
+        "Les juges doivent être choisis par le peuple. Ainsi il acceptera mieux les sentences.":
+            $ AjouterACaracIdentite(peuple.Peuple.C_LEGALISME, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_LIBERTE, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_COOPERATION, 0.1)
+
+        "Les grands propriétaires doivent prononcer les jugements car leur richesse est preuve de leur discernement.":
+            $ AjouterACaracIdentite(peuple.Peuple.C_ARGENT, 0.1)
+            $ AjouterACaracIdentite(peuple.Peuple.C_INTEL, 0.1)
+
+    jump fin_cycle
 
 label jugementPourDette:
     $ situation_.SetValCarac("jugementPourDette", "1")
