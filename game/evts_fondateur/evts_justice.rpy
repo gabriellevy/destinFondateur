@@ -181,8 +181,6 @@ label ruseEtForce:
     menu:
         "L'honneur réside dans la force et le courage. [nomPersoTueur] a eu tort et sera puni.":
             $ RetirerACaracPos(peuple.Peuple.C_VIOLENCE, 0.3)
-            $ AjouterAAffinite(celtes.Celte.NOM, 0.2)
-            $ AjouterAAffinite(civ.Germanique.NOM, 0.2)
         "Seule la réussite compte. [nomPersoTueur] était dans son droit et a bien agi.":
             $ AjouterACaracIdentite(peuple.Peuple.C_INTEL, 0.3)
         "Nul ne doit se venger sans consulter un sage qui déterminera les fautes et les punitions. [nomPersoTueur] sera jugé pour son crime.":

@@ -40,6 +40,5 @@ label inventionEcriture:
             pass
         "Tout cela n'est que perte de temps et mépris de nos bonnes et solides mémoires qui nous ont toujours bien servi et continuerons de le faire.":
             $ RetirerACaracPos(peuple.Peuple.C_INTEL, 0.5)
-            $ AjouterAAffinite(celtes.Celte.NOM, 0.3)
 
     jump fin_cycle

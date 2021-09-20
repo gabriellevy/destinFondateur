@@ -38,7 +38,6 @@ label toleranceAuMelange:
         "Ne vous mélangez pas aux étrangers et ne suivez pas leurs dieux et leurs coutumes inférieurs. Le commerce seul est acceptable.":
             $ RetirerACaracPos(peuple.Peuple.C_COOPERATION, 0.4)
             $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.5)
-            $ AjouterAAffinite(civ.Juive.NOM, 0.5)
         "Acceptez les échanges et même les mariages car c'est du mélange que ressort le meilleur.":
             $ AjouterACaracIdentite(peuple.Peuple.C_COOPERATION, 1.0)
             $ AjouterACaracIdentite(peuple.Peuple.C_CREATIVITE, 0.1)
@@ -48,7 +47,5 @@ label toleranceAuMelange:
         "Dominez les étrangers. Et quand vous vous êtes assurés de votre supériorité, vous pouvez vous mélanger avec eux et les intégrer à votre groupe.":
             $ AjouterACaracIdentite(peuple.Peuple.C_COOPERATION, 0.3)
             $ AjouterACaracIdentite(peuple.Peuple.C_VIOLENCE, 0.3)
-            $ AjouterAAffinite(civ.Russe.NOM, 0.5)
-            $ AjouterAAffinite(romains.Romain.NOM, 0.5)
 
     jump fin_cycle

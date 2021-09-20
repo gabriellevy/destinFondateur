@@ -41,7 +41,5 @@ label aventurierDesMers:
         "Va poursuivre l'aventure et la prospérité. C'est le meilleur moyen de servir ton peuple et ta famille.":
             $ RetirerACaracPos(peuple.Peuple.C_COHESION, 0.02)
             $ AjouterACaracIdentite(peuple.Peuple.C_AVENTURE, 0.5)
-            $ AjouterAAffinite(civ.Nordique.NOM, 0.3)
-            $ AjouterAAffinite(civ.Phenicien.NOM, 0.5)
 
     jump fin_cycle

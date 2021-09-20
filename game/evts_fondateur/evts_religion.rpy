@@ -59,7 +59,6 @@ label creationReligion:
             $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Monotheiste.NOM)
             $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.1)
             $ RetirerACaracPos(peuple.Peuple.C_COOPERATION, 0.3)
-            $ AjouterAAffinite(civ.Juive.NOM, 0.5)
         "La divinité n'existe pas. Seuls règnent le hasard et la volonté.":
             $ situation_.SetValCarac( religion.Religion.C_RELIGION, religion.Atheisme.NOM)
             $ RetirerACaracPos(peuple.Peuple.C_COHESION, 0.02)

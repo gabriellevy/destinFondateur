@@ -36,8 +36,7 @@ label femmesEtGuerre:
             $ RetirerACaracPos(peuple.Peuple.C_SEXISME, 0.3)
             # représenter d'une manière quelconque le fait que cela provoque des pertes plus forts (et moins de fécondité post guerre)
         "Emmenez les femmes aux combats. Elles encourageront les hommes depuis les arrières et panseront leurs blessures":
-            $ AjouterAAffinite(celtes.Celte.NOM, 0.3)
-            $ AjouterAAffinite(civ.Germanique.NOM, 0.3)
+            pass
             # représenter d'une manière quelconque le fait que les défaites provoquent un massacre parmi les femmes
         "Aucune femme ne doit approcher du champs de bataille.":
             $ AjouterACaracIdentite(peuple.Peuple.C_SEXISME, 0.3)

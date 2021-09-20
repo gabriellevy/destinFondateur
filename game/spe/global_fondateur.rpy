@@ -35,15 +35,6 @@ init -2 python:
     interfaceMode_ = 0
     nbInterfaceMode_ = 5
 
-    def AjouterAAffinite(idCiv, num):
-        """
-        affecte l'affinité entre les civilisation c'est à dire est-ce que quand elles se rencontreront ces deux civilisation se ressembleront
-        (et auront plus de chance de s'allier, fusionner, ou s'affronter)
-        """
-        global situation_
-        id = u"affinite{}".format(idCiv)
-        situation_.AjouterACarac(id, num)
-
     def AjouterACaracInf1(caracId, num):
         global situation_
         val = situation_.GetValCaracInt(caracId) + float(num)

@@ -102,12 +102,10 @@ label mariageFondateur:
         "Toujours les nobles élans du coeur doivent prendre le pas sur le froid calcul. Vous faites votre déclaration à [nomFianceeAmour].":
             "Elle accepte et vous vous mariez heureux. Au pris du ressentiment des nobles de la tribu."
             $ AjouterACaracIdentite(peuple.Peuple.C_SENSUALITE, 0.1)
-            $ AjouterAAffinite(civ.Francais.NOM, 0.3)
             $ RetirerACaracPos(peuple.Peuple.C_COHESION, 0.1)
         "Le corps et le coeur doivent se soumettre à la raison et au bien de la tribu. Vous acceptez le marriage avec [nomFianceeArgent]":
             $ AjouterACaracInf1(peuple.Peuple.C_COHESION, 0.3)
         "Le plaisir des sens est indigne du sage ascète que vous êtes. Vous choisissez le célibat.":
-            $ AjouterAAffinite(civ.Christianisme.NOM, 0.4)
             $ RetirerACaracPos(peuple.Peuple.C_SENSUALITE, 0.3)
         "Pourquoi choisir ? En tant que figure morale des [nomPeuple] vous approuvez la polygamie et épousez [nomFianceeAmour] et [nomFianceeArgent]":
             $ AjouterACaracIdentite(peuple.Peuple.C_SENSUALITE, 0.3)

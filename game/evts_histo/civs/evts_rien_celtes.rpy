@@ -45,7 +45,8 @@ label evtRien_celtes_mauvaisPresages:
     jump fin_cycle
 
 label evtRien_celtes_ecoleDruides:
-    "Aujourd'hui est un jour d'école religieuse. Les [nomPeuple] se groupent autour de leur druide qui leur explique le principe de l'immortalité des âmes par la métenpsychose, la réincarnation."
+    "Aujourd'hui est un jour d'école religieuse. Les [nomPeuple] se groupent autour de leur druide qui leur explique le principe de l'immortalité des âmes."
+    "À la mort les âmes retournent das le grand tout, puis elles renaissent dans de nouveaux corps."
     jump fin_cycle
 
 label evtRien_celtes_druideRenegat:
