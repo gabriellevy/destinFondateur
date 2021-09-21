@@ -25,6 +25,7 @@ init -5 python:
     mauvaisRapportAvecMassalia = condition.Condition(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5, condition.Condition.INFERIEUR)
     RapportAvecMassaliaPasTropMauvais = condition.Condition(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.3, condition.Condition.SUPERIEUR)
     # déclencheurs
+    batailleAlaliaPasFait = condition.Condition("batailleAlalia", "1", condition.Condition.DIFFERENT)
     arriveeRenfortsPhoceenPasFait = condition.Condition("arriveeRenfortsPhoceen", "1", condition.Condition.DIFFERENT)
     plantationOliviersMassaliaPasFait = condition.Condition("plantationOliviersMassalia", "1", condition.Condition.DIFFERENT)
     developpementMassaliaPasFait = condition.Condition("developpementMassalia", "1", condition.Condition.DIFFERENT)
@@ -70,6 +71,12 @@ init -5 python:
         arriveeRenfortsPhoceen.AjouterConditions( [ arriveeRenfortsPhoceenPasFait, siSudFrance])
         arriveeRenfortsPhoceen.EvtHistoArriveEntreDateAetB(-546, -530)
         selecteur_.ajouterDeclencheur(arriveeRenfortsPhoceen)
+
+        batailleAlalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.2, True), "batailleAlalia")
+        # ENVIRON -540 AVANT jc
+        batailleAlalia.AjouterConditions( [ batailleAlaliaPasFait, siSudFrance])
+        batailleAlalia.EvtHistoArriveEntreDateAetB(-540, -530)
+        selecteur_.ajouterDeclencheur(batailleAlalia)
 
         introductionMonnaieMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "introductionMonnaieMassalia")
         # ENVIRON -470 AVANT jc
@@ -235,6 +242,16 @@ label introductionMonnaieMassalia:
     if argent > 0.3 or cooperation > 0.3:
         "Les [nomPeuple] sont très entousiastes et adoptent vite ce système esthétique et ingénieux."
         $ AjouterACaracInf1(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.1)
+    jump fin_cycle
+
+label batailleAlalia:
+    scene bg massalia
+    $ situation_.SetValCarac("batailleAlalia", "1")
+    scene bg galere
+    "Un commerçant de retour d'un long voyage en mer régale tout le village de ses histoires exotiques."
+    "Une d'entre elle est particulièrement intéressante. Il raconte avoir récemment vu de ses yeux une énorme bataille navale entre des dizaines de navires grecs, étrusques et phéniciens près d'Alalia en Corse."
+    "Apparemment les grecs, qui incluaient beaucoup de Massaliottes, ont été vaincus et ont du abandonner cette île. Ils sont néanmoins encore nombreux et puissants et continuent à contrôler vos rivages."
+    "De l'avis du marchand le temps des grecs est compté. Les phéniciens de Carthage sont bien plus puissants et meilleurs marins. Mais seul le temps le dira. De votre point de vue les Massaliottes restent redoutables, surtout sur mer."
     jump fin_cycle
 
 label arriveeRenfortsPhoceen:
