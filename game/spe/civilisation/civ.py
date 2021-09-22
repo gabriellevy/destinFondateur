@@ -165,6 +165,12 @@ class Germanique(Civ):
         nom = Civ.GetTitreFondateur(self, situation)
         return "Jarl {}".format(nom)
 
+    def GetPolice(self):
+        """
+        police à afficher quand cette civ est la civ dominante
+        """
+        return u"gui/polices/CloisterBlack.ttf"
+
 class Francais(Civ):
     NOM = u"Français"
 

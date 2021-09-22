@@ -69,6 +69,9 @@ init -2 python:
     # -------------------------- fonctions de manipulation de caracs de civilisation (inclue les formules et systèmes de rééquilibrages)
     def AjouterACaracCiv(caracId, num):
         global situation_
+        # déterminer l'actuelle civilisation de référence :
+        civRefObj = situation_.GetCivilisationDeReference()
+
         # ne peut pas dépasser 1 et si c'est le cas tout est recalulé proportionellement pour la remettre à 1
         valCaracCiv = situation_.GetValCaracInt(caracId) + float(num)
         if valCaracCiv > 1.0:
@@ -78,7 +81,7 @@ init -2 python:
             for civK in situation_.collectionCivs.lCivs_.keys():
                 valCiv = situation_.GetValCaracInt(civK)
                 if valCiv != "":
-                    situation_.SetValCarac(civK, valCiv/ratio)
+                    situation_.SetValCarac(civK, valCiv*ratio)
             situation_.SetValCarac(caracId, 1.0)
             situation_.caracs_[civ.Civ.C_CIV] = caracId
         else:
@@ -88,7 +91,16 @@ init -2 python:
         renpy.show_screen("fading_text", textChangtCarac, time_, x_debut, y_debut, x_fin, y_fin, color="#4f4", size=24, alpha=1.0)
         renpy.pause(time_)
         renpy.hide_screen("fading_text")
-        situation_.GetCivilisationDeReference()
+        nouvCivRefObj = situation_.GetCivilisationDeReference()
+
+        if civRefObj.nom_ != nouvCivRefObj.nom_:
+            # !! changement de civilisation de référence !!
+            # petit nettoyage
+            for civK in situation_.collectionCivs.lCivs_.keys():
+                valCiv = situation_.GetValCaracInt(civK)
+                if valCiv < 0.05:
+                    situation_.SetValCarac(civK, 0)
+            renpy.jump("changementCivRef")
 
     def AjouterACaracIdentite(caracId, num):
         global situation_

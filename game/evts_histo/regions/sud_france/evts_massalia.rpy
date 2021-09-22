@@ -24,6 +24,7 @@ init -5 python:
     # Massilia
     mauvaisRapportAvecMassalia = condition.Condition(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.5, condition.Condition.INFERIEUR)
     RapportAvecMassaliaPasTropMauvais = condition.Condition(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.3, condition.Condition.SUPERIEUR)
+    RapportAvecMassaliaExcellent = condition.Condition(sud_france.SudFrance.C_RAPPORT_MASSILIA, 0.8, condition.Condition.SUPERIEUR)
     # déclencheurs
     batailleAlaliaPasFait = condition.Condition("batailleAlalia", "1", condition.Condition.DIFFERENT)
     arriveeRenfortsPhoceenPasFait = condition.Condition("arriveeRenfortsPhoceen", "1", condition.Condition.DIFFERENT)
@@ -130,6 +131,21 @@ init -5 python:
         # peut arriver plusieurs fois
         commerceAvecMassalia.AjouterConditions( [siSudFrance, rencontreMassilaFait, RapportAvecMassaliaPasTropMauvais, cooperationPlusQueTrois])
         selecteur_.ajouterDeclencheur(commerceAvecMassalia)
+
+        tresBonRapportsAvecMassalia = declencheur_fondateur.DeclencheurFondateur(proba.Proba(0.05, True), "tresBonRapportsAvecMassalia")
+        # peut arriver plusieurs fois
+        tresBonRapportsAvecMassalia.AjouterConditions( [siSudFrance, rencontreMassilaFait, RapportAvecMassaliaExcellent, cooperationPlusQueTrois])
+        selecteur_.ajouterDeclencheur(tresBonRapportsAvecMassalia)
+
+label tresBonRapportsAvecMassalia:
+    scene bg massalia
+    "Les [nomPeuple] sont devenus très proches des Massaliottes. Non seulement ils commercent avec eux mais ils servent de plus en plus souvent d'intermédiaires avec les autres tribus gauloises."
+    "Beaucoup de [nomPeuple] ont eu l'honneur de visiter la grande ville et d'entrer dans les temples. Le grec se répand ainsi que la curiosité pour l'étrange fonctionnement politique de cette ville."
+    $ AjouterACaracCiv(grecs.Grecque.NOM, 0.1)
+    $ AjouterACaracIdentite(peuple.Peuple.C_LEGALISME, 0.05)
+    $ AjouterACaracIdentite(peuple.Peuple.C_ARGENT, 0.1)
+    $ AjouterACaracStructurePolitique(peuple.Peuple.C_INDIVIDUALISME, 0.05)
+    jump fin_cycle
 
 label commerceAvecMassalia:
     scene bg massalia
