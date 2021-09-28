@@ -94,7 +94,7 @@ label mariageFondateur:
     $ nomFianceeArgent = civRef.GenererPatronyme(False)
     $ fianceeAmourImg = civRef.GenererImagePerso(False, 20, [])
     "Vous êtes l'homme le plus respecté de la tribu et vous n'êtes donc pas réellement surpris quand [nomChefFamille] vient vous proposer sa fille [nomFianceeArgent] en mariage."
-    "C'est tout de même un grand honneur et une occasion à saisir. Leur famille est très riche et puissante. Une union entre eux et vous serait à n'en pas douter l'occasion de renforcer votre position à tous et de garantor l'avenir du village."
+    "C'est tout de même un grand honneur et une occasion à saisir. Leur famille est très riche et puissante. Une union entre eux et vous serait à n'en pas douter l'occasion de renforcer votre position à tous et de garantir l'avenir du village."
     "Seulement ces calculs ne suivent pas le désir réel de votre coeur. Vous étiez en effet sur le point d'avouer vos sentiments et votre désir de mariage à la belle [nomFianceeAmour]."
     $ renpy.show(fianceeAmourImg, [right])
     with moveinright

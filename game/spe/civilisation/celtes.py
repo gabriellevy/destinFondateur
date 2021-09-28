@@ -12,7 +12,33 @@ class Celte(civ.Civ):
         """
         renvoie un tableau de chemins de musiques à jouer dans le style de la civilisation en question
         """
-        musiques = ["musique/celtes/AnonymousAySantaMaria.ogg", "musique/celtes/Skyrim.ogg", "musique/celtes/DeLaTorreAlta.ogg"]
+        musiques = ["musique/celtes/AnonymousAySantaMaria.ogg", "musique/celtes/Skyrim.ogg", "musique/celtes/DeLaTorreAlta.ogg",
+            "musique/celtes/King of Dragon Pass - 01 - Overture.ogg",
+            "musique/celtes/King of Dragon Pass - 02 - Theme.ogg",
+            "musique/celtes/King of Dragon Pass - 03 - It Could Be Good.ogg",
+            "musique/celtes/King of Dragon Pass - 04 - It Is Good.ogg",
+            "musique/celtes/King of Dragon Pass - 05 - Sea Season.ogg",
+            "musique/celtes/King of Dragon Pass - 06 - It Might Be Bad.ogg",
+            "musique/celtes/King of Dragon Pass - 07 - It Is Bad.ogg",
+            "musique/celtes/King of Dragon Pass - 08 - Fire Season.ogg",
+            "musique/celtes/King of Dragon Pass - 09 - Is It Adventure.ogg",
+            "musique/celtes/King of Dragon Pass - 10 - Mystery.ogg",
+            "musique/celtes/King of Dragon Pass - 11 - It Could Be Bad.ogg",
+            "musique/celtes/King of Dragon Pass - 13 - Big Big Trouble.ogg",
+            "musique/celtes/King of Dragon Pass - 14 - We Go Raiding.ogg",
+            "musique/celtes/King of Dragon Pass - 15 - Myth.ogg",
+            "musique/celtes/King of Dragon Pass - 16 - We Are Sad.ogg",
+            "musique/celtes/King of Dragon Pass - 17 - Dark Season.ogg",
+            "musique/celtes/King of Dragon Pass - 18 - Hopeful.ogg",
+            "musique/celtes/King of Dragon Pass - 19 - Call To Arms.ogg",
+            "musique/celtes/King of Dragon Pass - 20 - Earth Season.ogg",
+            "musique/celtes/King of Dragon Pass - 21 - Sad And Lost.ogg",
+            "musique/celtes/King of Dragon Pass - 22 - Quite An Adventure.ogg",
+            "musique/celtes/King of Dragon Pass - 23 - Storm Season.ogg",
+            "musique/celtes/King of Dragon Pass - 24 - Danger.ogg",
+            "musique/celtes/King of Dragon Pass - 25 - We Are Triumphant.ogg",
+            "musique/celtes/King of Dragon Pass - 26 - Woe Alas And Alack.ogg",
+            "musique/celtes/King of Dragon Pass - 27 - We Did It.ogg"]
         random.shuffle(musiques)
         return musiques
 
