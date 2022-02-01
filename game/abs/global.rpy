@@ -1,14 +1,14 @@
 init -2 python:
     from abs import carac
-    from spe import situation_fondateur
+    # from spe import situation_fondateur
     from abs.humanite import trait
     # from geographie import quartier
     from abs.humanite import metier
     from abs.univers import temps
     from abs.humanite.sante import pbsante
-    from spe.peuple import peuple
-    from spe.region import region
-    from spe.civilisation import civ
+    # from spe.peuple import peuple
+    # from spe.region import region
+    # from spe.civilisation import civ
     import random
 
     # text fade system

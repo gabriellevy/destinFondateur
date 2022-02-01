@@ -1,4 +1,3 @@
-
 define audio.sanctus = "musique/templiers/sanctus.mp3"
 define audio.turexgloriae = "musique/templiers/turexgloriae.mp3"
 
@@ -10,6 +9,8 @@ init -5 python:
     estPasAthee = condition.Condition(religion.Religion.C_RELIGION, religion.Atheisme.NOM, condition.Condition.DIFFERENT)
     estChretien = condition.Condition(religion.Religion.C_RELIGION, religion.Christianisme.NOM, condition.Condition.EGAL)
     estPasChretien = condition.Condition(religion.Religion.C_RELIGION, religion.Christianisme.NOM, condition.Condition.DIFFERENT)
+    estAnimiste = condition.Condition(religion.Religion.C_RELIGION, religion.Animisme.NOM, condition.Condition.EGAL)
+    estPasAnimiste = condition.Condition(religion.Religion.C_RELIGION, religion.Animisme.NOM, condition.Condition.DIFFERENT)
     aPasDeReligion = condition.Condition(religion.Religion.C_RELIGION, "", condition.Condition.EGAL)
     aUneReligion = condition.Condition(religion.Religion.C_RELIGION, "", condition.Condition.DIFFERENT)
     # traits
@@ -79,14 +80,14 @@ init -5 python:
 
 label donAuxPauvres:
     # Don aux pauvres
-    play music turexgloriae
+    play music turexgloriae noloop
     "Vous donnez une grande partie de votre argent pour soutenir les pauvres."
     $ situation_.RetirerACarac(trait.Richesse.NOM, 1)
     jump fin_cycle
 
 label nominationEveque:
     # Nomination comme évèque";
-    play music sanctus
+    play music sanctus noloop
     "Pour vos fortes compétences et votre ancienneté, et pour votre foi bien sûr, vous êtes nommé évèque."
     $ situation_.SetCarac(metier.Metier.C_TITRE, religion.Religion.EVEQUE)
     jump fin_cycle

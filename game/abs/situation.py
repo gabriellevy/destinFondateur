@@ -6,7 +6,7 @@ from humanite import portrait
 from humanite import pnj
 from humanite import trait
 from humanite import identite
-from affichage import affichagePortrait
+from abs.affichage import affichagePortrait
 from humanite.amour import relationAmoureuse
 from humanite import metier
 import random
@@ -155,7 +155,7 @@ class Situation:
             self.caracs_[idCarac] = 0
         elif self.caracs_[idCarac] == "":
             self.caracs_[idCarac] = 0
-        return float(self.caracs_[idCarac])
+        return int(self.caracs_[idCarac])
 
     def GetValCaracBool(self, idCarac):
         if ( idCarac not in self.caracs_):
@@ -281,9 +281,10 @@ class Situation:
         nbJoursVecus = temps.Date(self.caracs_[temps.Date.DATE]).nbJours_ - temps.Date(self.caracs_[temps.Date.DATE_NAISSANCE]).nbJours_
         if isinstance(nbJoursVecus, int):
             nbAnnees = nbJoursVecus/365
-            nbJoursPasses = nbJoursVecus%365
-            nbMois = nbJoursPasses/30
-            return "{} ans, {} mois".format(nbAnnees, nbMois)
+            return "{} ans".format(nbAnnees)
+            # nbJoursPasses = nbJoursVecus%365
+            # nbMois = nbJoursPasses/30
+            # return "{} ans, {} mois".format(nbAnnees, nbMois)
         return "??? nbJoursVecus pas int : {}".format(nbJoursVecus)
 
     def AgeEnAnnees(self):
@@ -390,6 +391,7 @@ class Situation:
         nouvelleDateEnJours = self.caracs_[temps.Date.DATE] + nbJoursPasses
         self.caracs_[temps.Date.DATE] = nouvelleDateEnJours
         self.caracs_[temps.Date.DATE_ANNEES] = self.GetDate(nouvelleDateEnJours).GetNbAnnees()
+        self.caracs_[temps.Date.MOIS_ACTUEL] = self.GetDate(nouvelleDateEnJours).GetNumMois()
         if self.GetValCarac(temps.Date.AGE_ANNEES) != "":
             self.caracs_[temps.Date.AGE_ANNEES] = self.AgeEnAnnees()
 
@@ -417,6 +419,13 @@ class Situation:
         Passage au "tour" suivant dans un destin extermis c'est à dire grosso modo à un mois un peu randomisé
         """
         nbJoursPasses = 20 + random.randint(0, 20)
+        self.AvanceDeXJours(nbJoursPasses)
+
+    def AvanceDeXMois(self, nbMois):
+        """
+        Passage au mois suivant grosso modo
+        """
+        nbJoursPasses = (28 + random.randint(0, 3))*nbMois
         self.AvanceDeXJours(nbJoursPasses)
 
     # FONCTIONS GENERIQUES
