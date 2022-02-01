@@ -13,16 +13,14 @@ init -5 python:
     from spe.region import geo
 
     estDansRegionCotiere = condition.Condition(geo.Geo.C_COTIERE, "1", condition.Condition.EGAL)
-    aventurierDesMersPasFait = condition.Condition("aventurierDesMers", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsAventure():
         global selecteur_
         # tenté par l'aventure marine ?
-        aventurierDesMers = declencheur.Declencheur(proba.Proba(0.3, True), "aventurierDesMers")
-        aventurierDesMers.AjouterConditions([estEnModeFondateur, estDansRegionCotiere, aventurierDesMersPasFait])
+        aventurierDesMers = declencheur.DeclencheurU(proba.Proba(0.3, True), "aventurierDesMers")
+        aventurierDesMers.AjouterConditions([estEnModeFondateur, estDansRegionCotiere])
         selecteur_.ajouterDeclencheur(aventurierDesMers)
 
 label aventurierDesMers:
-    $ situation_.SetValCarac("aventurierDesMers", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
     $ persoImg = civRef.GenererImagePerso(True, 20, [])

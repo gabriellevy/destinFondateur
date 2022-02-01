@@ -13,22 +13,18 @@ init -5 python:
 
     siNonSouverain = condition.Condition(peuple.Peuple.C_SOUV, peuple.Peuple.MINORITE, condition.Condition.EGAL)
     siSouverain = condition.Condition(peuple.Peuple.C_SOUV, peuple.Peuple.MINORITE, condition.Condition.DIFFERENT)
-    # simples marqueurs de fait/pas fait des événements
-    choixRoiPasFait = condition.Condition("choixRoi", "1", condition.Condition.DIFFERENT)
-    fideliteClanPeuplePasFait = condition.Condition("fideliteClanPeuple", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsPouvoirF():
         global selecteur_
 
         choixRoi = declencheur.Declencheur(proba.Proba(0.1, True), "choixRoi")
-        choixRoi.AjouterConditions([estEnModeFondateur, choixRoiPasFait, siNonSouverain])
+        choixRoi.AjouterConditions([estEnModeFondateur, siNonSouverain])
         selecteur_.ajouterDeclencheur(choixRoi)
 
         fideliteClanPeuple = declencheur.Declencheur(proba.Proba(0.1, True), "fideliteClanPeuple")
-        fideliteClanPeuple.AjouterConditions([estEnModeFondateur, fideliteClanPeuplePasFait, siSouverain])
+        fideliteClanPeuple.AjouterConditions([estEnModeFondateur, siSouverain])
         selecteur_.ajouterDeclencheur(fideliteClanPeuple)
 
 label fideliteClanPeuple:
-    $ situation_.SetValCarac("fideliteClanPeuple", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
 
@@ -56,7 +52,6 @@ label fideliteClanPeuple:
     jump fin_cycle
 
 label choixRoi:
-    $ situation_.SetValCarac("choixRoi", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     $ estMale = random.uniform(0, 1.0) > 0.5

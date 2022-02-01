@@ -13,36 +13,30 @@ init -5 python:
     from spe.civilisation import celtes
     from spe.region import geo
 
-    ruseEtForcePasFait = condition.Condition("ruseEtForce", "1", condition.Condition.DIFFERENT)
-    enlevementEtViolPasFait = condition.Condition("enlevementEtViol", "1", condition.Condition.DIFFERENT)
-    punitionMeurtrePasFait = condition.Condition("punitionMeurtre", "1", condition.Condition.DIFFERENT)
-    jugementPourDettePasFait = condition.Condition("jugementPourDette", "1", condition.Condition.DIFFERENT)
-    choixDesJugesPasFait = condition.Condition("choixDesJuges", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsJusticeF():
         global selecteur_
 
         ruseEtForce = declencheur.Declencheur(proba.Proba(0.1, True), "ruseEtForce")
-        ruseEtForce.AjouterConditions([ estEnModeFondateur, ruseEtForcePasFait])
+        ruseEtForce.AjouterConditions([ estEnModeFondateur])
         selecteur_.ajouterDeclencheur(ruseEtForce)
 
         enlevementEtViol = declencheur.Declencheur(proba.Proba(0.1, True), "enlevementEtViol")
-        enlevementEtViol.AjouterConditions([ estEnModeFondateur, enlevementEtViolPasFait])
+        enlevementEtViol.AjouterConditions([ estEnModeFondateur])
         selecteur_.ajouterDeclencheur(enlevementEtViol)
 
         punitionMeurtre = declencheur.Declencheur(proba.Proba(0.1, True), "punitionMeurtre")
-        punitionMeurtre.AjouterConditions([ estEnModeFondateur, punitionMeurtrePasFait])
+        punitionMeurtre.AjouterConditions([ estEnModeFondateur])
         selecteur_.ajouterDeclencheur(punitionMeurtre)
 
         jugementPourDette = declencheur.Declencheur(proba.Proba(0.1, True), "jugementPourDette")
-        jugementPourDette.AjouterConditions([ estEnModeFondateur, jugementPourDettePasFait])
+        jugementPourDette.AjouterConditions([ estEnModeFondateur])
         selecteur_.ajouterDeclencheur(jugementPourDette)
 
         choixDesJuges = declencheur.Declencheur(proba.Proba(0.1, True), "choixDesJuges")
-        choixDesJuges.AjouterConditions([ estEnModeFondateur, choixDesJugesPasFait, siTribue])
+        choixDesJuges.AjouterConditions([ estEnModeFondateur, siTribue])
         selecteur_.ajouterDeclencheur(choixDesJuges)
 
 label choixDesJuges:
-    $ situation_.SetValCarac("choixDesJuges", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
 
@@ -69,7 +63,6 @@ label choixDesJuges:
     jump fin_cycle
 
 label jugementPourDette:
-    $ situation_.SetValCarac("jugementPourDette", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
 
@@ -91,7 +84,6 @@ label jugementPourDette:
     jump fin_cycle
 
 label punitionMeurtre:
-    $ situation_.SetValCarac("punitionMeurtre", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     $ nomCriminel = civRef.GenererPatronyme(True)
@@ -135,7 +127,6 @@ label punitionMeurtre:
 
 label enlevementEtViol:
     # NOTE : un joueur standard pensera à la prison. Mais cela n'existait pas à l'époque. Ajouter un choix couteux de ce genre ? Expliqueur ce détail d'une manière détournée ?
-    $ situation_.SetValCarac("enlevementEtViol", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomEnleveur = civRef.GenererPatronyme(True)
     $ nomEnlevee = civRef.GenererPatronyme(False)
@@ -160,7 +151,6 @@ label enlevementEtViol:
     jump fin_cycle
 
 label ruseEtForce:
-    $ situation_.SetValCarac("ruseEtForce", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPersoTueur = civRef.GenererPatronyme(True)
     $ nomPersoJuge = civRef.GenererPatronyme(True)

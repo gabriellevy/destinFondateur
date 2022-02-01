@@ -12,17 +12,14 @@ init -5 python:
     from spe.civilisation import civ
     from spe.civilisation import romains
 
-    # simples marqueurs de fait/pas fait des événements
-    habillementEtDecencePasFait = condition.Condition("habillementEtDecence", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsMoeursF():
         global selecteur_
 
         habillementEtDecence = declencheur.Declencheur(proba.Proba(0.1, True), "habillementEtDecence")
-        habillementEtDecence.AjouterConditions([estEnModeFondateur, habillementEtDecencePasFait])
+        habillementEtDecence.AjouterConditions([estEnModeFondateur])
         selecteur_.ajouterDeclencheur(habillementEtDecence)
 
 label habillementEtDecence:
-    $ situation_.SetValCarac("habillementEtDecence", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomVieilleDame = civRef.GenererPatronyme(False)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)

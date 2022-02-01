@@ -12,17 +12,14 @@ init -5 python:
     from spe.civilisation import civ
     from spe.civilisation import romains
 
-    # simples marqueurs de fait/pas fait des événements
-    metierLePlusImportantPasFait = condition.Condition("metierLePlusImportant", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsMetiersF():
         global selecteur_
 
         metierLePlusImportant = declencheur.Declencheur(proba.Proba(0.1, True), "metierLePlusImportant")
-        metierLePlusImportant.AjouterConditions([estEnModeFondateur, metierLePlusImportantPasFait])
+        metierLePlusImportant.AjouterConditions([estEnModeFondateur])
         selecteur_.ajouterDeclencheur(metierLePlusImportant)
 
 label metierLePlusImportant:
-    $ situation_.SetValCarac("metierLePlusImportant", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
 

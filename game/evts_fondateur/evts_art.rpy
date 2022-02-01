@@ -11,22 +11,18 @@ init -5 python:
     from spe.peuple import peuple
     from spe.civilisation import civ
 
-    # simples marqueurs de fait/pas fait des événements
-    droitSculpturePasFait = condition.Condition("droitSculpture", "1", condition.Condition.DIFFERENT)
-    parurePasFait = condition.Condition("parure", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsArt():
         global selecteur_
 
-        droitSculpture = declencheur.Declencheur(proba.Proba(0.1, True), "droitSculpture")
-        droitSculpture.AjouterConditions([estEnModeFondateur, estPasAthee, droitSculpturePasFait])
+        droitSculpture = declencheur.DeclencheurU(proba.Proba(0.1, True), "droitSculpture")
+        droitSculpture.AjouterConditions([estEnModeFondateur, estPasAthee])
         selecteur_.ajouterDeclencheur(droitSculpture)
 
-        parure = declencheur.Declencheur(proba.Proba(0.1, True), "parure")
-        parure.AjouterConditions([estEnModeFondateur, parurePasFait])
+        parure = declencheur.DeclencheurU(proba.Proba(0.1, True), "parure")
+        parure.AjouterConditions([estEnModeFondateur])
         selecteur_.ajouterDeclencheur(parure)
 
 label parure:
-    $ situation_.SetValCarac("parure", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
     $ imgPerso = civRef.GenererImagePerso(True, 50, []) # homme de 50 ans
@@ -52,7 +48,6 @@ label parure:
     jump fin_cycle
 
 label droitSculpture:
-    $ situation_.SetValCarac("droitSculpture", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)

@@ -13,26 +13,22 @@ init -5 python:
     from spe.region import geo
 
     siTribue = condition.Condition(peuple.Peuple.C_SOUV, peuple.Peuple.TRIBUE, condition.Condition.EGAL)
-    mariageFondateurPasFait = condition.Condition("mariageFondateur", "1", condition.Condition.DIFFERENT)
-    fetesMariagePasFait = condition.Condition("fetesMariage", "1", condition.Condition.DIFFERENT)
-    mariageEtAccouplementPasFait = condition.Condition("mariageEtAccouplement", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsFamilleF():
         global selecteur_
         # mariage du fondateur
-        mariageFondateur = declencheur.Declencheur(proba.Proba(0.3, True), "mariageFondateur")
-        mariageFondateur.AjouterConditions([estEnModeFondateur, mariageFondateurPasFait, siTribue])
+        mariageFondateur = declencheur.DeclencheurU(proba.Proba(0.3, True), "mariageFondateur")
+        mariageFondateur.AjouterConditions([estEnModeFondateur, siTribue])
         selecteur_.ajouterDeclencheur(mariageFondateur)
         # fêtes et mariage
-        fetesMariage = declencheur.Declencheur(proba.Proba(0.1, True), "fetesMariage")
-        fetesMariage.AjouterConditions([estEnModeFondateur, fetesMariagePasFait])
+        fetesMariage = declencheur.DeclencheurU(proba.Proba(0.1, True), "fetesMariage")
+        fetesMariage.AjouterConditions([estEnModeFondateur])
         selecteur_.ajouterDeclencheur(fetesMariage)
 
-        mariageEtAccouplement = declencheur.Declencheur(proba.Proba(0.1, True), "mariageEtAccouplement")
-        mariageEtAccouplement.AjouterConditions([estEnModeFondateur, mariageEtAccouplementPasFait])
+        mariageEtAccouplement = declencheur.DeclencheurU(proba.Proba(0.1, True), "mariageEtAccouplement")
+        mariageEtAccouplement.AjouterConditions([estEnModeFondateur])
         selecteur_.ajouterDeclencheur(mariageEtAccouplement)
 
 label mariageEtAccouplement:
-    $ situation_.SetValCarac("mariageEtAccouplement", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomChefFamille = civRef.GenererPatronyme(True)
     $ nomChefFamilleImg = civRef.GenererImagePerso(True, 50, [])
@@ -60,7 +56,6 @@ label mariageEtAccouplement:
     jump fin_cycle
 
 label fetesMariage:
-    $ situation_.SetValCarac("fetesMariage", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomChefFamille = civRef.GenererPatronyme(True)
     $ nomChefFamilleImg = civRef.GenererImagePerso(True, 50, [])
@@ -87,7 +82,6 @@ label fetesMariage:
     jump fin_cycle
 
 label mariageFondateur:
-    $ situation_.SetValCarac("mariageFondateur", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomChefFamille = civRef.GenererPatronyme(True)
     $ nomFianceeAmour = civRef.GenererPatronyme(False)

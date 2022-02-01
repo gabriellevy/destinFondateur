@@ -12,17 +12,14 @@ init -5 python:
     from spe.civilisation import civ
     from spe.civilisation import romains
 
-    # simples marqueurs de fait/pas fait des événements
-    toleranceAuMelangePasFait = condition.Condition("toleranceAuMelange", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsPeuples():
         global selecteur_
 
         toleranceAuMelange = declencheur.Declencheur(proba.Proba(0.1, True), "toleranceAuMelange")
-        toleranceAuMelange.AjouterConditions([estEnModeFondateur, toleranceAuMelangePasFait])
+        toleranceAuMelange.AjouterConditions([estEnModeFondateur])
         selecteur_.ajouterDeclencheur(toleranceAuMelange)
 
 label toleranceAuMelange:
-    $ situation_.SetValCarac("toleranceAuMelange", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)

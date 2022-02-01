@@ -11,21 +11,18 @@ init -5 python:
     from spe.peuple import peuple
     from spe.civilisation import civ
 
-    creationReligionPasFait = condition.Condition("creationReligion", "1", condition.Condition.DIFFERENT)
-    ameApresLaMortPasFait = condition.Condition("ameApresLaMort", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsReligieux():
         global selecteur_
         # création de religion
         creationReligion = declencheur.Declencheur(proba.Proba(0.5, True), "creationReligion")
-        creationReligion.AjouterConditions([estEnModeFondateur, aPasDeReligion, creationReligionPasFait])
+        creationReligion.AjouterConditions([estEnModeFondateur, aPasDeReligion])
         selecteur_.ajouterDeclencheur(creationReligion)
 
         ameApresLaMort = declencheur.Declencheur(proba.Proba(0.1, True), "ameApresLaMort")
-        ameApresLaMort.AjouterConditions([estEnModeFondateur, aUneReligion, estPasAthee, ameApresLaMortPasFait])
+        ameApresLaMort.AjouterConditions([estEnModeFondateur, aUneReligion, estPasAthee])
         selecteur_.ajouterDeclencheur(ameApresLaMort)
 
 label ameApresLaMort:
-    $ situation_.SetValCarac("ameApresLaMort", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     "Le doute et la peur se répandent parmi les [nomPeuple]. Pitié [titreFondateur], dites nous ce qui arrive aux âmes des morts."
@@ -40,7 +37,6 @@ label ameApresLaMort:
     jump fin_cycle
 
 label creationReligion:
-    $ situation_.SetValCarac("creationReligion", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
     $ persoImg = civRef.GenererImagePerso(True, 30, [])

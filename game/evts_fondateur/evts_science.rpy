@@ -13,17 +13,15 @@ init -5 python:
     from spe.civilisation import celtes
 
     # simples marqueurs de fait/pas fait des événements
-    inventionEcriturePasFait = condition.Condition("inventionEcriture", "1", condition.Condition.DIFFERENT)
     anneeInf100 = condition.Condition(temps.Date.DATE_ANNEES, "100", condition.Condition.INFERIEUR)
     def AjouterEvtsScience():
         global selecteur_
 
         inventionEcriture = declencheur.Declencheur(proba.Proba(0.2, True), "inventionEcriture")
-        inventionEcriture.AjouterConditions([estEnModeFondateur, inventionEcriturePasFait, anneeInf100])
+        inventionEcriture.AjouterConditions([estEnModeFondateur, anneeInf100])
         selecteur_.ajouterDeclencheur(inventionEcriture)
 
 label inventionEcriture:
-    $ situation_.SetValCarac("inventionEcriture", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)

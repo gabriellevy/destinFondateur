@@ -12,22 +12,18 @@ init -5 python:
     from spe.civilisation import civ
     from spe.civilisation import celtes
 
-    # simples marqueurs de fait/pas fait des événements
-    traitementEnnemisMortsPasFait = condition.Condition("traitementEnnemisMorts", "1", condition.Condition.DIFFERENT)
-    femmesEtGuerrePasFait = condition.Condition("femmesEtGuerre", "1", condition.Condition.DIFFERENT)
     def AjouterEvtsGuerreF():
         global selecteur_
 
         traitementEnnemisMorts = declencheur.Declencheur(proba.Proba(0.1, True), "traitementEnnemisMorts")
-        traitementEnnemisMorts.AjouterConditions([estEnModeFondateur, traitementEnnemisMortsPasFait])
+        traitementEnnemisMorts.AjouterConditions([estEnModeFondateur])
         selecteur_.ajouterDeclencheur(traitementEnnemisMorts)
 
         femmesEtGuerre = declencheur.Declencheur(proba.Proba(0.1, True), "femmesEtGuerre")
-        femmesEtGuerre.AjouterConditions([estEnModeFondateur, femmesEtGuerrePasFait])
+        femmesEtGuerre.AjouterConditions([estEnModeFondateur])
         selecteur_.ajouterDeclencheur(femmesEtGuerre)
 
 label femmesEtGuerre:
-    $ situation_.SetValCarac("femmesEtGuerre", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
     "[titreFondateur], que doivent faire leurs femmes quand les [nomPeuple] partent à la guerre ?"
@@ -44,7 +40,6 @@ label femmesEtGuerre:
     jump fin_cycle
 
 label traitementEnnemisMorts:
-    $ situation_.SetValCarac("traitementEnnemisMorts", "1")
     $ civRef = situation_.GetCivilisationDeReference()
     $ nomPerso = civRef.GenererPatronyme(True)
     $ titreFondateur = civRef.GetTitreFondateur(situation_)
